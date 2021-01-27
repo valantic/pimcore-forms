@@ -5,4 +5,4 @@
 
 **NO support is provided!**
 
-This package is developed by [valantic CEC Schweiz](https://www.valantic.com/en/services/digital-business/) and is under active development. **Please refer to the `develop` branch for the time being.**
+This package is developed by [valantic CEC Schweiz](https://www.valantic.com/en/services/digital-business/) and is under active development. **Please refer to the [`develop`](https://github.com/valantic/pimcore-forms/tree/develop) branch for the time being.**
