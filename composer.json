@@ -4,15 +4,16 @@
     "description": "Forms for Pimcore",
     "type": "pimcore-bundle",
     "require": {
-        "pimcore/pimcore": "^6.8",
-        "php": "^7.4"
+        "php": "^7.4",
+        "ext-json": "*",
+        "pimcore/pimcore": "^6.8"
     },
     "require-dev": {
         "phpstan/phpstan": "^0.12.69"
     },
     "autoload": {
         "psr-4": {
-            "Valantic\\PimcoreForms\\": "src/"
+            "Valantic\\PimcoreFormsBundle\\": "src/"
         }
     },
     "license": "MIT",
