@@ -13,3 +13,9 @@ services:
   Valantic\PimcoreFormsBundle\Command\:
     resource: '../../Command/*'
     tags: [ 'console.command' ]
+
+  Valantic\PimcoreFormsBundle\Form\:
+    resource: '../../Form/*'
+
+  Valantic\PimcoreFormsBundle\Repository\:
+    resource: '../../Repository/*'

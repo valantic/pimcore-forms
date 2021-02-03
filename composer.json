@@ -17,6 +17,13 @@
       "Valantic\\PimcoreFormsBundle\\": "src/"
     }
   },
+  "extra": {
+    "pimcore": {
+      "bundles": [
+        "Valantic\\PimcoreFormsBundle"
+      ]
+    }
+  },
   "license": "MIT",
   "authors": [
     {

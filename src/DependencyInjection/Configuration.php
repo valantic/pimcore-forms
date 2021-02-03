@@ -32,6 +32,7 @@ class Configuration implements ConfigurationInterface
                         ->end()
                         ->arrayNode('fields')->isRequired()->requiresAtLeastOneElement()->arrayPrototype()
                             ->children()
+                                ->scalarNode('label')->defaultNull()->end()
                                 ->enumNode('type')->values(['TextType', 'ChoiceType'])->cannotBeEmpty()->info('The type of this output channel')->example('TextType')->end()
                                 ->variableNode('constraints')->info('Define the Symfony Constraints for this field')->end()
                                 ->variableNode('choices')->info('Can be a key => value array or referring to a Service')->end()
