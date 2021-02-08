@@ -30,8 +30,12 @@ class ValanticPimcoreFormsExtension extends Extension
 
         $container->setParameter(ConfigurationRepository::CONTAINER_TAG, $config);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $loader->load('services.yml');
-        $loader->load('transformers.yml');
+        $ymlLoader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $ymlLoader->load('services.yml');
+        $ymlLoader->load('transformers.yml');
+
+        $xmlLoader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $xmlLoader->load('liform_services.xml');
+        $xmlLoader->load('liform_transformers.xml');
     }
 }

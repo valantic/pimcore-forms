@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a7f360dcbdfc2118c9cf304540eff46",
+    "content-hash": "dbfd16e1360a698d488114d918c32029",
     "packages": [
         {
             "name": "amnuts/opcache-gui",
@@ -2350,16 +2350,16 @@
         },
         {
             "name": "google/apiclient-services",
-            "version": "v0.157.0",
+            "version": "v0.159.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-api-php-client-services.git",
-                "reference": "957846303c28c10033fa83d8688ffd325c260a3e"
+                "reference": "d5334e9853afe16e7d8215006a475061d8023216"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/957846303c28c10033fa83d8688ffd325c260a3e",
-                "reference": "957846303c28c10033fa83d8688ffd325c260a3e",
+                "url": "https://api.github.com/repos/googleapis/google-api-php-client-services/zipball/d5334e9853afe16e7d8215006a475061d8023216",
+                "reference": "d5334e9853afe16e7d8215006a475061d8023216",
                 "shasum": ""
             },
             "require": {
@@ -2385,22 +2385,22 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/google-api-php-client-services/issues",
-                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.157.0"
+                "source": "https://github.com/googleapis/google-api-php-client-services/tree/v0.159.0"
             },
-            "time": "2021-01-19T12:20:06+00:00"
+            "time": "2021-02-05T12:20:02+00:00"
         },
         {
             "name": "google/auth",
-            "version": "v1.14.3",
+            "version": "v1.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-auth-library-php.git",
-                "reference": "c1503299c779af0cbc99b43788f75930988852cf"
+                "reference": "b346c07de6613e26443d7b4830e5e1933b830dc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/c1503299c779af0cbc99b43788f75930988852cf",
-                "reference": "c1503299c779af0cbc99b43788f75930988852cf",
+                "url": "https://api.github.com/repos/googleapis/google-auth-library-php/zipball/b346c07de6613e26443d7b4830e5e1933b830dc4",
+                "reference": "b346c07de6613e26443d7b4830e5e1933b830dc4",
                 "shasum": ""
             },
             "require": {
@@ -2413,7 +2413,7 @@
             },
             "require-dev": {
                 "guzzlehttp/promises": "0.1.1|^1.3",
-                "kelvinmo/simplejwt": "^0.2.5",
+                "kelvinmo/simplejwt": "^0.2.5|^0.5.1",
                 "phpseclib/phpseclib": "^2",
                 "phpunit/phpunit": "^4.8.36|^5.7",
                 "sebastian/comparator": ">=1.2.3",
@@ -2442,9 +2442,9 @@
             "support": {
                 "docs": "https://googleapis.github.io/google-auth-library-php/master/",
                 "issues": "https://github.com/googleapis/google-auth-library-php/issues",
-                "source": "https://github.com/googleapis/google-auth-library-php/tree/v1.14.3"
+                "source": "https://github.com/googleapis/google-auth-library-php/tree/v1.15.0"
             },
-            "time": "2020-10-16T21:33:48+00:00"
+            "time": "2021-02-05T20:50:04+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -3119,16 +3119,16 @@
         },
         {
             "name": "lcobucci/jwt",
-            "version": "3.4.2",
+            "version": "3.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lcobucci/jwt.git",
-                "reference": "17cb82dd625ccb17c74bf8f38563d3b260306483"
+                "reference": "cd83b5421df3dbbbc66bd07a5b970c9efb6371b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lcobucci/jwt/zipball/17cb82dd625ccb17c74bf8f38563d3b260306483",
-                "reference": "17cb82dd625ccb17c74bf8f38563d3b260306483",
+                "url": "https://api.github.com/repos/lcobucci/jwt/zipball/cd83b5421df3dbbbc66bd07a5b970c9efb6371b9",
+                "reference": "cd83b5421df3dbbbc66bd07a5b970c9efb6371b9",
                 "shasum": ""
             },
             "require": {
@@ -3180,7 +3180,7 @@
             ],
             "support": {
                 "issues": "https://github.com/lcobucci/jwt/issues",
-                "source": "https://github.com/lcobucci/jwt/tree/3.4.2"
+                "source": "https://github.com/lcobucci/jwt/tree/3.4.3"
             },
             "funding": [
                 {
@@ -3192,7 +3192,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-12-03T13:43:45+00:00"
+            "time": "2021-01-27T23:38:30+00:00"
         },
         {
             "name": "league/csv",
@@ -3330,57 +3330,17 @@
             "time": "2020-10-06T15:01:01+00:00"
         },
         {
-            "name": "limenius/liform-bundle",
-            "version": "v0.17.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Limenius/LiformBundle.git",
-                "reference": "6de210a2a7098e463f4fc1255fdc2f9542575580"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Limenius/LiformBundle/zipball/6de210a2a7098e463f4fc1255fdc2f9542575580",
-                "reference": "6de210a2a7098e463f4fc1255fdc2f9542575580",
-                "shasum": ""
-            },
-            "require": {
-                "limenius/liform": "^0.17.0"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "Limenius\\LiformBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nacho Martín",
-                    "email": "nacho@limenius.com"
-                }
-            ],
-            "description": "Bundle for Liform: Transform Symfony Forms into Json Schema",
-            "support": {
-                "issues": "https://github.com/Limenius/LiformBundle/issues",
-                "source": "https://github.com/Limenius/LiformBundle/tree/v0.17.0"
-            },
-            "time": "2020-10-06T15:07:51+00:00"
-        },
-        {
             "name": "linfo/linfo",
-            "version": "v4.0.5",
+            "version": "v4.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jrgp/linfo.git",
-                "reference": "e3d50585556a92546f1899f354078f96c0a12298"
+                "reference": "aea87565d4fd1124e637581b66a41c8b86ee22bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jrgp/linfo/zipball/e3d50585556a92546f1899f354078f96c0a12298",
-                "reference": "e3d50585556a92546f1899f354078f96c0a12298",
+                "url": "https://api.github.com/repos/jrgp/linfo/zipball/aea87565d4fd1124e637581b66a41c8b86ee22bb",
+                "reference": "aea87565d4fd1124e637581b66a41c8b86ee22bb",
                 "shasum": ""
             },
             "require": {
@@ -3422,9 +3382,9 @@
             ],
             "support": {
                 "issues": "https://github.com/jrgp/linfo/issues",
-                "source": "https://github.com/jrgp/linfo/tree/v4.0.5"
+                "source": "https://github.com/jrgp/linfo/tree/v4.0.6"
             },
-            "time": "2020-11-15T00:33:01+00:00"
+            "time": "2021-01-28T17:51:22+00:00"
         },
         {
             "name": "maennchen/zipstream-php",
@@ -4215,16 +4175,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.43.0",
+            "version": "2.44.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "d32c57d8389113742f4a88725a170236470012e2"
+                "reference": "e6ef33cb1f67a4bed831ed6d0f7e156739a5d8cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d32c57d8389113742f4a88725a170236470012e2",
-                "reference": "d32c57d8389113742f4a88725a170236470012e2",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/e6ef33cb1f67a4bed831ed6d0f7e156739a5d8cd",
+                "reference": "e6ef33cb1f67a4bed831ed6d0f7e156739a5d8cd",
                 "shasum": ""
             },
             "require": {
@@ -4240,7 +4200,7 @@
                 "phpmd/phpmd": "^2.9",
                 "phpstan/extension-installer": "^1.0",
                 "phpstan/phpstan": "^0.12.54",
-                "phpunit/phpunit": "^7.5 || ^8.0",
+                "phpunit/phpunit": "^7.5.20 || ^8.5.14",
                 "squizlabs/php_codesniffer": "^3.4"
             },
             "bin": [
@@ -4304,7 +4264,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-12-17T20:55:32+00:00"
+            "time": "2021-01-26T20:46:41+00:00"
         },
         {
             "name": "ocramius/package-versions",
@@ -4881,16 +4841,16 @@
         },
         {
             "name": "pimcore/pimcore",
-            "version": "v6.8.7",
+            "version": "v6.8.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pimcore/pimcore.git",
-                "reference": "d66a9628f92d75ecb75d5ade8a50283da70a0070"
+                "reference": "1786bdd4962ee51544fad537352c2b4223309442"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pimcore/pimcore/zipball/d66a9628f92d75ecb75d5ade8a50283da70a0070",
-                "reference": "d66a9628f92d75ecb75d5ade8a50283da70a0070",
+                "url": "https://api.github.com/repos/pimcore/pimcore/zipball/1786bdd4962ee51544fad537352c2b4223309442",
+                "reference": "1786bdd4962ee51544fad537352c2b4223309442",
                 "shasum": ""
             },
             "require": {
@@ -5051,7 +5011,7 @@
                 "source": "https://github.com/pimcore/pimcore",
                 "wiki": "https://pimcore.com/docs/latest/"
             },
-            "time": "2021-01-20T13:53:12+00:00"
+            "time": "2021-02-05T09:39:02+00:00"
         },
         {
             "name": "piwik/device-detector",
@@ -8083,16 +8043,16 @@
         },
         {
             "name": "vrana/adminer",
-            "version": "v4.7.8",
+            "version": "v4.7.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vrana/adminer.git",
-                "reference": "190146672f6ce9b8f08af2d7e7a5e8f768d32ee6"
+                "reference": "93c7fb248ca008e3247eb3a43812e1096e7b262c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vrana/adminer/zipball/190146672f6ce9b8f08af2d7e7a5e8f768d32ee6",
-                "reference": "190146672f6ce9b8f08af2d7e7a5e8f768d32ee6",
+                "url": "https://api.github.com/repos/vrana/adminer/zipball/93c7fb248ca008e3247eb3a43812e1096e7b262c",
+                "reference": "93c7fb248ca008e3247eb3a43812e1096e7b262c",
                 "shasum": ""
             },
             "type": "library",
@@ -8132,7 +8092,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2020-12-06T12:58:20+00:00"
+            "time": "2021-02-07T17:25:18+00:00"
         },
         {
             "name": "vrana/jush",
@@ -8533,16 +8493,16 @@
     "packages-dev": [
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.69",
+            "version": "0.12.73",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "8f436ea35241da33487fd0d38b4bc3e6dfe30ea8"
+                "reference": "a08c2759d132b4247b32e03066401c3232ad99b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/8f436ea35241da33487fd0d38b4bc3e6dfe30ea8",
-                "reference": "8f436ea35241da33487fd0d38b4bc3e6dfe30ea8",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/a08c2759d132b4247b32e03066401c3232ad99b7",
+                "reference": "a08c2759d132b4247b32e03066401c3232ad99b7",
                 "shasum": ""
             },
             "require": {
@@ -8573,7 +8533,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/0.12.69"
+                "source": "https://github.com/phpstan/phpstan/tree/0.12.73"
             },
             "funding": [
                 {
@@ -8589,7 +8549,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-24T14:55:37+00:00"
+            "time": "2021-02-07T16:26:54+00:00"
         }
     ],
     "aliases": [],
