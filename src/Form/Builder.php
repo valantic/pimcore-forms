@@ -31,8 +31,7 @@ class Builder
             ]);
 
         $builder->setMethod($config['method']);
-        $builder->setAction($this->urlGenerator->generate('valantic_pimcoreforms_form_form'));
-        $builder->add('' . FormService::INPUT_FORM_NAME . '', HiddenType::class, ['data' => $name]);
+        $builder->setAction($this->urlGenerator->generate('valantic_pimcoreforms_form_api', ['form' => $name]));
 
         return $builder;
     }

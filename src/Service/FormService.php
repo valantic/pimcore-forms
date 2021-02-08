@@ -2,6 +2,7 @@
 
 namespace Valantic\PimcoreFormsBundle\Service;
 
+use Limenius\Liform\Liform;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
@@ -11,14 +12,15 @@ use Valantic\PimcoreFormsBundle\Repository\Configuration;
 
 class FormService
 {
-    public const INPUT_FORM_NAME = '_form';
     protected Configuration $configuration;
     protected Builder $builder;
+    protected Liform $liform;
 
-    public function __construct(Configuration $configuration, Builder $builder)
+    public function __construct(Configuration $configuration, Builder $builder, Liform $liform)
     {
         $this->configuration = $configuration;
         $this->builder = $builder;
+        $this->liform = $liform;
     }
 
     public function build(string $name): FormBuilderInterface
@@ -31,6 +33,21 @@ class FormService
         }
 
         return $form;
+    }
+
+    public function json(FormInterface $form): array
+    {
+        return $this->liform->transform($form);
+    }
+
+    public function buildJson(string $name): array
+    {
+        return $this->json($this->buildForm($name));
+    }
+
+    public function buildForm(string $name): FormInterface
+    {
+        return $this->build($name)->getForm();
     }
 
     public function errors(FormInterface $form): array
