@@ -31,7 +31,7 @@ class Builder
             ]);
 
         $builder->setMethod($config['method']);
-        $builder->setAction($this->urlGenerator->generate('valantic_pimcoreforms_form_api', ['form' => $name]));
+        $builder->setAction($this->urlGenerator->generate('valantic_pimcoreforms_form_api', ['name' => $name]));
 
         return $builder;
     }
