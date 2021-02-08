@@ -1,6 +1,6 @@
 services:
   valantic.pimcoreforms.liform.button.transformer:
-    class: Valantic\PimcoreFormsBundle\Form\ButtonTransformer
+    class: Valantic\PimcoreFormsBundle\Form\Transformer\ButtonTransformer
     parent: Limenius\Liform\Transformer\AbstractTransformer
     tags:
       - { name: liform.transformer, form_type: button }

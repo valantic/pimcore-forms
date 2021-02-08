@@ -8,20 +8,19 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Valantic\PimcoreFormsBundle\Form\Builder;
+use Valantic\PimcoreFormsBundle\Service\FormService;
 
 class FormController extends AbstractController
 {
     /**
      * @Route("/debug")
-     * @param Builder $builder
+     * @param FormService $builder
      *
      * @return Response
      */
-    public function debugAction(Builder $builder): Response
+    public function debugAction(FormService $builder): Response
     {
-
-        $form = $builder->get('form1')->getForm();
+        $form = $builder->build('form1')->getForm();
 
         return $this->render('@ValanticPimcoreForms/form.html.twig', [
             'form' => $form->createView(),
@@ -30,22 +29,24 @@ class FormController extends AbstractController
 
     /**
      * @Route("/form")
-     * @param Builder $builder
+     * @param FormService $builder
      * @param Liform $liform
      * @param Request $request
      *
      * @return JsonResponse
      */
-    public function formAction(Builder $builder, Liform $liform, Request $request): JsonResponse
+    public function formAction(FormService $builder, Liform $liform, Request $request): JsonResponse
     {
-        $name = $request->request->get('form')['_form'] ?? null;
+        $name = $request->request->get('form')[FormService::INPUT_FORM_NAME] ?? null;
+
         if (empty($name)) {
-            $form = $builder->get('form1')->getForm();
+            // TODO: remove form1
+            $form = $builder->build('form1')->getForm();
 
             return new JsonResponse($liform->transform($form));
         }
 
-        $form = $builder->get($name)->getForm();
+        $form = $builder->build($name)->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -54,6 +55,6 @@ class FormController extends AbstractController
             return new JsonResponse($data);
         }
 
-        return new JsonResponse($builder->getErrors($form));
+        return new JsonResponse($builder->errors($form));
     }
 }

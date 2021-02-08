@@ -23,6 +23,7 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('forms')->arrayPrototype()
                     ->children()
                         ->booleanNode('csrf')->defaultValue(false)->info('Whether to enable CSRF protection for this form')->end()
+                        ->scalarNode('method')->defaultValue('POST')->info('HTTP method (POST/GET) to submit this form')->end()
                         ->arrayNode('outputs')->isRequired()->requiresAtLeastOneElement()->arrayPrototype()
                             ->children()
                                 ->enumNode('type')

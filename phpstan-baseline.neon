@@ -5,3 +5,8 @@ parameters:
 			count: 1
 			path: src/DependencyInjection/Configuration.php
 
+		-
+			message: "#^Parameter \\#4 \\$widget of method Limenius\\\\Liform\\\\Transformer\\\\AbstractTransformer\\:\\:addCommonSpecs\\(\\) expects string, string\\|null given\\.$#"
+			count: 1
+			path: src/Form/Transformer/ButtonTransformer.php
+

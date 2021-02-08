@@ -4,3 +4,5 @@ includes:
 parameters:
 
     level: 8
+
+    checkMissingIterableValueType: false

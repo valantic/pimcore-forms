@@ -1,6 +1,6 @@
 <?php
 
-namespace Valantic\PimcoreFormsBundle\Form;
+namespace Valantic\PimcoreFormsBundle\Form\Transformer;
 
 use Limenius\Liform\Transformer\AbstractTransformer;
 use Symfony\Component\Form\FormInterface;

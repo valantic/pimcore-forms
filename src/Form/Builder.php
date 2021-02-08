@@ -7,45 +7,37 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Valantic\PimcoreFormsBundle\Form\Type\ChoicesInterface;
-use Valantic\PimcoreFormsBundle\Repository\Configuration;
+use Valantic\PimcoreFormsBundle\Service\FormService;
 
 class Builder
 {
-    protected Configuration $configuration;
     protected ContainerInterface $container;
     protected UrlGeneratorInterface $urlGenerator;
 
-    public function __construct(Configuration $configuration, ContainerInterface $container, UrlGeneratorInterface $urlGenerator)
+    public function __construct(ContainerInterface $container, UrlGeneratorInterface $urlGenerator)
     {
-        $this->configuration = $configuration;
         $this->container = $container;
         $this->urlGenerator = $urlGenerator;
     }
 
-    public function get(string $name): FormBuilderInterface
+    public function form(string $name, array $config): FormBuilderInterface
     {
-        $config = $this->configuration->get()['forms'][$name];
         /** @var FormBuilderInterface $builder */
         $builder = $this->container->get('form.factory')
             ->createBuilder(FormType::class, null, [
                 'csrf_protection' => $config['csrf'],
             ]);
 
-        $builder->setMethod('POST');
+        $builder->setMethod($config['method']);
         $builder->setAction($this->urlGenerator->generate('valantic_pimcoreforms_form_form'));
-        $builder->add('_form', HiddenType::class, ['data' => $name]);
-
-        foreach ($config['fields'] as $name => $definition) {
-            $builder->add($name, ...$this->getField($definition));
-        }
+        $builder->add('' . FormService::INPUT_FORM_NAME . '', HiddenType::class, ['data' => $name]);
 
         return $builder;
     }
 
-    protected function getField(array $definition): array
+    public function field(array $definition): array
     {
         $options = $this->getOptions($definition);
         $options['label'] = $definition['label'] ?? null;
@@ -83,23 +75,9 @@ class Builder
                 $choices = $this->container->get($definition['choices']);
 
                 return ['choices' => $choices->choices()];
-                break;
             default:
 
                 return [];
         }
-    }
-
-    public function getErrors(FormInterface $form): array
-    {
-        $errors = [];
-        foreach ($form->getErrors(true, true) as $error) {
-            $errors[] = [
-                'origin' => $error->getOrigin()->getName(),
-                'message' => $error->getMessage(),
-            ];
-        }
-
-        return $errors;
     }
 }
