@@ -1,0 +1,12 @@
+services:
+  valantic.pimcoreforms.liform.button.transformer:
+    class: Valantic\PimcoreFormsBundle\Form\ButtonTransformer
+    parent: Limenius\Liform\Transformer\AbstractTransformer
+    tags:
+      - { name: liform.transformer, form_type: button }
+
+  valantic.pimcoreforms.liform.hidden.transformer:
+    class: Limenius\Liform\Transformer\StringTransformer
+    parent: Limenius\Liform\Transformer\AbstractTransformer
+    tags:
+      - { name: liform.transformer, form_type: hidden, widget: hidden }

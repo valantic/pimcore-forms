@@ -7,7 +7,9 @@
     "php": "^7.4",
     "ext-json": "*",
     "pimcore/pimcore": "^6.8",
-    "symfony/form": "^4.4"
+    "symfony/form": "^4.4",
+    "limenius/liform": "^0.17.0",
+    "limenius/liform-bundle": "^0.17.0"
   },
   "require-dev": {
     "phpstan/phpstan": "^0.12.69"
