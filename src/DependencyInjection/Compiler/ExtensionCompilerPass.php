@@ -25,7 +25,7 @@ class ExtensionCompilerPass implements CompilerPassInterface
     /**
      * @inheritdoc
      */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         if (!$container->hasDefinition('Limenius\Liform\Liform')) {
             return;
@@ -36,7 +36,19 @@ class ExtensionCompilerPass implements CompilerPassInterface
         foreach ($container->findTaggedServiceIds(self::EXTENSION_TAG) as $id => $attributes) {
             $extension = $container->getDefinition($id);
 
-            if (!isset(class_implements($extension->getClass())[ExtensionInterface::class])) {
+            $extensionClass = $extension->getClass();
+
+            if (empty($extensionClass)) {
+                continue;
+            }
+
+            $implements = class_implements($extensionClass);
+
+            if ($implements === false) {
+                continue;
+            }
+
+            if (!isset($implements[ExtensionInterface::class])) {
                 throw new \InvalidArgumentException(sprintf(
                     "The service %s was tagged as a '%s' but does not implement the mandatory %s",
                     $id,

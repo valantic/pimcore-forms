@@ -26,7 +26,7 @@ class TransformerCompilerPass implements CompilerPassInterface
     /**
      * @inheritdoc
      */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         if (!$container->hasDefinition('Limenius\Liform\Resolver')) {
             return;
@@ -37,7 +37,18 @@ class TransformerCompilerPass implements CompilerPassInterface
         foreach ($container->findTaggedServiceIds(self::TRANSFORMER_TAG) as $id => $attributes) {
             $transformer = $container->getDefinition($id);
 
-            if (!isset(class_implements($transformer->getClass())[TransformerInterface::class])) {
+            $transformerClass = $transformer->getClass();
+
+            if (empty($transformerClass)) {
+                continue;
+            }
+
+            $implements = class_implements($transformerClass);
+
+            if ($implements === false) {
+                continue;
+            }
+            if (!isset($implements[TransformerInterface::class])) {
                 throw new \InvalidArgumentException(sprintf(
                     "The service %s was tagged as a '%s' but does not implement the mandatory %s",
                     $id,

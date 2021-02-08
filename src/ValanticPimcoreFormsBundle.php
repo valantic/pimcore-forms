@@ -13,7 +13,7 @@ class ValanticPimcoreFormsBundle extends AbstractPimcoreBundle
 {
     use PackageVersionTrait;
 
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new TransformerCompilerPass());
         $container->addCompilerPass(new ExtensionCompilerPass());
