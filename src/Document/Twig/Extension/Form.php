@@ -22,7 +22,7 @@ class Form extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('valantic_form',
+            new TwigFunction('valantic_form_html',
                 fn(string $name): FormView => $this->formService->buildForm($name)->createView(),
                 [
                     'is_safe' => ['html'],
