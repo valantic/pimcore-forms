@@ -29,3 +29,7 @@ services:
   Valantic\PimcoreFormsBundle\Repository\OutputRepository:
     arguments:
       - !tagged_iterator valantic.pimcore_forms.output
+
+  Valantic\PimcoreFormsBundle\Document\Twig\Extension\:
+    resource: '../../Document/Twig/Extension'
+    tags: [ 'twig.extension' ]
