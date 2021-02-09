@@ -19,6 +19,12 @@ class Builder
         $this->urlGenerator = $urlGenerator;
     }
 
+    /**
+     * @param string $name
+     * @param array<string,mixed> $config
+     *
+     * @return FormBuilderInterface
+     */
     public function form(string $name, array $config): FormBuilderInterface
     {
         /** @var FormBuilderInterface $builder */
@@ -33,6 +39,11 @@ class Builder
         return $builder;
     }
 
+    /**
+     * @param array<string,mixed> $definition
+     *
+     * @return array{string,array}
+     */
     public function field(array $definition): array
     {
         $options = $this->getOptions($definition);
@@ -74,6 +85,11 @@ class Builder
         return $name;
     }
 
+    /**
+     * @param array<string,mixed> $definition
+     *
+     * @return array<mixed>
+     */
     protected function getOptions(array $definition): array
     {
         $options = $definition['options'];

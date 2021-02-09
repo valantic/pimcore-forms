@@ -39,6 +39,9 @@ class DataObjectOutput extends AbstractOutput
         return true;
     }
 
+    /**
+     * @return array<string,mixed>
+     */
     protected function getData(): array
     {
         return $this->form->getData();

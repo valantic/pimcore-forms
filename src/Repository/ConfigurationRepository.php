@@ -14,6 +14,9 @@ class ConfigurationRepository
         $this->parameterBag = $parameterBag;
     }
 
+    /**
+     * @return array<string,mixed>
+     */
     public function get(): array
     {
         return $this->parameterBag->get(self::CONTAINER_TAG);

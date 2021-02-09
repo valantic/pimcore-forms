@@ -43,11 +43,21 @@ class FormService
         return $form;
     }
 
+    /**
+     * @param FormInterface $form
+     *
+     * @return array<mixed>
+     */
     public function json(FormInterface $form): array
     {
         return $this->liform->transform($form);
     }
 
+    /**
+     * @param string $name
+     *
+     * @return array<mixed>
+     */
     public function buildJson(string $name): array
     {
         return $this->json($this->buildForm($name));
@@ -58,6 +68,11 @@ class FormService
         return $this->build($name)->getForm();
     }
 
+    /**
+     * @param FormInterface $form
+     *
+     * @return array<array>
+     */
     public function errors(FormInterface $form): array
     {
         $errors = [];
@@ -89,6 +104,11 @@ class FormService
         return $status;
     }
 
+    /**
+     * @param string $name
+     *
+     * @return array<string,mixed>
+     */
     protected function getConfig(string $name): array
     {
         $config = $this->configurationRepository->get()['forms'][$name];

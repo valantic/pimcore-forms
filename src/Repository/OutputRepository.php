@@ -13,9 +13,14 @@ class OutputRepository
      */
     protected array $outputs;
 
-    public function __construct(iterable $documents)
+    /**
+     * OutputRepository constructor.
+     *
+     * @param iterable<OutputInterface> $outputs
+     */
+    public function __construct(iterable $outputs)
     {
-        $this->outputs = $this->iterableToArray($documents);
+        $this->outputs = $this->iterableToArray($outputs);
     }
 
     /**

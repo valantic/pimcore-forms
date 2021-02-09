@@ -5,4 +5,8 @@ parameters:
 
     level: 8
 
-    checkMissingIterableValueType: false
+    ignoreErrors:
+        - '#return type has no value type specified in iterable type Symfony\\Component\\Form\\FormInterface#'
+        - '#return type has no value type specified in iterable type Symfony\\Component\\Form\\FormBuilderInterface#'
+        - '#with no value type specified in iterable type Symfony\\Component\\Form\\FormInterface#'
+        - '#type has no value type specified in iterable type Symfony\\Component\\Form\\FormInterface#'

@@ -6,6 +6,16 @@ parameters:
 			path: src/DependencyInjection/Configuration.php
 
 		-
+			message: "#^PHPDoc tag @var for variable \\$builder has no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormBuilderInterface\\.$#"
+			count: 1
+			path: src/Form/Builder.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ButtonTransformer\\:\\:transform\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Form/Transformer/ButtonTransformer.php
+
+		-
 			message: "#^Parameter \\#4 \\$widget of method Limenius\\\\Liform\\\\Transformer\\\\AbstractTransformer\\:\\:addCommonSpecs\\(\\) expects string, string\\|null given\\.$#"
 			count: 1
 			path: src/Form/Transformer/ButtonTransformer.php

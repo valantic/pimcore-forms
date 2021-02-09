@@ -4,6 +4,11 @@ namespace Valantic\PimcoreFormsBundle\Exception;
 
 class DuplicateOutputException extends BaseException
 {
+    /**
+     * DuplicateOutputException constructor.
+     *
+     * @param array<string> $names
+     */
     public function __construct(array $names)
     {
         if (count($names) === 1) {
