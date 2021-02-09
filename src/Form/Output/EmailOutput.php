@@ -14,11 +14,24 @@ class EmailOutput extends AbstractOutput
     public function handle(): bool
     {
         $mail = new Mail();
-        $mail->addTo($this->config['to']);
-        $mail->setDocument($this->config['document']);
+        $mail->addTo($this->getTo());
+        $mail->setDocument($this->getDocument());
         $mail->setParams($this->form->getData());
         $mail->send();
 
         return true;
+    }
+
+    protected function getTo():string
+    {
+        return $this->config['to'];
+    }
+
+    /**
+     * @return Model\Document|int|string
+     */
+    protected function getDocument()
+    {
+        return $this->config['document'];
     }
 }

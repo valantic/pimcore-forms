@@ -50,7 +50,7 @@ class FormController extends AbstractController
                 $data,
                 $formService->outputs($form)
                     ? JsonResponse::HTTP_OK
-                    : JsonResponse::HTTP_INTERNAL_SERVER_ERROR
+                    : JsonResponse::HTTP_PRECONDITION_FAILED
             );
         }
 

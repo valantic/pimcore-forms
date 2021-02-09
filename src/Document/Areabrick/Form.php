@@ -64,7 +64,10 @@ class Form extends AbstractTemplateAreabrick implements EditableDialogBoxInterfa
                 'label' => 'Form',
                 'name' => 'form',
                 'config' => [
-                    'store' => array_map(fn(string $name): array => [$name, $name], array_keys($this->configurationRepository->get()['forms'])),
+                    'store' => array_map(
+                        fn(string $name): array => [$name, $name],
+                        array_keys($this->configurationRepository->get()['forms'])
+                    ),
                 ],
             ],
         ]);
