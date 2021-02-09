@@ -46,7 +46,12 @@ class FormController extends AbstractController
         if ($form->isValid()) {
             $data = $form->getData();
 
-            return new JsonResponse($data);
+            return new JsonResponse(
+                $data,
+                $formService->outputs($form)
+                    ? JsonResponse::HTTP_OK
+                    : JsonResponse::HTTP_INTERNAL_SERVER_ERROR
+            );
         }
 
         return new JsonResponse($formService->errors($form));

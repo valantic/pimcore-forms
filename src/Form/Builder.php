@@ -3,13 +3,10 @@
 namespace Valantic\PimcoreFormsBundle\Form;
 
 use Psr\Container\ContainerInterface;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Valantic\PimcoreFormsBundle\Form\Type\ChoicesInterface;
-use Valantic\PimcoreFormsBundle\Service\FormService;
 
 class Builder
 {
@@ -26,7 +23,7 @@ class Builder
     {
         /** @var FormBuilderInterface $builder */
         $builder = $this->container->get('form.factory')
-            ->createBuilder(FormType::class, null, [
+            ->createNamedBuilder($name, FormType::class, null, [
                 'csrf_protection' => $config['csrf'],
             ]);
 
@@ -45,11 +42,12 @@ class Builder
             $constraints = [];
             foreach ($definition['constraints'] as $constraint) {
                 if (is_string($constraint)) {
-                    $constraintClass = 'Symfony\\Component\\Validator\\Constraints\\' . $constraint;
+                    $constraintClass = $this->getConstraintClass($constraint);
                     $constraints[] = new $constraintClass();
                     continue;
                 }
-                $constraintClass = 'Symfony\\Component\\Validator\\Constraints\\' . array_keys($constraint)[0];
+
+                $constraintClass = $this->getConstraintClass((string)array_keys($constraint)[0]);
                 $constraints[] = new $constraintClass(array_values($constraint)[0]);
             }
             $options['constraints'] = $constraints;
@@ -58,25 +56,34 @@ class Builder
         return [$this->getType($definition['type']), $options];
     }
 
-    protected function getType(string $type): string
+    protected function getConstraintClass(string $name): string
     {
-        return sprintf('Symfony\\Component\\Form\\Extension\\Core\\Type\\%s', $type);
+        if (strpos($name, '\\') === false) {
+            return sprintf('Symfony\\Component\\Validator\\Constraints\\%s', $name);
+        }
+
+        return $name;
+    }
+
+    protected function getType(string $name): string
+    {
+        if (strpos($name, '\\') === false) {
+            return sprintf('Symfony\\Component\\Form\\Extension\\Core\\Type\\%s', $name);
+        }
+
+        return $name;
     }
 
     protected function getOptions(array $definition): array
     {
-        switch ($this->getType($definition['type'])) {
-            case ChoiceType::class:
-                if (is_array($definition['choices'])) {
-                    return ['choices' => $definition['choices']];
-                }
-                /** @var ChoicesInterface $choices */
-                $choices = $this->container->get($definition['choices']);
+        $options = $definition['options'];
 
-                return ['choices' => $choices->choices()];
-            default:
-
-                return [];
+        if (array_key_exists('choices', $options) && is_string($options['choices'])) {
+            /** @var ChoicesInterface $choices */
+            $choices = $this->container->get($options['choices']);
+            $options['choices'] = $choices->choices();
         }
+
+        return $options;
     }
 }

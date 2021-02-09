@@ -10,3 +10,5 @@ services:
     parent: Limenius\Liform\Transformer\AbstractTransformer
     tags:
       - { name: liform.transformer, form_type: hidden, widget: hidden }
+      - { name: liform.transformer, form_type: week, widget: week }
+      - { name: liform.transformer, form_type: file, widget: file }

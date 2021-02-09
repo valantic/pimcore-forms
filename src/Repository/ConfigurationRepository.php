@@ -4,7 +4,7 @@ namespace Valantic\PimcoreFormsBundle\Repository;
 
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class Configuration
+class ConfigurationRepository
 {
     public const CONTAINER_TAG = 'valantic.picmore_forms.config';
     protected ParameterBagInterface $parameterBag;

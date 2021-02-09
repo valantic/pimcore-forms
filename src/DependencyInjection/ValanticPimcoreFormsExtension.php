@@ -7,7 +7,8 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-use Valantic\PimcoreFormsBundle\Repository\Configuration as ConfigurationRepository;
+use Valantic\PimcoreFormsBundle\Form\Output\OutputInterface;
+use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 
 /**
  * This is the class that loads and manages your bundle configuration.
@@ -16,6 +17,8 @@ use Valantic\PimcoreFormsBundle\Repository\Configuration as ConfigurationReposit
  */
 class ValanticPimcoreFormsExtension extends Extension
 {
+    public const TAG_OUTPUT = 'valantic.pimcore_forms.output';
+
     /**
      * {@inheritdoc}
      * @param array<mixed> $configs
@@ -29,6 +32,7 @@ class ValanticPimcoreFormsExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter(ConfigurationRepository::CONTAINER_TAG, $config);
+        $container->registerForAutoconfiguration(OutputInterface::class)->addTag(self::TAG_OUTPUT);
 
         $ymlLoader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $ymlLoader->load('services.yml');

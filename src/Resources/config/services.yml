@@ -25,3 +25,7 @@ services:
 
   Valantic\PimcoreFormsBundle\Service\:
     resource: '../../Service/*'
+
+  Valantic\PimcoreFormsBundle\Repository\OutputRepository:
+    arguments:
+      - !tagged_iterator valantic.pimcore_forms.output
