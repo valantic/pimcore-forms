@@ -75,19 +75,7 @@ class FormService
      */
     public function errors(FormInterface $form): array
     {
-        $errors = [];
-        foreach ($form->getErrors(true, true) as $error) {
-            if (!($error instanceof FormError)) {
-                continue;
-            }
-
-            $errors[] = [
-                'origin' => $error->getOrigin() !== null ? $error->getOrigin()->getName() : null,
-                'message' => $error->getMessage(),
-            ];
-        }
-
-        return $errors;
+        return $this->errorNormalizer->normalize($form);
     }
 
     public function outputs(FormInterface $form): bool
