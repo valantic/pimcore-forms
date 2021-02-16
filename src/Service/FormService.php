@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Valantic\PimcoreFormsBundle\Exception\InvalidFormConfigException;
 use Valantic\PimcoreFormsBundle\Form\Builder;
+use Valantic\PimcoreFormsBundle\Form\Extension\FormNameExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormTypeExtension;
 use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 use Valantic\PimcoreFormsBundle\Repository\OutputRepository;
@@ -26,7 +27,8 @@ class FormService
         Builder $builder,
         Liform $liform,
         FormErrorNormalizer $errorNormalizer,
-        FormTypeExtension $formTypeExtension
+        FormTypeExtension $formTypeExtension,
+        FormNameExtension $formNameExtension
     )
     {
         $this->configurationRepository = $configurationRepository;
@@ -35,6 +37,7 @@ class FormService
         $this->errorNormalizer = $errorNormalizer;
 
         $liform->addExtension($formTypeExtension);
+        $liform->addExtension($formNameExtension);
         $this->liform = $liform;
     }
 
@@ -57,7 +60,10 @@ class FormService
      */
     public function json(FormInterface $form): array
     {
-        return $this->liform->transform($form);
+        $data = $this->liform->transform($form);
+        $data['properties'] = array_values($data['properties']);
+
+        return $data;
     }
 
     /**
