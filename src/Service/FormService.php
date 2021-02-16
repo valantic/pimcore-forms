@@ -3,11 +3,12 @@
 namespace Valantic\PimcoreFormsBundle\Service;
 
 use Limenius\Liform\Liform;
+use Limenius\Liform\Serializer\Normalizer\FormErrorNormalizer;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
 use Valantic\PimcoreFormsBundle\Exception\InvalidFormConfigException;
 use Valantic\PimcoreFormsBundle\Form\Builder;
+use Valantic\PimcoreFormsBundle\Form\Extension\FormTypeExtension;
 use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 use Valantic\PimcoreFormsBundle\Repository\OutputRepository;
 
@@ -17,18 +18,24 @@ class FormService
     protected Builder $builder;
     protected Liform $liform;
     protected OutputRepository $outputRepository;
+    protected FormErrorNormalizer $errorNormalizer;
 
     public function __construct(
         ConfigurationRepository $configurationRepository,
         OutputRepository $outputRepository,
         Builder $builder,
-        Liform $liform
+        Liform $liform,
+        FormErrorNormalizer $errorNormalizer,
+        FormTypeExtension $formTypeExtension
     )
     {
         $this->configurationRepository = $configurationRepository;
         $this->builder = $builder;
-        $this->liform = $liform;
         $this->outputRepository = $outputRepository;
+        $this->errorNormalizer = $errorNormalizer;
+
+        $liform->addExtension($formTypeExtension);
+        $this->liform = $liform;
     }
 
     public function build(string $name): FormBuilderInterface
