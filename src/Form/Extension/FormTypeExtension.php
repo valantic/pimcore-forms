@@ -41,6 +41,12 @@ use Symfony\Component\Form\FormInterface;
 
 class FormTypeExtension implements ExtensionInterface
 {
+    /**
+     * @param FormInterface $form
+     * @param array<mixed> $schema
+     *
+     * @return array<mixed>
+     */
     public function apply(FormInterface $form, array $schema): array
     {
         if ($form->getConfig()->getType()->getInnerType() instanceof FormType) {

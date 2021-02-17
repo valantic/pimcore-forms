@@ -76,6 +76,16 @@ class FormService
         return $this->json($this->buildForm($name));
     }
 
+    public function buildJsonString(string $name): string
+    {
+        $json = json_encode($this->buildJson($name));
+        if ($json === false) {
+            throw new \RuntimeException();
+        }
+
+        return $json;
+    }
+
     public function buildForm(string $name): FormInterface
     {
         return $this->build($name)->getForm();
@@ -84,7 +94,7 @@ class FormService
     /**
      * @param FormInterface $form
      *
-     * @return array<array>
+     * @return array<mixed>
      */
     public function errors(FormInterface $form): array
     {

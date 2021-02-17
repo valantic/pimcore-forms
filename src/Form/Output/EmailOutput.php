@@ -3,6 +3,7 @@
 namespace Valantic\PimcoreFormsBundle\Form\Output;
 
 use Pimcore\Mail;
+use Pimcore\Model\Document;
 
 class EmailOutput extends AbstractOutput
 {
@@ -28,7 +29,7 @@ class EmailOutput extends AbstractOutput
     }
 
     /**
-     * @return Model\Document|int|string
+     * @return Document|int|string
      */
     protected function getDocument()
     {

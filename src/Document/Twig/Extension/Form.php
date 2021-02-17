@@ -29,7 +29,7 @@ class Form extends AbstractExtension
                 ]
             ),
             new TwigFunction('valantic_form_json',
-                fn(string $name): string => json_encode($this->formService->buildJson($name)),
+                fn(string $name): string => $this->formService->buildJsonString($name),
                 [
                     'is_safe' => ['html'],
                 ]

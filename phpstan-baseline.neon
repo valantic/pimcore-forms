@@ -20,3 +20,8 @@ parameters:
 			count: 1
 			path: src/Form/Transformer/ButtonTransformer.php
 
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Service\\\\FormService\\:\\:errors\\(\\) should return array but returns array\\|ArrayObject\\|bool\\|float\\|int\\|string\\|null\\.$#"
+			count: 1
+			path: src/Service/FormService.php
+
