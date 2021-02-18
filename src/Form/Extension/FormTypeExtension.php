@@ -112,7 +112,7 @@ class FormTypeExtension implements ExtensionInterface
             WeekType::class => 'week',
         ];
 
-        $schema['form_type'] = $formType ?: ($mapping[$type] ?? $type);
+        $schema['formType'] = $formType ?: ($mapping[$type] ?? $type);
 
         return $schema;
     }
