@@ -47,7 +47,6 @@ class Builder
     public function field(array $definition): array
     {
         $options = $this->getOptions($definition);
-        $options['label'] = $definition['label'] ?? null;
 
         if (array_key_exists('constraints', $definition)) {
             $constraints = [];

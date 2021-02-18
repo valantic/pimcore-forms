@@ -36,7 +36,6 @@ class Configuration implements ConfigurationInterface
                         ->end()
                         ->arrayNode('fields')->isRequired()->requiresAtLeastOneElement()->arrayPrototype()
                             ->children()
-                                ->scalarNode('label')->defaultNull()->end()
                                 ->scalarNode('type')
                                     ->cannotBeEmpty()
                                     ->info('The type of this output channel')
