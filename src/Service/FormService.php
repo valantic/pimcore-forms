@@ -8,6 +8,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Valantic\PimcoreFormsBundle\Exception\InvalidFormConfigException;
 use Valantic\PimcoreFormsBundle\Form\Builder;
+use Valantic\PimcoreFormsBundle\Form\Extension\FormConstraintExtension;
+use Valantic\PimcoreFormsBundle\Form\Extension\FormLabelExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormNameExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormTypeExtension;
 use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
@@ -28,7 +30,8 @@ class FormService
         Liform $liform,
         FormErrorNormalizer $errorNormalizer,
         FormTypeExtension $formTypeExtension,
-        FormNameExtension $formNameExtension
+        FormNameExtension $formNameExtension,
+        FormConstraintExtension $formConstraintExtension
     )
     {
         $this->configurationRepository = $configurationRepository;
@@ -38,6 +41,7 @@ class FormService
 
         $liform->addExtension($formTypeExtension);
         $liform->addExtension($formNameExtension);
+        $liform->addExtension($formConstraintExtension);
         $this->liform = $liform;
     }
 

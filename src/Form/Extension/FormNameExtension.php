@@ -16,6 +16,7 @@ class FormNameExtension implements ExtensionInterface
     public function apply(FormInterface $form, array $schema): array
     {
         $schema['name'] = $form->getName();
+        $schema['submitUrl'] = $form->getConfig()->getAction();
 
         return $schema;
     }
