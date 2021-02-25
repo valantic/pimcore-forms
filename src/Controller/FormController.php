@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Valantic\PimcoreFormsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,6 +15,7 @@ class FormController extends AbstractController
 {
     /**
      * @Route("/ui/{name}")
+     *
      * @param string $name
      * @param FormService $formService
      * @param Request $request
@@ -28,6 +31,7 @@ class FormController extends AbstractController
 
     /**
      * @Route("/api/{name}")
+     *
      * @param string $name
      * @param FormService $formService
      * @param Request $request

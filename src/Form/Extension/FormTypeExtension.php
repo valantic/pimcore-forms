@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Valantic\PimcoreFormsBundle\Form\Extension;
 
 use Limenius\Liform\Transformer\ExtensionInterface;
@@ -117,4 +119,3 @@ class FormTypeExtension implements ExtensionInterface
         return $schema;
     }
 }
-

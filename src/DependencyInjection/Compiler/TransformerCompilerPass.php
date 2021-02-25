@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the Limenius\LiformBundle package.
  *
@@ -11,6 +13,7 @@
 
 namespace Valantic\PimcoreFormsBundle\DependencyInjection\Compiler;
 
+use InvalidArgumentException;
 use Limenius\Liform\Transformer\TransformerInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -21,10 +24,10 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class TransformerCompilerPass implements CompilerPassInterface
 {
-    const TRANSFORMER_TAG = 'liform.transformer';
+    public const TRANSFORMER_TAG = 'liform.transformer';
 
     /**
-     * @inheritdoc
+     * {@inheritDoc}
      */
     public function process(ContainerBuilder $container): void
     {
@@ -49,21 +52,12 @@ class TransformerCompilerPass implements CompilerPassInterface
                 continue;
             }
             if (!isset($implements[TransformerInterface::class])) {
-                throw new \InvalidArgumentException(sprintf(
-                    "The service %s was tagged as a '%s' but does not implement the mandatory %s",
-                    $id,
-                    self::TRANSFORMER_TAG,
-                    TransformerInterface::class
-                ));
+                throw new InvalidArgumentException(sprintf("The service %s was tagged as a '%s' but does not implement the mandatory %s", $id, self::TRANSFORMER_TAG, TransformerInterface::class));
             }
 
             foreach ($attributes as $attribute) {
                 if (!isset($attribute['form_type'])) {
-                    throw new \InvalidArgumentException(sprintf(
-                        "The service %s was tagged as a '%s' but does not specify the mandatory 'form_type' option.",
-                        $id,
-                        self::TRANSFORMER_TAG
-                    ));
+                    throw new InvalidArgumentException(sprintf("The service %s was tagged as a '%s' but does not specify the mandatory 'form_type' option.", $id, self::TRANSFORMER_TAG));
                 }
 
                 $widget = null;

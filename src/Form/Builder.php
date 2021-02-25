@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Valantic\PimcoreFormsBundle\Form;
 
 use Psr\Container\ContainerInterface;
@@ -57,7 +59,7 @@ class Builder
                     continue;
                 }
 
-                $constraintClass = $this->getConstraintClass((string)array_keys($constraint)[0]);
+                $constraintClass = $this->getConstraintClass((string) array_keys($constraint)[0]);
                 $constraints[] = new $constraintClass(array_values($constraint)[0]);
             }
             $options['constraints'] = $constraints;

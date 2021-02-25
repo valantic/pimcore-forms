@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Valantic\PimcoreFormsBundle\Form\Output;
 
 use Psr\Log\LoggerAwareInterface;

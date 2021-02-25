@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Valantic\PimcoreFormsBundle\DependencyInjection;
 
 use Exception;
@@ -13,14 +15,15 @@ use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 /**
  * This is the class that loads and manages your bundle configuration.
  *
- * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
+ * @see http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
 class ValanticPimcoreFormsExtension extends Extension
 {
     public const TAG_OUTPUT = 'valantic.pimcore_forms.output';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
+     *
      * @param array<mixed> $configs
      * @param ContainerBuilder $container
      *
