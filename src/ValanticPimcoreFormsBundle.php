@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Valantic\PimcoreFormsBundle;
 
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;

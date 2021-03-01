@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Valantic\PimcoreFormsBundle\Exception;
 
 class UnknownOutputException extends BaseException

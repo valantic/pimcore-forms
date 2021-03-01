@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Valantic\PimcoreFormsBundle\Service;
 
 use Limenius\Liform\Liform;
 use Limenius\Liform\Serializer\Normalizer\FormErrorNormalizer;
+use RuntimeException;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Valantic\PimcoreFormsBundle\Exception\InvalidFormConfigException;
 use Valantic\PimcoreFormsBundle\Form\Builder;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormConstraintExtension;
-use Valantic\PimcoreFormsBundle\Form\Extension\FormLabelExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormNameExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormTypeExtension;
 use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
@@ -32,8 +34,7 @@ class FormService
         FormTypeExtension $formTypeExtension,
         FormNameExtension $formNameExtension,
         FormConstraintExtension $formConstraintExtension
-    )
-    {
+    ) {
         $this->configurationRepository = $configurationRepository;
         $this->builder = $builder;
         $this->outputRepository = $outputRepository;
@@ -84,7 +85,7 @@ class FormService
     {
         $json = json_encode($this->buildJson($name));
         if ($json === false) {
-            throw new \RuntimeException();
+            throw new RuntimeException();
         }
 
         return $json;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Valantic\PimcoreFormsBundle\Form\Output;
 
 use RuntimeException;
@@ -18,9 +20,9 @@ class HttpOutput extends AbstractOutput
             throw new RuntimeException(sprintf('Failed to initialize curl for %s', $this->config['url']));
         }
 
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($this->form->getData()));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type:application/json']);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, \CURLOPT_POSTFIELDS, json_encode($this->form->getData()));
+        curl_setopt($ch, \CURLOPT_HTTPHEADER, ['Content-Type:application/json']);
+        curl_setopt($ch, \CURLOPT_RETURNTRANSFER, true);
         $status = curl_exec($ch);
         curl_close($ch);
 

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Valantic\PimcoreFormsBundle\Document\Twig\Extension;
 
 use Symfony\Component\Form\FormView;
@@ -17,7 +19,7 @@ class Form extends AbstractExtension
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getFunctions(): array
     {

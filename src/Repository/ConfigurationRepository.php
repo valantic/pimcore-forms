@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Valantic\PimcoreFormsBundle\Repository;
 
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Valantic\PimcoreFormsBundle\Form\Output;
 
 use Pimcore\Mail;
@@ -23,7 +25,7 @@ class EmailOutput extends AbstractOutput
         return true;
     }
 
-    protected function getTo():string
+    protected function getTo(): string
     {
         return $this->config['to'];
     }
