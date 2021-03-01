@@ -11,6 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Valantic\PimcoreFormsBundle\Exception\InvalidFormConfigException;
 use Valantic\PimcoreFormsBundle\Form\Builder;
+use Valantic\PimcoreFormsBundle\Form\Extension\ChoiceTypeExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormConstraintExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormNameExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormTypeExtension;
@@ -33,7 +34,8 @@ class FormService
         FormErrorNormalizer $errorNormalizer,
         FormTypeExtension $formTypeExtension,
         FormNameExtension $formNameExtension,
-        FormConstraintExtension $formConstraintExtension
+        FormConstraintExtension $formConstraintExtension,
+        ChoiceTypeExtension $choiceTypeExtension
     ) {
         $this->configurationRepository = $configurationRepository;
         $this->builder = $builder;
@@ -43,6 +45,7 @@ class FormService
         $liform->addExtension($formTypeExtension);
         $liform->addExtension($formNameExtension);
         $liform->addExtension($formConstraintExtension);
+        $liform->addExtension($choiceTypeExtension);
         $this->liform = $liform;
     }
 

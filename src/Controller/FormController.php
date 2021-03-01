@@ -18,13 +18,27 @@ class FormController extends AbstractController
      *
      * @param string $name
      * @param FormService $formService
-     * @param Request $request
      *
      * @return Response
      */
-    public function uiAction(string $name, FormService $formService, Request $request): Response
+    public function uiAction(string $name, FormService $formService): Response
     {
-        return $this->render('@ValanticPimcoreForms/form.html.twig', [
+        return $this->render('@ValanticPimcoreForms/vue.html.twig', [
+            'form' => $formService->buildForm($name)->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/html/{name}")
+     *
+     * @param string $name
+     * @param FormService $formService
+     *
+     * @return Response
+     */
+    public function htmlAction(string $name, FormService $formService): Response
+    {
+        return $this->render('@ValanticPimcoreForms/html.html.twig', [
             'form' => $formService->buildForm($name)->createView(),
         ]);
     }
@@ -43,9 +57,10 @@ class FormController extends AbstractController
         $form = $formService->buildForm($name);
         $form->handleRequest($request);
 
-        $data = json_decode((string) $request->getContent(false), true);
+        $content = (string) $request->getContent(false);
+        $data = json_decode($content, true);
 
-        if (!empty($data)) {
+        if (!empty($content) && !empty($data)) {
             $form->submit($data);
         }
 

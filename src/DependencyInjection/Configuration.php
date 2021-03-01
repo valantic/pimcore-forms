@@ -43,6 +43,7 @@ class Configuration implements ConfigurationInterface
                                 ->end()
                                 ->variableNode('constraints')->info('Define the Symfony Constraints for this field')->end()
                                 ->variableNode('options')->defaultValue([])->info('Any of the valid field options for this FormType')->end()
+                                ->scalarNode('provider')->defaultValue(null)->info('A class to provide the options for this FormType')->end()
                             ->end()
                         ->end()
                     ->end()

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Valantic\PimcoreFormsBundle\Form;
 
 use Psr\Container\ContainerInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -95,10 +96,12 @@ class Builder
     {
         $options = $definition['options'];
 
-        if (array_key_exists('choices', $options) && is_string($options['choices'])) {
+        if ($this->getType($definition['type']) === ChoiceType::class && array_key_exists('provider', $definition) && is_string($definition['provider'])) {
             /** @var ChoicesInterface $choices */
-            $choices = $this->container->get($options['choices']);
+            $choices = $this->container->get($definition['provider']);
             $options['choices'] = $choices->choices();
+            $options['choice_label'] = fn($choice, $key, $value) => $choices->choiceLabel($choice, $key, $value);
+            $options['choice_attr'] = fn($choice, $key, $value) => $choices->choiceAttribute($choice, $key, $value);
         }
 
         return $options;
