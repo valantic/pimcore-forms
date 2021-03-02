@@ -26,11 +26,6 @@ class ChoiceTypeExtension implements ExtensionInterface
         /** @var ChoiceView[] $choices */
         $choices = $form->createView()->vars['choices'];
 
-        $schema['options']['enum_attrs'] = array_map(
-            fn(ChoiceView $choice): array => $choice->attr,
-            $choices
-        );
-
         $schema['options']['choices'] = $choices;
 
         return $schema;
