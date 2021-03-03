@@ -19,9 +19,11 @@ class FormConstraintExtension implements ExtensionInterface
     public function apply(FormInterface $form, array $schema): array
     {
         $constraints = $form->getConfig()->getOption('constraints');
+
         if (empty($constraints)) {
             return $schema;
         }
+
         $schema['constraints'] = array_map(
             fn(Constraint $constraint): array => [
                 'type' => str_replace('Symfony\\Component\\Validator\\Constraints\\', '', get_class($constraint)),

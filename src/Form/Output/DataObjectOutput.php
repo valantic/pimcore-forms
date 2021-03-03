@@ -17,11 +17,13 @@ class DataObjectOutput extends AbstractOutput
     public function handle(): bool
     {
         $objClass = 'Pimcore\\Model\\DataObject\\' . $this->config['class'];
+
         if (!class_exists($objClass)) {
             throw new InvalidArgumentException(sprintf('DataObject %s does not exist', $objClass));
         }
 
         $path = Concrete::getByPath($this->getPath());
+
         if ($path === null) {
             throw new InvalidArgumentException(sprintf('Path %s not found', $this->getPath()));
         }
