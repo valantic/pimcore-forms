@@ -103,8 +103,9 @@ class FormService
     /**
      * @param FormInterface $form
      *
-     * @return array<mixed>
      * @throws SerializerException
+     *
+     * @return array<mixed>
      */
     public function errors(FormInterface $form): array
     {

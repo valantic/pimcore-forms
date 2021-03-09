@@ -51,8 +51,9 @@ class FormController extends AbstractController
      * @param FormService $formService
      * @param Request $request
      *
-     * @return JsonResponse
      * @throws SerializerException
+     *
+     * @return JsonResponse
      */
     public function apiAction(string $name, FormService $formService, Request $request): JsonResponse
     {
