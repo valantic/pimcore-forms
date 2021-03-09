@@ -40,8 +40,8 @@ class Configuration implements ConfigurationInterface
                                 ->thenInvalid('Must be GET or POST')
                                 ->end()
                             ->end()
-                    ->append($this->buildOutputsNode())
-                    ->append($this->buildFieldsNode())
+                        ->append($this->buildOutputsNode())
+                        ->append($this->buildFieldsNode())
                     ->end()
                 ->end()
             ->end();
