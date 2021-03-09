@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Valantic\PimcoreFormsBundle\DependencyInjection\Configuration;
 use Valantic\PimcoreFormsBundle\Form\Type\ChoicesInterface;
 
 class Builder
@@ -72,7 +73,7 @@ class Builder
     protected function getConstraintClass(string $name): string
     {
         if (strpos($name, '\\') === false) {
-            return sprintf('Symfony\\Component\\Validator\\Constraints\\%s', $name);
+            return sprintf('%s%s', Configuration::SYMFONY_CONSTRAINTS_NAMESPACE, $name);
         }
 
         return $name;
@@ -81,7 +82,7 @@ class Builder
     protected function getType(string $name): string
     {
         if (strpos($name, '\\') === false) {
-            return sprintf('Symfony\\Component\\Form\\Extension\\Core\\Type\\%s', $name);
+            return sprintf('%s%s', Configuration::SYMFONY_FORMTYPES_NAMESPACE, $name);
         }
 
         return $name;

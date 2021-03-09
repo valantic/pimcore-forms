@@ -7,6 +7,7 @@ namespace Valantic\PimcoreFormsBundle\Form\Extension;
 use Limenius\Liform\Transformer\ExtensionInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Validator\Constraint;
+use Valantic\PimcoreFormsBundle\DependencyInjection\Configuration;
 
 class FormConstraintExtension implements ExtensionInterface
 {
@@ -26,7 +27,7 @@ class FormConstraintExtension implements ExtensionInterface
 
         $schema['constraints'] = array_map(
             fn(Constraint $constraint): array => [
-                'type' => str_replace('Symfony\\Component\\Validator\\Constraints\\', '', get_class($constraint)),
+                'type' => str_replace(Configuration::SYMFONY_CONSTRAINTS_NAMESPACE, '', get_class($constraint)),
                 'config' => json_decode(json_encode($constraint), true),
             ],
             $constraints
