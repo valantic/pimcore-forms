@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Exception\ExceptionInterface as SerializerException;
 use Valantic\PimcoreFormsBundle\Service\FormService;
 
 class FormController extends AbstractController
@@ -51,6 +52,7 @@ class FormController extends AbstractController
      * @param Request $request
      *
      * @return JsonResponse
+     * @throws SerializerException
      */
     public function apiAction(string $name, FormService $formService, Request $request): JsonResponse
     {

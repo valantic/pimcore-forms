@@ -9,6 +9,7 @@ use Limenius\Liform\Serializer\Normalizer\FormErrorNormalizer;
 use RuntimeException;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Serializer\Exception\ExceptionInterface as SerializerException;
 use Valantic\PimcoreFormsBundle\Exception\InvalidFormConfigException;
 use Valantic\PimcoreFormsBundle\Form\Builder;
 use Valantic\PimcoreFormsBundle\Form\Extension\ChoiceTypeExtension;
@@ -103,6 +104,7 @@ class FormService
      * @param FormInterface $form
      *
      * @return array<mixed>
+     * @throws SerializerException
      */
     public function errors(FormInterface $form): array
     {
