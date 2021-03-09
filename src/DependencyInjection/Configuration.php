@@ -103,7 +103,7 @@ class Configuration implements ConfigurationInterface
                         ->defaultValue(null)
                         ->info('A class to provide the options for this FormType')
                             ->validate()
-                            ->ifTrue(fn(?string $name): bool => !class_exists($name) || !in_array(ChoicesInterface::class, class_implements($name), true))
+                            ->ifTrue(fn(?string $name): bool => $name === null || !class_exists($name) || !in_array(ChoicesInterface::class, class_implements($name) ?: [], true))
                             ->thenInvalid('Provider class must exist and implement ' . ChoicesInterface::class)
                             ->end()
                         ->end()
@@ -132,6 +132,7 @@ class Configuration implements ConfigurationInterface
             ->validate()
                 ->ifTrue(function ($config): bool {
                     $hasError = false;
+
                     if ($config['type'] === 'http') {
                         $hasError = $hasError || (filter_var($config['options']['url'] ?? '', FILTER_VALIDATE_URL) === false);
                     }
