@@ -2,6 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/valantic/pimcore-forms.svg?style=flat-square)](https://packagist.org/packages/valantic/pimcore-forms)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
+[![PHP Checks](https://github.com/valantic/pimcore-forms/actions/workflows/php.yml/badge.svg)](https://github.com/valantic/pimcore-forms/actions/workflows/php.yml)
 
 **NO support is provided!**
 
