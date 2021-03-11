@@ -1,0 +1,8 @@
+{% if editmode %}
+    <strong>Please use the edit window to choose a form</strong>
+{% else %}
+    {% set name = pimcore_select('form').text %}
+    {% if name is not empty %}
+        {% include '@ValanticPimcoreForms/form.html.twig' with {'form': valantic_form_json(name)} %}
+    {% endif %}
+{% endif %}

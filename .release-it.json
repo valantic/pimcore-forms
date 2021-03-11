@@ -1,0 +1,21 @@
+{
+  "git": {
+    "commit": true,
+    "commitMessage": "Release ${version}",
+    "tag": true,
+    "tagName": "v${version}",
+    "tagAnnotation": "Release ${version}",
+    "push": true
+  },
+  "npm": {
+    "publish": false
+  },
+  "plugins": {
+    "@release-it/bumper": {
+      "out": {
+        "file": "composer.json",
+        "path": "version"
+      }
+    }
+  }
+}
