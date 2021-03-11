@@ -65,10 +65,8 @@ class Configuration implements ConfigurationInterface
                         ->cannotBeEmpty()
                         ->info('The type of this FormType')
                             ->validate()
-                            ->ifTrue(function (string $type): bool {
-                                return !(class_exists($type) || class_exists(self::SYMFONY_FORMTYPES_NAMESPACE . $type));
-                            })
-                            ->thenInvalid('Invalid type class found. The type should either be a FQN or a subclass of '.self::SYMFONY_FORMTYPES_NAMESPACE)
+                            ->ifTrue(fn (string $type): bool =>  !(class_exists($type) || class_exists(self::SYMFONY_FORMTYPES_NAMESPACE . $type)))
+                            ->thenInvalid('Invalid type class found. The type should either be a FQN or a subclass of ' . self::SYMFONY_FORMTYPES_NAMESPACE)
                             ->end()
                         ->example('TextType')
                         ->end()
@@ -129,26 +127,26 @@ class Configuration implements ConfigurationInterface
                         ->info('This depends on the output channel')
                         ->end()
                     ->end()
-            ->validate()
-                ->ifTrue(function ($config): bool {
-                    $hasError = false;
+                ->validate()
+                    ->ifTrue(function ($config): bool {
+                        $hasError = false;
 
-                    if ($config['type'] === 'http') {
-                        $hasError = $hasError || (filter_var($config['options']['url'] ?? '', FILTER_VALIDATE_URL) === false);
-                    }
+                        if ($config['type'] === 'http') {
+                            $hasError = $hasError || (filter_var($config['options']['url'] ?? '', FILTER_VALIDATE_URL) === false);
+                        }
 
-                    if ($config['type'] === 'email') {
-                        $hasError = $hasError || (filter_var($config['options']['to'] ?? '', FILTER_VALIDATE_EMAIL) === false);
-                    }
+                        if ($config['type'] === 'email') {
+                            $hasError = $hasError || (filter_var($config['options']['to'] ?? '', FILTER_VALIDATE_EMAIL) === false);
+                        }
 
-                    if ($config['type'] === 'data_object') {
-                        $hasError = $hasError || !array_key_exists('class', $config['options']) || !array_key_exists('path', $config['options']);
-                    }
+                        if ($config['type'] === 'data_object') {
+                            $hasError = $hasError || !array_key_exists('class', $config['options']) || !array_key_exists('path', $config['options']);
+                        }
 
-                    return $hasError;
-                })
-                ->thenInvalid('There are missing/invalid configuration options')
-                ->end()
-            ->end();
+                        return $hasError;
+                    })
+                    ->thenInvalid('There are missing/invalid configuration options')
+                    ->end()
+                ->end();
     }
 }
