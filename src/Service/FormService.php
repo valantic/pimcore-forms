@@ -56,7 +56,7 @@ class FormService
         $form = $this->builder->form($name, $config);
 
         foreach ($config['fields'] as $name => $definition) {
-            $form->add($name, ...$this->builder->field($definition));
+            $form->add($name, ...$this->builder->field($definition, $config));
         }
 
         return $form;

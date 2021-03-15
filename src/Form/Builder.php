@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Valantic\PimcoreFormsBundle\DependencyInjection\Configuration;
 use Valantic\PimcoreFormsBundle\Form\Type\ChoicesInterface;
 
@@ -16,11 +17,16 @@ class Builder
 {
     protected ContainerInterface $container;
     protected UrlGeneratorInterface $urlGenerator;
+    protected TranslatorInterface $translator;
 
-    public function __construct(ContainerInterface $container, UrlGeneratorInterface $urlGenerator)
-    {
+    public function __construct(
+        ContainerInterface $container,
+        UrlGeneratorInterface $urlGenerator,
+        TranslatorInterface $translator
+    ) {
         $this->container = $container;
         $this->urlGenerator = $urlGenerator;
+        $this->translator = $translator;
     }
 
     /**
@@ -45,12 +51,13 @@ class Builder
 
     /**
      * @param array<string,mixed> $definition
+     * @param array<string,mixed> $formConfig
      *
      * @return array{string,array}
      */
-    public function field(array $definition): array
+    public function field(array $definition, array $formConfig): array
     {
-        $options = $this->getOptions($definition);
+        $options = $this->getOptions($definition, $formConfig);
 
         if (array_key_exists('constraints', $definition)) {
             $constraints = [];
@@ -90,12 +97,17 @@ class Builder
 
     /**
      * @param array<string,mixed> $definition
+     * @param array<string,mixed> $formConfig
      *
      * @return array<mixed>
      */
-    protected function getOptions(array $definition): array
+    protected function getOptions(array $definition, array $formConfig): array
     {
         $options = $definition['options'];
+
+        if ($formConfig['translate_fields'] && !empty($options['label'])) {
+            $options['label'] = $this->translator->trans($options['label']);
+        }
 
         if ($this->getType($definition['type']) === ChoiceType::class && array_key_exists('provider', $definition) && is_string($definition['provider'])) {
             /** @var ChoicesInterface $choices */
