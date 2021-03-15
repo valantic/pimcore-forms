@@ -26,7 +26,9 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder('valantic_pimcore_forms');
         $treeBuilder->getRootNode()
             ->children()
-                ->arrayNode('forms')->arrayPrototype()
+                ->arrayNode('forms')
+                    ->useAttributeAsKey('name')
+                    ->arrayPrototype()
                     ->children()
                         ->booleanNode('csrf')
                             ->defaultValue(false)
