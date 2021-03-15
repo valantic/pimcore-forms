@@ -3,6 +3,6 @@
 {% else %}
     {% set name = pimcore_select('form').text %}
     {% if name is not empty %}
-        {% include '@ValanticPimcoreForms/form.html.twig' with {'form': valantic_form_json(name)} %}
+        {% include '@ValanticPimcoreForms/vue.html.twig' with {'form': valantic_form_json(name)} %}
     {% endif %}
 {% endif %}
