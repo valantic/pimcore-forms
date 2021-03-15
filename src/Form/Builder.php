@@ -105,16 +105,31 @@ class Builder
     {
         $options = $definition['options'];
 
-        if ($formConfig['translate_fields'] && !empty($options['label'])) {
+        if ($formConfig['translate']['field_labels'] && !empty($options['label'])) {
             $options['label'] = $this->translator->trans($options['label']);
         }
 
-        if ($this->getType($definition['type']) === ChoiceType::class && array_key_exists('provider', $definition) && is_string($definition['provider'])) {
-            /** @var ChoicesInterface $choices */
-            $choices = $this->container->get($definition['provider']);
-            $options['choices'] = $choices->choices();
-            $options['choice_label'] = fn($choice, $key, $value) => $choices->choiceLabel($choice, $key, $value);
-            $options['choice_attr'] = fn($choice, $key, $value) => $choices->choiceAttribute($choice, $key, $value);
+        if ($this->getType($definition['type']) === ChoiceType::class) {
+            if (
+                empty($definition['provider'])
+                && $formConfig['translate']['inline_choices']
+                && array_key_exists('choices', $definition['options'])
+            ) {
+                $definition['options']['choices'] = array_combine(
+                    array_map(
+                        fn(string $key): string => $this->translator->trans($key),
+                        $definition['options']['choices']
+                    ),
+                    $definition['options']['choices']
+                );
+            }
+            if (!empty($definition['provider']) && is_string($definition['provider'])) {
+                /** @var ChoicesInterface $choices */
+                $choices = $this->container->get($definition['provider']);
+                $options['choices'] = $choices->choices();
+                $options['choice_label'] = fn($choice, $key, $value) => $choices->choiceLabel($choice, $key, $value);
+                $options['choice_attr'] = fn($choice, $key, $value) => $choices->choiceAttribute($choice, $key, $value);
+            }
         }
 
         return $options;
