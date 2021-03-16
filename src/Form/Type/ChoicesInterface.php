@@ -25,7 +25,7 @@ interface ChoicesInterface
      * @param mixed $key
      * @param mixed $value
      *
-     * @return array<string,string|int>|null
+     * @return array<string,string|int>
      */
-    public function choiceAttribute($choice, $key, $value): ?array;
+    public function choiceAttribute($choice, $key, $value): array;
 }
