@@ -13,6 +13,7 @@ use Symfony\Component\Serializer\Exception\ExceptionInterface as SerializerExcep
 use Valantic\PimcoreFormsBundle\Exception\InvalidFormConfigException;
 use Valantic\PimcoreFormsBundle\Form\Builder;
 use Valantic\PimcoreFormsBundle\Form\Extension\ChoiceTypeExtension;
+use Valantic\PimcoreFormsBundle\Form\Extension\FormAttributeExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormConstraintExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormNameExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormTypeExtension;
@@ -36,6 +37,7 @@ class FormService
         FormTypeExtension $formTypeExtension,
         FormNameExtension $formNameExtension,
         FormConstraintExtension $formConstraintExtension,
+        FormAttributeExtension $formAttributeExtension,
         ChoiceTypeExtension $choiceTypeExtension
     ) {
         $this->configurationRepository = $configurationRepository;
@@ -46,6 +48,7 @@ class FormService
         $liform->addExtension($formTypeExtension);
         $liform->addExtension($formNameExtension);
         $liform->addExtension($formConstraintExtension);
+        $liform->addExtension($formAttributeExtension);
         $liform->addExtension($choiceTypeExtension);
         $this->liform = $liform;
     }
