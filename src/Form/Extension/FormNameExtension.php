@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Valantic\PimcoreFormsBundle\Form\Extension;
 
 use Limenius\Liform\Transformer\ExtensionInterface;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormInterface;
 
 class FormNameExtension implements ExtensionInterface
@@ -18,7 +19,10 @@ class FormNameExtension implements ExtensionInterface
     public function apply(FormInterface $form, array $schema): array
     {
         $schema['name'] = $form->getName();
-        $schema['submitUrl'] = $form->getConfig()->getAction();
+
+        if ($form->getConfig()->getType()->getInnerType() instanceof FormType) {
+            $schema['submitUrl'] = $form->getConfig()->getAction();
+        }
 
         return $schema;
     }
