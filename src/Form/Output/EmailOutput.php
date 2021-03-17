@@ -19,7 +19,14 @@ class EmailOutput extends AbstractOutput
         $mail = new Mail();
         $mail->addTo($this->getTo());
         $mail->setDocument($this->getDocument());
-        $mail->setParams($this->form->getData());
+        $mail->setParams(array_merge($this->form->getData(), $this->getAdditionalParams()));
+
+        $subject = $this->getSubject();
+
+        if ($subject !== null) {
+            $mail->setSubject($subject);
+        }
+
         $mail->send();
 
         return true;
@@ -36,5 +43,15 @@ class EmailOutput extends AbstractOutput
     protected function getDocument()
     {
         return $this->config['document'];
+    }
+
+    protected function getSubject(): ?string
+    {
+        return null;
+    }
+
+    protected function getAdditionalParams(): array
+    {
+        return [];
     }
 }
