@@ -26,6 +26,19 @@ class ChoiceTypeExtension implements ExtensionInterface
         /** @var ChoiceView[] $choices */
         $choices = $form->createView()->vars['choices'];
 
+        foreach ($choices as $key => $choice) {
+            $camelCaseKeys = array_map(
+                fn(string $key): string => lcfirst(str_replace('-', '', ucwords($key, '-'))), // https://stackoverflow.com/a/2792045
+                array_keys($choice->attr)
+            );
+
+            $choice->attr = array_combine(
+                $camelCaseKeys,
+                array_values($choice->attr)
+            );
+            $choices[$key] = $choice;
+        }
+
         $schema['options']['choices'] = $choices;
 
         return $schema;
