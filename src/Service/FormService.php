@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Valantic\PimcoreFormsBundle\Service;
 
 use Limenius\Liform\Liform;
-use Limenius\Liform\Serializer\Normalizer\FormErrorNormalizer;
 use RuntimeException;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -17,6 +16,7 @@ use Valantic\PimcoreFormsBundle\Form\Extension\FormAttributeExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormConstraintExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormNameExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormTypeExtension;
+use Valantic\PimcoreFormsBundle\Form\FormErrorNormalizer;
 use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 use Valantic\PimcoreFormsBundle\Repository\OutputRepository;
 

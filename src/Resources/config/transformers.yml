@@ -18,3 +18,11 @@ services:
     parent: Limenius\Liform\Transformer\AbstractTransformer
     tags:
       - { name: liform.transformer, form_type: date, widget: date }
+
+  valantic.pimcoreforms.form.formerrornormalizer:
+    class: Valantic\PimcoreFormsBundle\Form\FormErrorNormalizer
+    public: true
+    tags:
+      - { name: serializer.normalizer, priority: -10 }
+    arguments:
+      [ '@translator' ]
