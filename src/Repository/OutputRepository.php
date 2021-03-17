@@ -39,7 +39,7 @@ class OutputRepository
             throw new UnknownOutputException($key);
         }
 
-        return $this->outputs[$key];
+        return clone $this->outputs[$key];
     }
 
     /**
