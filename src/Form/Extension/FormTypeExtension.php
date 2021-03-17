@@ -40,6 +40,7 @@ use Symfony\Component\Form\Extension\Core\Type\TimezoneType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\WeekType;
 use Symfony\Component\Form\FormInterface;
+use Valantic\PimcoreFormsBundle\Form\Type\SubheaderType;
 
 class FormTypeExtension implements ExtensionInterface
 {
@@ -112,6 +113,7 @@ class FormTypeExtension implements ExtensionInterface
             TimezoneType::class => 'timezone',
             UrlType::class => 'url',
             WeekType::class => 'week',
+            SubheaderType::class => 'subheader',
         ];
 
         $schema['formType'] = $formType ?: ($mapping[$type] ?? $type);
