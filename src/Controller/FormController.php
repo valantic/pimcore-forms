@@ -84,6 +84,6 @@ class FormController extends AbstractController
             );
         }
 
-        return new JsonResponse($formService->errors($form));
+        return new JsonResponse($formService->errors($form), JsonResponse::HTTP_PRECONDITION_FAILED);
     }
 }
