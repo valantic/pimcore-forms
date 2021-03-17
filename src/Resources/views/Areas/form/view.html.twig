@@ -1,7 +1,11 @@
+{% set name = pimcore_select('form').text %}
 {% if editmode %}
     <strong>Please use the edit window to choose a form</strong>
+    {% if name is not empty %}
+        <br>
+        <em>Currently, <code>{{ name }}</code> is chosen</em>
+    {% endif %}
 {% else %}
-    {% set name = pimcore_select('form').text %}
     {% if name is not empty %}
         {% include '@ValanticPimcoreForms/vue.html.twig' with {'form': valantic_form_json(name)} %}
     {% endif %}
