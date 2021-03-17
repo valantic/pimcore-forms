@@ -50,6 +50,9 @@ class EmailOutput extends AbstractOutput
         return null;
     }
 
+    /**
+     * @return array<string,mixed>
+     */
     protected function getAdditionalParams(): array
     {
         return [];

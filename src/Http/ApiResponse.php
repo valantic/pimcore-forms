@@ -19,6 +19,13 @@ class ApiResponse extends JsonResponse
         self::MESSAGE_TYPE_INFO,
     ];
 
+    /**
+     * @param string|array<mixed>|null $data
+     * @param array<string,mixed>|array<array<string,mixed>> $messages
+     * @param int $status
+     * @param array<string,mixed> $headers
+     * @param bool $isJson
+     */
     public function __construct($data = null, array $messages = [], int $status = self::HTTP_OK, array $headers = [], bool $isJson = false)
     {
         // messages needs to be an array of messages
