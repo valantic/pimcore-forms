@@ -60,11 +60,13 @@ class FormController extends AbstractController
         $form = $formService->buildForm($name);
         $form->handleRequest($request);
 
-        $content = (string) $request->getContent(false);
-        $data = json_decode($content, true);
+        if (!$form->isSubmitted() && $request->getContentType() === 'json') {
+            $content = (string) $request->getContent(false);
+            $data = json_decode($content, true);
 
-        if (!empty($content) && !empty($data)) {
-            $form->submit($data);
+            if (!empty($content) && !empty($data)) {
+                $form->submit($data);
+            }
         }
 
         if (!$form->isSubmitted()) {
