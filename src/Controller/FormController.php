@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Exception\ExceptionInterface as SerializerException;
+use Symfony\Contracts\Translation\TranslatorInterface;
+use Valantic\PimcoreFormsBundle\Http\ApiResponse;
 use Valantic\PimcoreFormsBundle\Service\FormService;
 
 class FormController extends AbstractController
@@ -55,7 +57,7 @@ class FormController extends AbstractController
      *
      * @return JsonResponse
      */
-    public function apiAction(string $name, FormService $formService, Request $request): JsonResponse
+    public function apiAction(string $name, FormService $formService, Request $request, TranslatorInterface $translator): JsonResponse
     {
         $form = $formService->buildForm($name);
         $form->handleRequest($request);
@@ -70,20 +72,35 @@ class FormController extends AbstractController
         }
 
         if (!$form->isSubmitted()) {
-            return new JsonResponse($formService->buildJson($name));
+            return new ApiResponse($formService->buildJson($name));
         }
 
         if ($form->isValid()) {
             $data = $form->getData();
 
-            return new JsonResponse(
+            $outputSuccess = $formService->outputs($form);
+
+            return new ApiResponse(
                 $data,
-                $formService->outputs($form)
+                $outputSuccess
+                    ? [
+                        ApiResponse::MESSAGE_TYPE_SUCCESS => $translator->trans('valantic.pimcoreForms.formSubmitSuccess'),
+                    ]
+                    : [
+                        ApiResponse::MESSAGE_TYPE_ERROR => $translator->trans('valantic.pimcoreForms.formSubmitError'),
+                    ],
+                $outputSuccess
                     ? JsonResponse::HTTP_OK
                     : JsonResponse::HTTP_PRECONDITION_FAILED
             );
         }
 
-        return new JsonResponse($formService->errors($form), JsonResponse::HTTP_PRECONDITION_FAILED);
+        return new ApiResponse(
+            $formService->errors($form),
+            [
+                ApiResponse::MESSAGE_TYPE_ERROR => $translator->trans('valantic.pimcoreForms.formContainsErrors'),
+            ],
+            JsonResponse::HTTP_PRECONDITION_FAILED
+        );
     }
 }
