@@ -47,7 +47,8 @@ class FormErrorNormalizer implements NormalizerInterface
 
         $errors['form'] = [];
         foreach ($data->getErrors() as $error) {
-            $errors['_form'][$error->getOrigin()->getName()] = $this->getErrorMessage($error);
+            /** @var FormError $error */
+            $errors['_form'][$error->getOrigin() !== null ? $error->getOrigin()->getName() : null] = $this->getErrorMessage($error);
         }
 
         foreach ($data->all() as $child) {
