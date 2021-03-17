@@ -26,8 +26,7 @@ class Builder
         ContainerInterface $container,
         UrlGeneratorInterface $urlGenerator,
         TranslatorInterface $translator
-    )
-    {
+    ) {
         $this->container = $container;
         $this->urlGenerator = $urlGenerator;
         $this->translator = $translator;
@@ -149,7 +148,7 @@ class Builder
             if (is_string($constraint)) {
                 $className = $this->getConstraintClass($constraint);
             } else {
-                $className = $this->getConstraintClass((string)array_keys($constraint)[0]);
+                $className = $this->getConstraintClass((string) array_keys($constraint)[0]);
                 $payload = array_values($constraint)[0];
             }
 
