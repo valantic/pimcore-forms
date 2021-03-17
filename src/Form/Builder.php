@@ -6,9 +6,12 @@ namespace Valantic\PimcoreFormsBundle\Form;
 
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Valantic\PimcoreFormsBundle\DependencyInjection\Configuration;
 use Valantic\PimcoreFormsBundle\Form\Type\ChoicesInterface;
@@ -23,7 +26,8 @@ class Builder
         ContainerInterface $container,
         UrlGeneratorInterface $urlGenerator,
         TranslatorInterface $translator
-    ) {
+    )
+    {
         $this->container = $container;
         $this->urlGenerator = $urlGenerator;
         $this->translator = $translator;
@@ -59,18 +63,9 @@ class Builder
     {
         $options = $this->getOptions($definition, $formConfig);
 
-        if (array_key_exists('constraints', $definition)) {
-            $constraints = [];
-            foreach ($definition['constraints'] as $constraint) {
-                if (is_string($constraint)) {
-                    $constraintClass = $this->getConstraintClass($constraint);
-                    $constraints[] = new $constraintClass();
-                    continue;
-                }
+        $constraints = $this->getConstraints($definition, $options);
 
-                $constraintClass = $this->getConstraintClass((string) array_keys($constraint)[0]);
-                $constraints[] = new $constraintClass(array_values($constraint)[0]);
-            }
+        if (!empty($constraints)) {
             $options['constraints'] = $constraints;
         }
 
@@ -109,16 +104,19 @@ class Builder
             $options['label'] = $this->translator->trans($options['label']);
         }
 
+        if (in_array($this->getType($definition['type']), [DateType::class, TimeType::class], true)) {
+            $options['widget'] ??= 'single_text';
+        }
         if ($this->getType($definition['type']) === ChoiceType::class) {
             if (
                 empty($definition['provider'])
                 && $formConfig['translate']['inline_choices']
                 && array_key_exists('choices', $definition['options'])
             ) {
-                $definition['options']['choices'] = array_combine(
+                $options['choices'] = array_combine(
                     array_map(
                         fn(string $key): string => $this->translator->trans($key),
-                        $definition['options']['choices']
+                        array_keys($definition['options']['choices'])
                     ),
                     $definition['options']['choices']
                 );
@@ -133,5 +131,36 @@ class Builder
         }
 
         return $options;
+    }
+
+    /**
+     * @param array<string,mixed> $definition
+     * @param array<mixed> $options
+     *
+     * @return array<mixed>
+     */
+    protected function getConstraints(array $definition, array $options): array
+    {
+        $constraints = [];
+        foreach ($definition['constraints'] as $constraint) {
+            $className = null;
+            $payload = null;
+
+            if (is_string($constraint)) {
+                $className = $this->getConstraintClass($constraint);
+            } else {
+                $className = $this->getConstraintClass((string)array_keys($constraint)[0]);
+                $payload = array_values($constraint)[0];
+            }
+
+            if ($className === Choice::class) {
+                $payload['choices'] ??= $options['choices'];
+                $payload['multiple'] ??= $options['multiple'] ?? false;
+            }
+
+            $constraints[] = new $className($payload);
+        }
+
+        return $constraints;
     }
 }
