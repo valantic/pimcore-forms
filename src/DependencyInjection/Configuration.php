@@ -135,7 +135,7 @@ class Configuration implements ConfigurationInterface
                 ->children()
                     ->variableNode('type')
                         ->cannotBeEmpty()
-                        ->info('The type of this output channel, e.g. log, email, http, data_object; or anything implementing ' . OutputInterface::class)
+                        ->info('The type of this output channel, e.g. log, email, http, data_object, asset; or anything implementing ' . OutputInterface::class)
                         ->end()
                     ->variableNode('options')
                         ->defaultValue([])
@@ -156,6 +156,10 @@ class Configuration implements ConfigurationInterface
 
                         if ($config['type'] === 'data_object') {
                             $hasError = $hasError || !array_key_exists('class', $config['options']) || !array_key_exists('path', $config['options']);
+                        }
+
+                        if ($config['type'] === 'asset') {
+                            $hasError = $hasError || !array_key_exists('fields', $config['options'])|| !is_array($config['options']['fields']) || !array_key_exists('path', $config['options']);
                         }
 
                         return $hasError;
