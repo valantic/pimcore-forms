@@ -85,6 +85,7 @@ class Configuration implements ConfigurationInterface
                         ->example('TextType')
                         ->end()
                     ->variableNode('constraints')
+                        ->defaultValue([])
                         ->info('Define the Symfony Constraints for this field')
                         ->validate()
                             ->ifTrue(function (array $constraints): bool {
