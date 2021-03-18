@@ -32,6 +32,8 @@ class AssetOutput extends AbstractOutput
         $subfolder->setParent($path);
         $subfolder->save();
 
+        $count = 0;
+
         foreach ($this->getFiles() as $field => $file) {
             if ($file->getRealPath() === false) {
                 continue;
@@ -42,7 +44,10 @@ class AssetOutput extends AbstractOutput
             $asset->setParent($subfolder);
             $asset->setData(file_get_contents($file->getRealPath()));
             $asset->save();
+            $count++;
         }
+
+        OutputScratchpad::set($this->key, ['path' => $subfolder->getFullPath(), 'count' => $count]);
 
         return true;
     }

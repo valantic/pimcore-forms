@@ -9,10 +9,11 @@ use Symfony\Component\Form\FormInterface;
 interface OutputInterface
 {
     /**
+     * @param string $key
      * @param FormInterface $form
      * @param array<string,mixed> $config
      */
-    public function initialize(FormInterface $form, array $config): void;
+    public function initialize(string $key, FormInterface $form, array $config): void;
 
     public function handle(): bool;
 
