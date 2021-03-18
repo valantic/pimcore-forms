@@ -59,7 +59,7 @@ class Form extends AbstractTemplateAreabrick implements EditableDialogBoxInterfa
     {
         $config = new EditableDialogBoxConfiguration();
         $config->setWidth(300);
-
+        $config->setReloadOnClose(true);
         $config->setItems([
             [
                 'type' => 'select',
