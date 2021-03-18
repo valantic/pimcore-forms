@@ -1,6 +1,6 @@
 {
   "name": "valantic/pimcore-forms",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Forms for Pimcore",
   "type": "pimcore-bundle",
   "require": {
