@@ -1,0 +1,2 @@
+forms:
+  resource: "@ValanticPimcoreFormsBundle/Resources/config/routing.yml"
