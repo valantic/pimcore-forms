@@ -95,12 +95,6 @@ class FormController extends AbstractController
             );
         }
 
-        return new ApiResponse(
-            $formService->errors($form),
-            [
-                ApiResponse::MESSAGE_TYPE_ERROR => $translator->trans('valantic.pimcoreForms.formContainsErrors'),
-            ],
-            JsonResponse::HTTP_PRECONDITION_FAILED
-        );
+        return new ApiResponse([], $formService->errors($form), JsonResponse::HTTP_PRECONDITION_FAILED);
     }
 }

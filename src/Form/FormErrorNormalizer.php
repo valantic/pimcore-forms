@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Valantic\PimcoreFormsBundle\Http\ApiResponse;
 
 class FormErrorNormalizer implements NormalizerInterface
 {
@@ -37,7 +38,7 @@ class FormErrorNormalizer implements NormalizerInterface
     /**
      * @param FormInterface $data
      *
-     * @return array<string,array<mixed>>
+     * @return array<int,array<mixed>>
      *
      * @see https://github.com/schmittjoh/serializer/blob/master/src/Handler/FormErrorHandler.php
      */
@@ -59,11 +60,16 @@ class FormErrorNormalizer implements NormalizerInterface
                     $childErrors[] = $this->getErrorMessage($error);
                 }
 
-                $errors[$child->getName()] = $childErrors;
+                foreach ($childErrors as $childError) {
+                    if (empty($childError)) {
+                        continue;
+                    }
+                    $errors[] = ['message' => $childError, 'type' => ApiResponse::MESSAGE_TYPE_ERROR, 'field' => $child->getName()];
+                }
             }
         }
 
-        return array_filter($errors);
+        return array_values(array_filter($errors));
     }
 
     /**
