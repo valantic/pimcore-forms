@@ -11,6 +11,11 @@ services:
     tags:
       - { name: liform.transformer, form_type: hidden, widget: hidden }
       - { name: liform.transformer, form_type: week, widget: week }
+
+  valantic.pimcoreforms.liform.file.transformer:
+    class: Valantic\PimcoreFormsBundle\Form\Transformer\FileTransformer
+    parent: Limenius\Liform\Transformer\AbstractTransformer
+    tags:
       - { name: liform.transformer, form_type: file, widget: file }
 
   valantic.pimcoreforms.liform.string.transformer:
