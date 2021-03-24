@@ -16,8 +16,6 @@ class OutputRepository
     protected array $outputs;
 
     /**
-     * OutputRepository constructor.
-     *
      * @param iterable<OutputInterface> $outputs
      */
     public function __construct(iterable $outputs)
