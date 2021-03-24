@@ -6,6 +6,7 @@ namespace Valantic\PimcoreFormsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -52,12 +53,13 @@ class FormController extends AbstractController
      * @param string $name
      * @param FormService $formService
      * @param Request $request
+     * @param TranslatorInterface $translator
      *
      * @throws SerializerException
      *
-     * @return JsonResponse
+     * @return ApiResponse|RedirectResponse
      */
-    public function apiAction(string $name, FormService $formService, Request $request, TranslatorInterface $translator): JsonResponse
+    public function apiAction(string $name, FormService $formService, Request $request, TranslatorInterface $translator): Response
     {
         $form = $formService->buildForm($name);
         $form->handleRequest($request);
@@ -79,6 +81,12 @@ class FormController extends AbstractController
             $data = $form->getData();
 
             $outputSuccess = $formService->outputs($form);
+
+            $redirectUrl = $formService->getRedirectUrl($form, $outputSuccess);
+
+            if ($redirectUrl !== null) {
+                return new RedirectResponse($redirectUrl);
+            }
 
             return new ApiResponse(
                 $data,

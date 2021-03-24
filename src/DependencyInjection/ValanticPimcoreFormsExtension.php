@@ -10,6 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Valantic\PimcoreFormsBundle\Form\Output\OutputInterface;
+use Valantic\PimcoreFormsBundle\Form\RedirectHandler\RedirectHandlerInterface;
 use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 
 /**
@@ -20,6 +21,7 @@ use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 class ValanticPimcoreFormsExtension extends Extension
 {
     public const TAG_OUTPUT = 'valantic.pimcore_forms.output';
+    public const TAG_REDIRECT_HANDLER = 'valantic.pimcore_forms.redirect_handler';
 
     /**
      * {@inheritDoc}
@@ -36,6 +38,7 @@ class ValanticPimcoreFormsExtension extends Extension
 
         $container->setParameter(ConfigurationRepository::CONTAINER_TAG, $config);
         $container->registerForAutoconfiguration(OutputInterface::class)->addTag(self::TAG_OUTPUT);
+        $container->registerForAutoconfiguration(RedirectHandlerInterface::class)->addTag(self::TAG_REDIRECT_HANDLER);
 
         $ymlLoader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $ymlLoader->load('services.yml');

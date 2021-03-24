@@ -6,6 +6,7 @@ use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Valantic\PimcoreFormsBundle\Form\Output\OutputInterface;
+use Valantic\PimcoreFormsBundle\Form\RedirectHandler\RedirectHandlerInterface;
 use Valantic\PimcoreFormsBundle\Form\Type\ChoicesInterface;
 
 /**
@@ -52,6 +53,20 @@ class Configuration implements ConfigurationInterface
                                 ->validate()
                                 ->ifNotInArray(['GET', 'POST'])
                                 ->thenInvalid('Must be GET or POST')
+                                ->end()
+                            ->end()
+                        ->scalarNode('redirect_handler')
+                            ->defaultNull()
+                            ->info('Service to handle redirecting the form')
+                                ->validate()
+                                ->ifTrue(function (?string $handler): bool {
+                                    if ($handler === null) {
+                                        return false;
+                                    }
+
+                                    return !in_array(RedirectHandlerInterface::class, class_implements($handler) ?: [], true);
+                                })
+                                ->thenInvalid('Invalid redirect handler class found. If not null, the service must implement ' . RedirectHandlerInterface::class)
                                 ->end()
                             ->end()
                         ->append($this->buildOutputsNode())

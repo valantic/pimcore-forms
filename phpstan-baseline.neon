@@ -51,6 +51,11 @@ parameters:
 			path: src/Form/FormErrorNormalizer.php
 
 		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\RedirectHandler\\\\AbstractRedirectHandler\\:\\:initialize\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Form/RedirectHandler/AbstractRedirectHandler.php
+
+		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ButtonTransformer\\:\\:transform\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Form/Transformer/ButtonTransformer.php

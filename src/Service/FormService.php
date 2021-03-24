@@ -19,6 +19,7 @@ use Valantic\PimcoreFormsBundle\Form\Extension\FormTypeExtension;
 use Valantic\PimcoreFormsBundle\Form\FormErrorNormalizer;
 use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 use Valantic\PimcoreFormsBundle\Repository\OutputRepository;
+use Valantic\PimcoreFormsBundle\Repository\RedirectHandlerRepository;
 
 class FormService
 {
@@ -26,11 +27,13 @@ class FormService
     protected Builder $builder;
     protected Liform $liform;
     protected OutputRepository $outputRepository;
+    protected RedirectHandlerRepository $redirectHandlerRepository;
     protected FormErrorNormalizer $errorNormalizer;
 
     public function __construct(
         ConfigurationRepository $configurationRepository,
         OutputRepository $outputRepository,
+        RedirectHandlerRepository $redirectHandlerRepository,
         Builder $builder,
         Liform $liform,
         FormErrorNormalizer $errorNormalizer,
@@ -40,8 +43,9 @@ class FormService
         FormAttributeExtension $formAttributeExtension,
         ChoiceTypeExtension $choiceTypeExtension
     ) {
-        $this->configurationRepository = $configurationRepository;
         $this->builder = $builder;
+        $this->configurationRepository = $configurationRepository;
+        $this->redirectHandlerRepository = $redirectHandlerRepository;
         $this->outputRepository = $outputRepository;
         $this->errorNormalizer = $errorNormalizer;
 
@@ -127,6 +131,19 @@ class FormService
         }
 
         return $status;
+    }
+
+    public function getRedirectUrl(FormInterface $form, bool $success): ?string
+    {
+        $handlerName = $this->getConfig($form->getName())['redirect_handler'];
+
+        if ($handlerName === null) {
+            return null;
+        }
+
+        $handler = $this->redirectHandlerRepository->get($handlerName);
+
+        return $success ? $handler->onSuccess() : $handler->onFailure();
     }
 
     /**

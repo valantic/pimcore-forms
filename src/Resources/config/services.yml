@@ -30,6 +30,10 @@ services:
     arguments:
       - !tagged_iterator valantic.pimcore_forms.output
 
+  Valantic\PimcoreFormsBundle\Repository\RedirectHandlerRepository:
+    arguments:
+      - !tagged_iterator valantic.pimcore_forms.redirect_handler
+
   Valantic\PimcoreFormsBundle\Document\Twig\Extension\:
     resource: '../../Document/Twig/Extension'
     tags: [ 'twig.extension' ]
