@@ -6,8 +6,10 @@ namespace Valantic\PimcoreFormsBundle\Service;
 
 use Limenius\Liform\Liform;
 use RuntimeException;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Security\Csrf\CsrfTokenManager;
 use Symfony\Component\Serializer\Exception\ExceptionInterface as SerializerException;
 use Valantic\PimcoreFormsBundle\Exception\InvalidFormConfigException;
 use Valantic\PimcoreFormsBundle\Form\Builder;
@@ -16,6 +18,7 @@ use Valantic\PimcoreFormsBundle\Form\Extension\FormAttributeExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormConstraintExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormNameExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormTypeExtension;
+use Valantic\PimcoreFormsBundle\Form\Extension\HiddenTypeExtension;
 use Valantic\PimcoreFormsBundle\Form\FormErrorNormalizer;
 use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 use Valantic\PimcoreFormsBundle\Repository\OutputRepository;
@@ -41,7 +44,8 @@ class FormService
         FormNameExtension $formNameExtension,
         FormConstraintExtension $formConstraintExtension,
         FormAttributeExtension $formAttributeExtension,
-        ChoiceTypeExtension $choiceTypeExtension
+        ChoiceTypeExtension $choiceTypeExtension,
+        HiddenTypeExtension $hiddenTypeExtension
     ) {
         $this->builder = $builder;
         $this->configurationRepository = $configurationRepository;
@@ -54,6 +58,7 @@ class FormService
         $liform->addExtension($formConstraintExtension);
         $liform->addExtension($formAttributeExtension);
         $liform->addExtension($choiceTypeExtension);
+        $liform->addExtension($hiddenTypeExtension);
         $this->liform = $liform;
     }
 
@@ -62,8 +67,15 @@ class FormService
         $config = $this->getConfig($name);
         $form = $this->builder->form($name, $config);
 
-        foreach ($config['fields'] as $name => $definition) {
-            $form->add($name, ...$this->builder->field($definition, $config));
+        foreach ($config['fields'] as $fieldName => $definition) {
+            $form->add($fieldName, ...$this->builder->field($definition, $config));
+        }
+
+        if ($form->getOption('csrf_protection') === true) {
+            /** @var CsrfTokenManager $tokenProvider */
+            $tokenProvider = $form->getOption('csrf_token_manager');
+            $token = $tokenProvider->getToken($name)->getValue();
+            $form->add($form->getOption('csrf_field_name'), HiddenType::class, ['data' => $token]);
         }
 
         return $form;
