@@ -32,7 +32,7 @@ class Configuration implements ConfigurationInterface
                     ->arrayPrototype()
                     ->children()
                         ->booleanNode('csrf')
-                            ->defaultValue(false)
+                            ->defaultValue(true)
                             ->info('Whether to enable CSRF protection for this form')
                             ->end()
                         ->arrayNode('translate')
