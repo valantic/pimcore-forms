@@ -27,7 +27,7 @@
             <tag name="liform.transformer" form_type="compound"/>
         </service>
 
-        <service id="liform.transformer.choice" class="Limenius\Liform\Transformer\ChoiceTransformer"
+        <service id="liform.transformer.choice" class="Valantic\PimcoreFormsBundle\Form\Transformer\ChoiceTransformer"
                  parent="Limenius\Liform\Transformer\AbstractTransformer">
             <tag name="liform.transformer" form_type="choice"/>
         </service>
