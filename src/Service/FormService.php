@@ -136,10 +136,16 @@ class FormService
         $status = true;
 
         $outputs = $this->getConfig($form->getName())['outputs'];
+        $handlers = [];
         foreach ($outputs as $name => ['type' => $type, 'options' => $options]) {
             $output = $this->outputRepository->get($type);
             $output->initialize($name, $form, $options);
-            $status = $output->handle() && $status; // DO NOT SWAP the two arguments!!!
+            $handlers[$name] = $output;
+        }
+
+        foreach ($handlers as $handler) {
+            $handler->setOutputHandlers($handlers);
+            $status = $handler->handle() && $status; // DO NOT SWAP the two arguments!!!
         }
 
         return $status;

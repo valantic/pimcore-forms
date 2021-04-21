@@ -14,11 +14,20 @@ abstract class AbstractOutput implements OutputInterface
      * @var array<string,mixed>
      */
     protected array $config;
+    /**
+     * @var OutputInterface[]
+     */
+    protected array $outputHandlers = [];
 
     public function initialize(string $key, FormInterface $form, array $config): void
     {
         $this->key = $key;
         $this->form = $form;
         $this->config = $config;
+    }
+
+    public function setOutputHandlers(array $handlers): void
+    {
+        $this->outputHandlers = $handlers;
     }
 }

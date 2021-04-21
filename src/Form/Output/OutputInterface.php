@@ -15,6 +15,13 @@ interface OutputInterface
      */
     public function initialize(string $key, FormInterface $form, array $config): void;
 
+    /**
+     * @param OutputInterface[] $handlers
+     *
+     * @return void
+     */
+    public function setOutputHandlers(array $handlers): void;
+
     public function handle(): bool;
 
     public static function name(): string;
