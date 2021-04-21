@@ -27,6 +27,12 @@ class EmailOutput extends AbstractOutput
             $mail->setSubject($subject);
         }
 
+        $from = $this->getFrom();
+
+        if ($from !== null) {
+            $mail->setFrom($from);
+        }
+
         $mail->send();
 
         return true;
@@ -46,6 +52,11 @@ class EmailOutput extends AbstractOutput
     }
 
     protected function getSubject(): ?string
+    {
+        return null;
+    }
+
+    protected function getFrom(): ?string
     {
         return null;
     }
