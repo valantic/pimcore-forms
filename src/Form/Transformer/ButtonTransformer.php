@@ -9,6 +9,8 @@ use Symfony\Component\Form\FormInterface;
 
 class ButtonTransformer extends AbstractTransformer
 {
+    use OverwriteAbstractTransformerTrait;
+
     public function transform(FormInterface $form, array $extensions = [], $widget = null)
     {
         $schema = ['type' => 'string'];

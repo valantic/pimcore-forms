@@ -6,7 +6,7 @@ services:
       - { name: liform.transformer, form_type: button }
 
   valantic.pimcoreforms.liform.hidden.transformer:
-    class: Limenius\Liform\Transformer\StringTransformer
+    class: Valantic\PimcoreFormsBundle\Form\Transformer\StringTransformer
     parent: Limenius\Liform\Transformer\AbstractTransformer
     tags:
       - { name: liform.transformer, form_type: hidden, widget: hidden }
@@ -19,7 +19,7 @@ services:
       - { name: liform.transformer, form_type: file, widget: file }
 
   valantic.pimcoreforms.liform.string.transformer:
-    class: Limenius\Liform\Transformer\StringTransformer
+    class: Valantic\PimcoreFormsBundle\Form\Transformer\StringTransformer
     parent: Limenius\Liform\Transformer\AbstractTransformer
     tags:
       - { name: liform.transformer, form_type: date, widget: date }
