@@ -10,9 +10,9 @@ trait OverwriteAbstractTransformerTrait
 {
     /**
      * @param FormInterface $form
-     * @param array $schema
+     * @param array<mixed> $schema
      *
-     * @return array
+     * @return array<mixed>
      *
      * @see \Limenius\Liform\Transformer\AbstractTransformer::addLabel
      */
