@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Valantic\PimcoreFormsBundle\Form\Transformer;
 
-use Limenius\Liform\Transformer\ChoiceTransformer as BaseChoiceTransformer;
 use Symfony\Component\Form\ChoiceList\View\ChoiceGroupView;
 use Symfony\Component\Form\FormInterface;
 
@@ -14,8 +13,10 @@ use Symfony\Component\Form\FormInterface;
  *
  * @see  \Limenius\Liform\Transformer\ChoiceTransformer
  */
-class ChoiceTransformer extends BaseChoiceTransformer
+class ChoiceTransformer extends \Limenius\Liform\Transformer\ChoiceTransformer
 {
+    use OverwriteAbstractTransformerTrait;
+
     /**
      * {@inheritDoc}
      */
