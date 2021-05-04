@@ -9,6 +9,8 @@ use Symfony\Component\Form\FormInterface;
 
 class FileTransformer extends StringTransformer
 {
+    use OverwriteAbstractTransformerTrait;
+
     /**
      * {@inheritDoc}
      */
