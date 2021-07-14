@@ -31,9 +31,9 @@ trait OverwriteAbstractTransformerTrait
 
     /**
      * @param FormInterface $form
-     * @param array $schema
+     * @param array<mixed> $schema
      *
-     * @return array
+     * @return array<mixed>
      */
     protected function addAttr(FormInterface $form, array $schema): array
     {
