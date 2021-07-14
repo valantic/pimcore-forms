@@ -66,10 +66,16 @@ class FormErrorNormalizer implements NormalizerInterface
         return array_values(array_filter($errors));
     }
 
+    /**
+     * @param FormError $error
+     * @param string|null $customErrorMessageTemplate
+     *
+     * @return array<mixed>
+     */
     protected function buildErrorEntry(FormError $error, ?string $customErrorMessageTemplate = null): array
     {
         $message = $this->getErrorMessage($error);
-        $label = (is_string($error->getOrigin()->getConfig()->getOption('label')))
+        $label = ($error->getOrigin() && is_string($error->getOrigin()->getConfig()->getOption('label')))
             ? $error->getOrigin()->getConfig()->getOption('label')
             : '';
 
@@ -91,7 +97,7 @@ class FormErrorNormalizer implements NormalizerInterface
         return [
             'message' => $message,
             'type' => ApiResponse::MESSAGE_TYPE_ERROR,
-            'field' => $error->getOrigin()->getName(),
+            'field' => $error->getOrigin() ? $error->getOrigin()->getName() : '',
             'label' => $label
         ];
     }
