@@ -28,4 +28,25 @@ trait OverwriteAbstractTransformerTrait
 
         return $schema;
     }
+
+    /**
+     * @param FormInterface $form
+     * @param array<mixed> $schema
+     *
+     * @return array<mixed>
+     */
+    protected function addAttr(FormInterface $form, array $schema): array
+    {
+        $attr = $form->getConfig()->getOption('attr');
+        if ($attr) {
+            $schema['attr'] = $attr;
+        }
+
+        if (is_array($attr) && count($attr) > 0 && array_key_exists('placeholder', $attr)) {
+            $translationDomain = $form->getConfig()->getOption('translation_domain');
+            $schema['attr']['placeholder'] = $this->translator->trans($attr['placeholder'], [], $translationDomain);
+        }
+
+        return $schema;
+    }
 }
