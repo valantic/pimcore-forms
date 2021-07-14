@@ -9,14 +9,17 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Valantic\PimcoreFormsBundle\Http\ApiResponse;
+use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 
 class FormErrorNormalizer implements NormalizerInterface
 {
     protected TranslatorInterface $translator;
+    protected ConfigurationRepository $configurationRepository;
 
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(TranslatorInterface $translator, ConfigurationRepository $configurationRepository)
     {
         $this->translator = $translator;
+        $this->configurationRepository = $configurationRepository;
     }
 
     /**
@@ -45,31 +48,52 @@ class FormErrorNormalizer implements NormalizerInterface
     protected function convertFormToArray(FormInterface $data): array
     {
         $errors = [];
+        $formErrorMessageTemplate = $this->configurationRepository->get()['forms'][$data->getName()]['form_config']['api_error_message_template'] ?? null;
 
-        $errors['form'] = [];
         foreach ($data->getErrors() as $error) {
             /** @var FormError $error */
-            $errors['_form'][$error->getOrigin() !== null ? $error->getOrigin()->getName() : null] = $this->getErrorMessage($error);
+            $errors[] = $this->buildErrorEntry($error, $formErrorMessageTemplate);
         }
 
         foreach ($data->all() as $child) {
             if ($child instanceof FormInterface) {
-                $childErrors = [];
-
                 foreach ($child->getErrors() as $error) {
-                    $childErrors[] = $this->getErrorMessage($error);
-                }
-
-                foreach ($childErrors as $childError) {
-                    if (empty($childError)) {
-                        continue;
-                    }
-                    $errors[] = ['message' => $childError, 'type' => ApiResponse::MESSAGE_TYPE_ERROR, 'field' => $child->getName()];
+                    $errors[] = $this->buildErrorEntry($error, $formErrorMessageTemplate);
                 }
             }
         }
 
         return array_values(array_filter($errors));
+    }
+
+    protected function buildErrorEntry(FormError $error, ?string $customErrorMessageTemplate = null): array
+    {
+        $message = $this->getErrorMessage($error);
+        $label = (is_string($error->getOrigin()->getConfig()->getOption('label')))
+            ? $error->getOrigin()->getConfig()->getOption('label')
+            : '';
+
+        if (!empty($label)) {
+            if (null !== $this->translator) {
+                $label = $this->translator->trans($label);
+            }
+        } else {
+            // Don't use template based system because we have no $label value.
+            // Probably a general form exception like (invalid CSRF token) and not a form field validation error
+            $customErrorMessageTemplate = null;
+        }
+
+        // TODO possible optimization -> regex check for valid template string
+        if (!empty($customErrorMessageTemplate)) {
+            $message = sprintf($customErrorMessageTemplate, $message, $label);
+        }
+
+        return [
+            'message' => $message,
+            'type' => ApiResponse::MESSAGE_TYPE_ERROR,
+            'field' => $error->getOrigin()->getName(),
+            'label' => $label
+        ];
     }
 
     /**
