@@ -44,7 +44,7 @@ trait OverwriteAbstractTransformerTrait
 
         if (is_array($attr) && count($attr) > 0 && array_key_exists('placeholder', $attr)) {
             $translationDomain = $form->getConfig()->getOption('translation_domain');
-            $schema['attr']['placeholder'] = $this->translator->trans($form->getConfig()->getOption('attr')['placeholder'], [], $translationDomain);
+            $schema['attr']['placeholder'] = $this->translator->trans($attr['placeholder'], [], $translationDomain);
         }
 
         return $schema;
