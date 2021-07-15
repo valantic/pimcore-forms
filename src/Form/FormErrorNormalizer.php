@@ -49,7 +49,7 @@ class FormErrorNormalizer implements NormalizerInterface
     protected function convertFormToArray(FormInterface $data): array
     {
         $errors = [];
-        $formErrorMessageTemplate = $this->configurationRepository->get()['forms'][$data->getName()]['api_error_message_template'] ?? null;
+        $formErrorMessageTemplate = $this->configurationRepository->get()['forms'][$data->getName()]['api_error_message_template'];
 
         foreach ($data->getErrors() as $error) {
             /** @var FormError $error */

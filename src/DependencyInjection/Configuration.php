@@ -32,7 +32,23 @@ class Configuration implements ConfigurationInterface
                     ->arrayPrototype()
                     ->children()
                         ->scalarNode('api_error_message_template')
-                            ->info('Custom error message sprintf() based template. Example like "(%2$s) %1$s". (Params: %1$s = Error message, %2$s = Localized field label')
+                            ->info('Custom error message sprintf() based template. Example like "(%2$s) %1$s". (Params: %1$s = error message, %2$s = localized field label')
+                            ->defaultValue(true)
+                            ->validate()
+                            ->ifTrue(function (?string $format): bool {
+                                if ($format === null) {
+                                    return false;
+                                }
+
+                                // TODO: possible optimization -> regex check for valid template string
+                                if (strpos($format, '%1$s') !== false && strpos($format, '%2$s') !== false) {
+                                    return false;
+                                }
+
+                                return true;
+                            })
+                            ->thenInvalid('The format template should either be null/missing or contain both parameters (%1$s and %2$s).')
+                            ->end()
                         ->end()
                         ->booleanNode('csrf')
                             ->defaultValue(true)
