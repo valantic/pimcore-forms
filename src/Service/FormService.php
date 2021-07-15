@@ -120,16 +120,16 @@ class FormService
     }
 
     /**
-     * The returned error message can be customized with a simple sprintf based template system in your forms.yml
-     * Config key: forms.yml[forms][myCustomFormName][form_config][api_error_message_template].
+     * The returned error message can be customized with a simple sprintf-based template system in your config using:
+     * valantic_pimcore_forms.forms.[form_name].api_error_message_template.
      *
-     * !!! Important: Be careful with html tags inside the template. It's probably not supported by your frontend implementation
+     * !!! Important: Be careful with HTML tags inside the template. Support depends on your frontend implementation.
      *
      * Available params:
      *     %1$s = Error message
      *     %2$s = Localized field label
-     * Sample for a valid template string '(%2$s) %1$s'
-     * Sample result for example in german '(Dateiupload) Die Datei ist gross (12MB), die maximal zulässige Grösse beträgt 10MB.'
+     * Sample for a valid template string: '(%2$s) %1$s'
+     * Sample result for example in German: '(Dateiupload) Die Datei ist gross (12MB), die maximal zulässige Grösse beträgt 10MB.'
      *
      * @param FormInterface $form
      *
