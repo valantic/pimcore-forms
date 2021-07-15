@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Valantic\PimcoreFormsBundle\Form;
 
 use Symfony\Component\Form\FormError;
+use Symfony\Component\Form\FormErrorIterator;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -48,17 +49,27 @@ class FormErrorNormalizer implements NormalizerInterface
     protected function convertFormToArray(FormInterface $data): array
     {
         $errors = [];
-        $formErrorMessageTemplate = $this->configurationRepository->get()['forms'][$data->getName()]['form_config']['api_error_message_template'] ?? null;
+        $formErrorMessageTemplate = $this->configurationRepository->get()['forms'][$data->getName()]['api_error_message_template'] ?? null;
 
         foreach ($data->getErrors() as $error) {
             /** @var FormError $error */
-            $errors[] = $this->buildErrorEntry($error, $formErrorMessageTemplate);
+            if ($error instanceof FormError) {
+                $errors[] = $this->buildErrorEntry($error, $formErrorMessageTemplate);
+            }
         }
-
+        // TODO possible optimization to catch all nested errors
         foreach ($data->all() as $child) {
             if ($child instanceof FormInterface) {
                 foreach ($child->getErrors() as $error) {
-                    $errors[] = $this->buildErrorEntry($error, $formErrorMessageTemplate);
+                    if ($error instanceof FormErrorIterator) {
+                        foreach ($error as $childError) {
+                            if ($childError instanceof FormError) {
+                                $errors[] = $this->buildErrorEntry($childError, $formErrorMessageTemplate);
+                            }
+                        }
+                    } else {
+                        $errors[] = $this->buildErrorEntry($error, $formErrorMessageTemplate);
+                    }
                 }
             }
         }
@@ -75,14 +86,12 @@ class FormErrorNormalizer implements NormalizerInterface
     protected function buildErrorEntry(FormError $error, ?string $customErrorMessageTemplate = null): array
     {
         $message = $this->getErrorMessage($error);
-        $label = ($error->getOrigin() && is_string($error->getOrigin()->getConfig()->getOption('label')))
+        $label = ($error->getOrigin() instanceof FormInterface && is_string($error->getOrigin()->getConfig()->getOption('label')))
             ? $error->getOrigin()->getConfig()->getOption('label')
             : '';
 
         if (!empty($label)) {
-            if (null !== $this->translator) {
-                $label = $this->translator->trans($label);
-            }
+            $label = $this->translator->trans($label);
         } else {
             // Don't use template based system because we have no $label value.
             // Probably a general form exception like (invalid CSRF token) and not a form field validation error
@@ -97,7 +106,7 @@ class FormErrorNormalizer implements NormalizerInterface
         return [
             'message' => $message,
             'type' => ApiResponse::MESSAGE_TYPE_ERROR,
-            'field' => $error->getOrigin() ? $error->getOrigin()->getName() : '',
+            'field' => $error->getOrigin() instanceof FormInterface ? $error->getOrigin()->getName() : '',
             'label' => $label
         ];
     }
