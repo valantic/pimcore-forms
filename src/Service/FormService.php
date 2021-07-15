@@ -121,7 +121,7 @@ class FormService
 
     /**
      * The returned error message can be customized with a simple sprintf based template system in your forms.yml
-     * Config key: forms.yml[forms][myCustomFormName][form_config][api_error_message_template]
+     * Config key: forms.yml[forms][myCustomFormName][form_config][api_error_message_template].
      *
      * !!! Important: Be careful with html tags inside the template. It's probably not supported by your frontend implementation
      *
@@ -133,9 +133,9 @@ class FormService
      *
      * @param FormInterface $form
      *
-     * @return array<mixed>
      * @throws SerializerException
      *
+     * @return array<mixed>
      */
     public function errors(FormInterface $form): array
     {

@@ -107,7 +107,7 @@ class FormErrorNormalizer implements NormalizerInterface
             'message' => $message,
             'type' => ApiResponse::MESSAGE_TYPE_ERROR,
             'field' => $error->getOrigin() instanceof FormInterface ? $error->getOrigin()->getName() : '',
-            'label' => $label
+            'label' => $label,
         ];
     }
 
