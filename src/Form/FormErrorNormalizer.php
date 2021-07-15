@@ -57,7 +57,8 @@ class FormErrorNormalizer implements NormalizerInterface
                 $errors[] = $this->buildErrorEntry($error, $formErrorMessageTemplate);
             }
         }
-        // TODO possible optimization to catch all nested errors
+
+        // TODO: possible optimization to catch all nested errors
         foreach ($data->all() as $child) {
             if ($child instanceof FormInterface) {
                 foreach ($child->getErrors() as $error) {
@@ -81,7 +82,7 @@ class FormErrorNormalizer implements NormalizerInterface
      * @param FormError $error
      * @param string|null $customErrorMessageTemplate
      *
-     * @return array<mixed>
+     * @return array<string,mixed>
      */
     protected function buildErrorEntry(FormError $error, ?string $customErrorMessageTemplate = null): array
     {
@@ -98,7 +99,6 @@ class FormErrorNormalizer implements NormalizerInterface
             $customErrorMessageTemplate = null;
         }
 
-        // TODO possible optimization -> regex check for valid template string
         if (!empty($customErrorMessageTemplate)) {
             $message = sprintf($customErrorMessageTemplate, $message, $label);
         }
