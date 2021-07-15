@@ -33,7 +33,7 @@ class Configuration implements ConfigurationInterface
                     ->children()
                         ->scalarNode('api_error_message_template')
                             ->info('Custom error message sprintf() based template. Example like "(%2$s) %1$s". (Params: %1$s = error message, %2$s = localized field label')
-                            ->defaultValue(true)
+                            ->defaultValue(null)
                             ->validate()
                             ->ifTrue(function (?string $format): bool {
                                 if ($format === null) {
