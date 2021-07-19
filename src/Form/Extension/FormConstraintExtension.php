@@ -7,6 +7,7 @@ namespace Valantic\PimcoreFormsBundle\Form\Extension;
 use Limenius\Liform\Transformer\ExtensionInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\Constraints\Regex;
 use Valantic\PimcoreFormsBundle\DependencyInjection\Configuration;
 
 class FormConstraintExtension implements ExtensionInterface
@@ -25,13 +26,21 @@ class FormConstraintExtension implements ExtensionInterface
             return $schema;
         }
 
-        $schema['constraints'] = array_map(
-            fn(Constraint $constraint): array => [
+        $schema['constraints'] = [];
+
+        foreach ($constraints as $constraint) {
+            /** @var Constraint $data */
+            $data = [
                 'type' => str_replace(Configuration::SYMFONY_CONSTRAINTS_NAMESPACE, '', get_class($constraint)),
                 'config' => json_decode(json_encode($constraint), true),
-            ],
-            $constraints
-        );
+            ];
+
+            if ($constraint instanceof Regex && !empty($constraint->pattern) && empty($constraint->htmlPattern)) {
+                $data['config']['htmlPattern'] = $constraint->getHtmlPattern();
+            }
+
+            $schema['constraints'][] = $data;
+        }
 
         return $schema;
     }
