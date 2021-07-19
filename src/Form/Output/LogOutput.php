@@ -6,6 +6,7 @@ namespace Valantic\PimcoreFormsBundle\Form\Output;
 
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 
 class LogOutput extends AbstractOutput implements LoggerAwareInterface
 {
@@ -18,6 +19,10 @@ class LogOutput extends AbstractOutput implements LoggerAwareInterface
 
     public function handle(): bool
     {
+        if (!$this->logger instanceof LoggerInterface) {
+            return false;
+        }
+
         $this->logger->log($this->config['level'] ?? 'debug', $this->form->getName(), $this->form->getData());
 
         return true;
