@@ -22,7 +22,7 @@
   "extra": {
     "pimcore": {
       "bundles": [
-        "Valantic\\PimcoreFormsBundle"
+        "Valantic\\PimcoreFormsBundle\\ValanticPimcoreFormsBundle"
       ]
     }
   },
