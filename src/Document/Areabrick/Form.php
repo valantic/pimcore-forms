@@ -60,6 +60,10 @@ class Form extends AbstractTemplateAreabrick implements EditableDialogBoxInterfa
         $config = new EditableDialogBoxConfiguration();
         $config->setWidth(300);
         $config->setReloadOnClose(true);
+
+        $names = array_keys($this->configurationRepository->get()['forms']);
+        natsort($names);
+
         $config->setItems([
             [
                 'type' => 'select',
@@ -68,7 +72,7 @@ class Form extends AbstractTemplateAreabrick implements EditableDialogBoxInterfa
                 'config' => [
                     'store' => array_map(
                         fn(string $name): array => [$name, $name],
-                        array_keys($this->configurationRepository->get()['forms'])
+                        $names
                     ),
                 ],
             ],
