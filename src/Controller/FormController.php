@@ -87,10 +87,12 @@ class FormController extends AbstractController
                 $data,
                 $outputSuccess
                     ? [
-                        ApiResponse::MESSAGE_TYPE_SUCCESS => $translator->trans('valantic.pimcoreForms.formSubmitSuccess'),
+                        'type' => ApiResponse::MESSAGE_TYPE_SUCCESS,
+                        'message' => $translator->trans('valantic.pimcoreForms.formSubmitSuccess'),
                     ]
                     : [
-                        ApiResponse::MESSAGE_TYPE_ERROR => $translator->trans('valantic.pimcoreForms.formSubmitError'),
+                        'type' => ApiResponse::MESSAGE_TYPE_ERROR,
+                        'message' => $translator->trans('valantic.pimcoreForms.formSubmitError'),
                     ],
                 $outputSuccess
                     ? JsonResponse::HTTP_OK
