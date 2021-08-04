@@ -72,7 +72,7 @@ class Form extends AbstractTemplateAreabrick implements EditableDialogBoxInterfa
                 'config' => [
                     'store' => array_map(
                         fn(string $name): array => [$name, $name],
-                        $names
+                        array_values($names)
                     ),
                 ],
             ],
