@@ -11,11 +11,6 @@ parameters:
 			path: src/DependencyInjection/Configuration.php
 
 		-
-			message: "#^PHPDoc tag @var for variable \\$builder has no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormBuilderInterface\\.$#"
-			count: 1
-			path: src/Form/Builder.php
-
-		-
 			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
 			count: 1
 			path: src/Form/Extension/FormConstraintExtension.php
@@ -109,6 +104,11 @@ parameters:
 			message: "#^Parameter \\#4 \\$widget of method Limenius\\\\Liform\\\\Transformer\\\\AbstractTransformer\\:\\:addCommonSpecs\\(\\) expects string, string\\|null given\\.$#"
 			count: 1
 			path: src/Form/Transformer/FileTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Repository\\\\ConfigurationRepository\\:\\:get\\(\\) should return array\\<string, mixed\\> but returns array\\|bool\\|float\\|int\\|string\\|null\\.$#"
+			count: 1
+			path: src/Repository/ConfigurationRepository.php
 
 		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Service\\\\FormService\\:\\:errors\\(\\) should return array but returns array\\|ArrayObject\\|bool\\|float\\|int\\|string\\|null\\.$#"
