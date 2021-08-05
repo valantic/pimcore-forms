@@ -83,22 +83,25 @@ class FormController extends AbstractController
 
             $redirectUrl = $formService->getRedirectUrl($form, $outputSuccess);
 
-            return new ApiResponse(
-                $data,
-                $outputSuccess
-                    ? [
-                        'type' => ApiResponse::MESSAGE_TYPE_SUCCESS,
-                        'message' => $translator->trans('valantic.pimcoreForms.formSubmitSuccess'),
-                    ]
-                    : [
-                        'type' => ApiResponse::MESSAGE_TYPE_ERROR,
-                        'message' => $translator->trans('valantic.pimcoreForms.formSubmitError'),
-                    ],
-                $outputSuccess
-                    ? JsonResponse::HTTP_OK
-                    : JsonResponse::HTTP_PRECONDITION_FAILED,
-                $redirectUrl
-            );
+            $messages = $outputSuccess
+                ? [
+                    'type' => ApiResponse::MESSAGE_TYPE_SUCCESS,
+                    'message' => $translator->trans('valantic.pimcoreForms.formSubmitSuccess'),
+                ]
+                : [
+                    'type' => ApiResponse::MESSAGE_TYPE_ERROR,
+                    'message' => $translator->trans('valantic.pimcoreForms.formSubmitError'),
+                ];
+
+            $statusCode = $outputSuccess
+                ? JsonResponse::HTTP_OK
+                : JsonResponse::HTTP_PRECONDITION_FAILED;
+
+            if ($statusCode === JsonResponse::HTTP_OK && $redirectUrl !== null) {
+                return new ApiResponse($data, [], $statusCode, $redirectUrl);
+            }
+
+            return new ApiResponse($data, $messages, $statusCode, $redirectUrl);
         }
 
         return new ApiResponse([], $formService->errors($form), JsonResponse::HTTP_PRECONDITION_FAILED);
