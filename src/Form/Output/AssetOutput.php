@@ -9,6 +9,7 @@ use Pimcore\Model\Asset;
 use Pimcore\Model\Asset\Folder;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use voku\helper\ASCII;
 
 class AssetOutput extends AbstractOutput
 {
@@ -91,6 +92,10 @@ class AssetOutput extends AbstractOutput
 
     protected function getFilename(UploadedFile $file): string
     {
-        return pathinfo($file->getClientOriginalName(), \PATHINFO_FILENAME) . '.' . $file->guessExtension();
+        $fileName = ASCII::to_filename(
+            pathinfo($file->getClientOriginalName(), \PATHINFO_FILENAME) . '.' . $file->guessExtension()
+        );
+
+        return Asset\Service::getValidKey($fileName, 'asset');
     }
 }
