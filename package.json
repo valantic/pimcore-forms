@@ -4,7 +4,7 @@
     "release": "yarn run release-it"
   },
   "devDependencies": {
-    "@release-it/bumper": "^2.0.0",
-    "release-it": "^14.10.0"
+    "@release-it/bumper": "^3.0.1",
+    "release-it": "^14.11.6"
   }
 }
