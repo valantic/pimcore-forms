@@ -29,6 +29,3 @@ services:
     public: true
     tags:
       - { name: serializer.normalizer, priority: -10 }
-    arguments:
-      - '@translator'
-      - 'Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository'
