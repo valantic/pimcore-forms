@@ -1,7 +1,7 @@
 {
   "version": "0.3.13",
   "scripts": {
-    "release": "yarn run release-it"
+    "release": "npm run release-it"
   },
   "devDependencies": {
     "@release-it/bumper": "^3.0.1",
