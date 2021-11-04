@@ -1,7 +1,7 @@
 {
   "version": "0.3.13",
   "scripts": {
-    "release": "npm run release-it"
+    "release": "release-it"
   },
   "devDependencies": {
     "@release-it/bumper": "^3.0.1",
