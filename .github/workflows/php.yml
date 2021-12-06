@@ -38,7 +38,7 @@ jobs:
         run: composer require pimcore/pimcore:^6.7 --no-progress --prefer-dist
 
       - name: Static analysis using phpstan
-        run: composer run phpstan -- --error-format=github --config phpstan.pimcore6.neon
+        run: composer run phpstan -- --error-format=github --configuration phpstan.pimcore6.neon
 
   phpstan_pimcore10:
     name: phpstan for Pimcore 10 (PHP ${{ matrix.php-versions }} on ${{ matrix.operating-system }})
