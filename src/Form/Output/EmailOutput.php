@@ -30,7 +30,7 @@ class EmailOutput extends AbstractOutput
         $from = $this->getFrom();
 
         if ($from !== null) {
-            $mail->setFrom($from);
+            $mail->addFrom($from);
         }
 
         $mail->send();

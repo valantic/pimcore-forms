@@ -28,6 +28,12 @@ class DataObjectOutput extends AbstractOutput
             throw new InvalidArgumentException(sprintf('Path %s not found', $this->getPath()));
         }
 
+        $pathId = $path->getId();
+
+        if ($pathId === null) {
+            throw new InvalidArgumentException(sprintf('Path %s not found', $this->getPath()));
+        }
+
         /** @var Concrete $obj */
         $obj = new $objClass();
 
@@ -37,7 +43,7 @@ class DataObjectOutput extends AbstractOutput
 
         $obj->setPath($this->getPath());
         $obj->setKey($this->getKey());
-        $obj->setParentId($path->getId());
+        $obj->setParentId($pathId);
         $obj->save();
 
         return true;

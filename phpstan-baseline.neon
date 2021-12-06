@@ -11,6 +11,31 @@ parameters:
 			path: src/DependencyInjection/Configuration.php
 
 		-
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: array\\{string, string\\} given\\.$#"
+			count: 1
+			path: src/Document/Areabrick/Form.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Builder\\:\\:field\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Form/Builder.php
+
+		-
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: string given\\.$#"
+			count: 1
+			path: src/Form/Builder.php
+
+		-
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: string given\\.$#"
+			count: 1
+			path: src/Form/Extension/ChoiceTypeExtension.php
+
+		-
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: string given\\.$#"
+			count: 1
+			path: src/Form/Extension/FormAttributeExtension.php
+
+		-
 			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
 			count: 1
 			path: src/Form/Extension/FormConstraintExtension.php
