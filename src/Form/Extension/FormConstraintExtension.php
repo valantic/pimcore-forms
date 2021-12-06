@@ -31,7 +31,7 @@ class FormConstraintExtension implements ExtensionInterface
         foreach ($constraints as $constraint) {
             /** @var Constraint $data */
             $data = [
-                'type' => str_replace(Configuration::SYMFONY_CONSTRAINTS_NAMESPACE, '', (string)get_class($constraint)),
+                'type' => str_replace(Configuration::SYMFONY_CONSTRAINTS_NAMESPACE, '', (string) get_class($constraint)),
                 'config' => json_decode(json_encode($constraint), true),
             ];
 
