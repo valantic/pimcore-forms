@@ -5,10 +5,5 @@ parameters:
 
     level: 8
 
-    ignoreErrors:
-        - '#return type has no value type specified in iterable type Symfony\\Component\\Form\\FormInterface#'
-        - '#with no value type specified in iterable type Symfony\\Component\\Form\\FormInterface#'
-        - '#type has no value type specified in iterable type Symfony\\Component\\Form\\FormInterface#'
-
     bootstrapFiles:
         - vendor/pimcore/pimcore/stubs/dynamic-constants.php

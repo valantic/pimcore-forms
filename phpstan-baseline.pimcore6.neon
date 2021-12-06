@@ -11,9 +11,69 @@ parameters:
 			path: src/DependencyInjection/Configuration.php
 
 		-
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: array\\{string, string\\} given\\.$#"
+			count: 1
+			path: src/Document/Areabrick/Form.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Builder\\:\\:field\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Form/Builder.php
+
+		-
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: string given\\.$#"
+			count: 1
+			path: src/Form/Builder.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Extension\\\\ChoiceTypeExtension\\:\\:apply\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Extension/ChoiceTypeExtension.php
+
+		-
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: string given\\.$#"
+			count: 1
+			path: src/Form/Extension/ChoiceTypeExtension.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Extension\\\\FormAttributeExtension\\:\\:apply\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Extension/FormAttributeExtension.php
+
+		-
+			message: "#^Parameter \\#1 \\$callback of function array_map expects \\(callable\\(int\\|string\\)\\: mixed\\)\\|null, Closure\\(string\\)\\: string given\\.$#"
+			count: 1
+			path: src/Form/Extension/FormAttributeExtension.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Extension\\\\FormConstraintExtension\\:\\:apply\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Extension/FormConstraintExtension.php
+
+		-
 			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
 			count: 1
 			path: src/Form/Extension/FormConstraintExtension.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Extension\\\\FormNameExtension\\:\\:apply\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Extension/FormNameExtension.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Extension\\\\FormTypeExtension\\:\\:apply\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Extension/FormTypeExtension.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Extension\\\\HiddenTypeExtension\\:\\:apply\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Extension/HiddenTypeExtension.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\FormErrorNormalizer\\:\\:convertFormToArray\\(\\) has parameter \\$data with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/FormErrorNormalizer.php
 
 		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\FormErrorNormalizer\\:\\:normalize\\(\\) has parameter \\$context with no value type specified in iterable type array\\.$#"
@@ -41,9 +101,74 @@ parameters:
 			path: src/Form/FormErrorNormalizer.php
 
 		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Output\\\\AbstractOutput\\:\\:initialize\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Output/AbstractOutput.php
+
+		-
+			message: "#^Property Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Output\\\\AbstractOutput\\:\\:\\$form type has no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Output/AbstractOutput.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between int and null will always evaluate to false\\.$#"
+			count: 1
+			path: src/Form/Output/DataObjectOutput.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Output\\\\OutputInterface\\:\\:initialize\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Output/OutputInterface.php
+
+		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\RedirectHandler\\\\AbstractRedirectHandler\\:\\:initialize\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Form/RedirectHandler/AbstractRedirectHandler.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\RedirectHandler\\\\AbstractRedirectHandler\\:\\:initialize\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/RedirectHandler/AbstractRedirectHandler.php
+
+		-
+			message: "#^Property Valantic\\\\PimcoreFormsBundle\\\\Form\\\\RedirectHandler\\\\AbstractRedirectHandler\\:\\:\\$form type has no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/RedirectHandler/AbstractRedirectHandler.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ArrayTransformer\\:\\:addAttr\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Transformer/ArrayTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ArrayTransformer\\:\\:addLabel\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Transformer/ArrayTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\BooleanTransformer\\:\\:addAttr\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Transformer/BooleanTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\BooleanTransformer\\:\\:addLabel\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Transformer/BooleanTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ButtonTransformer\\:\\:addAttr\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Transformer/ButtonTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ButtonTransformer\\:\\:addLabel\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Transformer/ButtonTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ButtonTransformer\\:\\:transform\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Transformer/ButtonTransformer.php
 
 		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ButtonTransformer\\:\\:transform\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -51,9 +176,19 @@ parameters:
 			path: src/Form/Transformer/ButtonTransformer.php
 
 		-
-			message: "#^Parameter \\#4 \\$widget of method Limenius\\\\Liform\\\\Transformer\\\\AbstractTransformer\\:\\:addCommonSpecs\\(\\) expects string, string\\|null given\\.$#"
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:addAttr\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
 			count: 1
-			path: src/Form/Transformer/ButtonTransformer.php
+			path: src/Form/Transformer/ChoiceTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:addLabel\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Transformer/ChoiceTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transform\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Transformer/ChoiceTransformer.php
 
 		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transform\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -61,39 +196,59 @@ parameters:
 			path: src/Form/Transformer/ChoiceTransformer.php
 
 		-
-			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformMultiple\\(\\) has no return typehint specified\\.$#"
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformMultiple\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: src/Form/Transformer/ChoiceTransformer.php
 
 		-
-			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformMultiple\\(\\) has parameter \\$choices with no typehint specified\\.$#"
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformMultiple\\(\\) has parameter \\$choices with no type specified\\.$#"
 			count: 1
 			path: src/Form/Transformer/ChoiceTransformer.php
 
 		-
-			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformMultiple\\(\\) has parameter \\$titles with no typehint specified\\.$#"
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformMultiple\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
 			count: 1
 			path: src/Form/Transformer/ChoiceTransformer.php
 
 		-
-			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformSingle\\(\\) has no return typehint specified\\.$#"
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformMultiple\\(\\) has parameter \\$titles with no type specified\\.$#"
 			count: 1
 			path: src/Form/Transformer/ChoiceTransformer.php
 
 		-
-			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformSingle\\(\\) has parameter \\$choices with no typehint specified\\.$#"
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformSingle\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: src/Form/Transformer/ChoiceTransformer.php
 
 		-
-			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformSingle\\(\\) has parameter \\$titles with no typehint specified\\.$#"
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformSingle\\(\\) has parameter \\$choices with no type specified\\.$#"
 			count: 1
 			path: src/Form/Transformer/ChoiceTransformer.php
 
 		-
-			message: "#^Parameter \\#4 \\$widget of method Limenius\\\\Liform\\\\Transformer\\\\AbstractTransformer\\:\\:addCommonSpecs\\(\\) expects string, string\\|null given\\.$#"
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformSingle\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
 			count: 1
 			path: src/Form/Transformer/ChoiceTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformSingle\\(\\) has parameter \\$titles with no type specified\\.$#"
+			count: 1
+			path: src/Form/Transformer/ChoiceTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\CompoundTransformer\\:\\:addAttr\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Transformer/CompoundTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\CompoundTransformer\\:\\:addLabel\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Transformer/CompoundTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\FileTransformer\\:\\:transform\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Transformer/FileTransformer.php
 
 		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\FileTransformer\\:\\:transform\\(\\) return type has no value type specified in iterable type array\\.$#"
@@ -101,9 +256,34 @@ parameters:
 			path: src/Form/Transformer/FileTransformer.php
 
 		-
-			message: "#^Parameter \\#4 \\$widget of method Limenius\\\\Liform\\\\Transformer\\\\AbstractTransformer\\:\\:addCommonSpecs\\(\\) expects string, string\\|null given\\.$#"
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\IntegerTransformer\\:\\:addAttr\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
 			count: 1
-			path: src/Form/Transformer/FileTransformer.php
+			path: src/Form/Transformer/IntegerTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\IntegerTransformer\\:\\:addLabel\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Transformer/IntegerTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\NumberTransformer\\:\\:addAttr\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Transformer/NumberTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\NumberTransformer\\:\\:addLabel\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Transformer/NumberTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\StringTransformer\\:\\:addAttr\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Transformer/StringTransformer.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\StringTransformer\\:\\:addLabel\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Form/Transformer/StringTransformer.php
 
 		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Repository\\\\ConfigurationRepository\\:\\:get\\(\\) should return array\\<string, mixed\\> but returns array\\|bool\\|float\\|int\\|string\\|null\\.$#"
@@ -111,7 +291,32 @@ parameters:
 			path: src/Repository/ConfigurationRepository.php
 
 		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Service\\\\FormService\\:\\:buildForm\\(\\) return type has no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Service/FormService.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Service\\\\FormService\\:\\:errors\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Service/FormService.php
+
+		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Service\\\\FormService\\:\\:errors\\(\\) should return array but returns array\\|ArrayObject\\|bool\\|float\\|int\\|string\\|null\\.$#"
+			count: 1
+			path: src/Service/FormService.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Service\\\\FormService\\:\\:getRedirectUrl\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Service/FormService.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Service\\\\FormService\\:\\:json\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
+			count: 1
+			path: src/Service/FormService.php
+
+		-
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Service\\\\FormService\\:\\:outputs\\(\\) has parameter \\$form with no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
 			count: 1
 			path: src/Service/FormService.php
 
