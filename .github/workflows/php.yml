@@ -1,19 +1,17 @@
 name: PHP Checks
 
-on: [ push, pull_request ]
-
+on: [push, pull_request]
 
 jobs:
   phpstan_pimcore6:
-
     name: phpstan for Pimcore 6 (PHP ${{ matrix.php-versions }} on ${{ matrix.operating-system }})
     runs-on: ${{ matrix.operating-system }}
 
     strategy:
       fail-fast: false
       matrix:
-        operating-system: [ ubuntu-latest ]
-        php-versions: [ '7.4' ]
+        operating-system: [ubuntu-latest]
+        php-versions: ["7.4"]
 
     steps:
       - uses: actions/checkout@v2
@@ -40,18 +38,17 @@ jobs:
         run: composer require pimcore/pimcore:^6.7 --no-progress --prefer-dist
 
       - name: Static analysis using phpstan
-        run: composer run phpstan -- --error-format=github
+        run: composer run phpstan -- --error-format=github --config phpstan.pimcore6.neon
 
   phpstan_pimcore10:
-
     name: phpstan for Pimcore 10 (PHP ${{ matrix.php-versions }} on ${{ matrix.operating-system }})
     runs-on: ${{ matrix.operating-system }}
 
     strategy:
       fail-fast: false
       matrix:
-        operating-system: [ ubuntu-latest ]
-        php-versions: [ '8.0' ]
+        operating-system: [ubuntu-latest]
+        php-versions: ["8.0"]
 
     steps:
       - uses: actions/checkout@v2
@@ -81,14 +78,13 @@ jobs:
         run: composer run phpstan -- --error-format=github
 
   phpcs:
-
     name: phpcs
     runs-on: ${{ matrix.operating-system }}
 
     strategy:
       fail-fast: false
       matrix:
-        operating-system: [ ubuntu-latest ]
+        operating-system: [ubuntu-latest]
 
     steps:
       - uses: actions/checkout@v2
