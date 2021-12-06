@@ -56,32 +56,32 @@ parameters:
 			path: src/Form/Transformer/ChoiceTransformer.php
 
 		-
-			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformMultiple\\(\\) has no return typehint specified\\.$#"
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformMultiple\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: src/Form/Transformer/ChoiceTransformer.php
 
 		-
-			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformMultiple\\(\\) has parameter \\$choices with no typehint specified\\.$#"
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformMultiple\\(\\) has parameter \\$choices with no type specified\\.$#"
 			count: 1
 			path: src/Form/Transformer/ChoiceTransformer.php
 
 		-
-			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformMultiple\\(\\) has parameter \\$titles with no typehint specified\\.$#"
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformMultiple\\(\\) has parameter \\$titles with no type specified\\.$#"
 			count: 1
 			path: src/Form/Transformer/ChoiceTransformer.php
 
 		-
-			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformSingle\\(\\) has no return typehint specified\\.$#"
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformSingle\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: src/Form/Transformer/ChoiceTransformer.php
 
 		-
-			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformSingle\\(\\) has parameter \\$choices with no typehint specified\\.$#"
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformSingle\\(\\) has parameter \\$choices with no type specified\\.$#"
 			count: 1
 			path: src/Form/Transformer/ChoiceTransformer.php
 
 		-
-			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformSingle\\(\\) has parameter \\$titles with no typehint specified\\.$#"
+			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformSingle\\(\\) has parameter \\$titles with no type specified\\.$#"
 			count: 1
 			path: src/Form/Transformer/ChoiceTransformer.php
 
