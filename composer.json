@@ -8,7 +8,7 @@
     "ext-json": "*",
     "limenius/liform": "^0.17.0",
     "pimcore/pimcore": "^6.8 || ^10.0",
-    "symfony/form": "^4.4",
+    "symfony/form": "^4.4 || ^5.0",
     "voku/portable-ascii": "^1.5"
   },
   "require-dev": {
