@@ -51,11 +51,6 @@ parameters:
 			path: src/Form/Transformer/ButtonTransformer.php
 
 		-
-			message: "#^Parameter \\#4 \\$widget of method Limenius\\\\Liform\\\\Transformer\\\\AbstractTransformer\\:\\:addCommonSpecs\\(\\) expects string, string\\|null given\\.$#"
-			count: 1
-			path: src/Form/Transformer/ButtonTransformer.php
-
-		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transform\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Form/Transformer/ChoiceTransformer.php
@@ -91,17 +86,7 @@ parameters:
 			path: src/Form/Transformer/ChoiceTransformer.php
 
 		-
-			message: "#^Parameter \\#4 \\$widget of method Limenius\\\\Liform\\\\Transformer\\\\AbstractTransformer\\:\\:addCommonSpecs\\(\\) expects string, string\\|null given\\.$#"
-			count: 1
-			path: src/Form/Transformer/ChoiceTransformer.php
-
-		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\FileTransformer\\:\\:transform\\(\\) return type has no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Form/Transformer/FileTransformer.php
-
-		-
-			message: "#^Parameter \\#4 \\$widget of method Limenius\\\\Liform\\\\Transformer\\\\AbstractTransformer\\:\\:addCommonSpecs\\(\\) expects string, string\\|null given\\.$#"
 			count: 1
 			path: src/Form/Transformer/FileTransformer.php
 
