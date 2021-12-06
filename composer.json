@@ -4,10 +4,10 @@
   "description": "Forms for Pimcore",
   "type": "pimcore-bundle",
   "require": {
-    "php": "^7.4",
+    "php": "^7.4 || ^8.0",
     "ext-json": "*",
     "limenius/liform": "^0.17.0",
-    "pimcore/pimcore": "^6.8",
+    "pimcore/pimcore": "^6.8 || ^10.0",
     "symfony/form": "^4.4",
     "voku/portable-ascii": "^1.5"
   },
