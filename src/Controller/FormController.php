@@ -120,13 +120,14 @@ class FormController extends AbstractController
      * `{{ form_contents | raw }}`
      *
      * @Template
+     * @return <string,mixed>
      */
     public function mailDocumentAction(Request $request): array
     {
         return array_filter(
             $request->attributes->all(),
             fn($key): bool => is_string($key) && substr($key, 0, 1) !== '_',
-            ARRAY_FILTER_USE_KEY
+            \ARRAY_FILTER_USE_KEY
         );
     }
 }
