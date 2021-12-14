@@ -120,6 +120,7 @@ class FormController extends AbstractController
      * `{{ form_contents | raw }}`
      *
      * @Template
+     *
      * @return array<string,mixed>
      */
     public function mailDocumentAction(Request $request): array
