@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Valantic\PimcoreFormsBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -105,5 +106,27 @@ class FormController extends AbstractController
         }
 
         return new ApiResponse([], $formService->errors($form), JsonResponse::HTTP_PRECONDITION_FAILED);
+    }
+
+    /**
+     * Since support for placeholders was removed in Pimcore X,
+     * this workaround passes the parameter set on the Mail instance
+     * to the Twig document.
+     *
+     * Otherwise, Twig would need to be written in the document (in Pimcore)
+     * itself instead of in a Twig file.
+     *
+     * Sample usage: create a Twig document with the contents:
+     * `{{ form_contents | raw }}`
+     *
+     * @Template
+     */
+    public function mailDocumentAction(Request $request): array
+    {
+        return array_filter(
+            $request->attributes->all(),
+            fn($key): bool => is_string($key) && substr($key, 0, 1) !== '_',
+            ARRAY_FILTER_USE_KEY
+        );
     }
 }
