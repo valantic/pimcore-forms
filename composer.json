@@ -4,17 +4,24 @@
   "description": "Forms for Pimcore",
   "type": "pimcore-bundle",
   "require": {
-    "php": "^7.4",
+    "php": "^7.4 || ^8.0",
     "ext-json": "*",
-    "limenius/liform": "^0.17.0",
-    "pimcore/pimcore": "^6.8",
-    "symfony/form": "^4.4",
+    "limenius/liform": "dev-master#28828461425acfb9d30ae02f554055be17ca5530",
+    "pimcore/pimcore": "^6.8 || ^10.0",
+    "ramsey/uuid": "^3 || ^4",
+    "symfony/form": "^4.4 || ^5.0",
     "voku/portable-ascii": "^1.5"
   },
   "require-dev": {
     "bamarni/composer-bin-plugin": "^1.4",
-    "phpstan/phpstan": "^0.12.69"
+    "phpstan/phpstan": "^1.0"
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/phpwutz/Liform"
+    }
+  ],
   "autoload": {
     "psr-4": {
       "Valantic\\PimcoreFormsBundle\\": "src/"
