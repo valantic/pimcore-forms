@@ -61,5 +61,11 @@
     "phpcs-check": [
       "vendor/bin/php-cs-fixer fix --diff --dry-run"
     ]
+  },
+  "config": {
+    "allow-plugins": {
+      "ocramius/package-versions": true,
+      "bamarni/composer-bin-plugin": true
+    }
   }
 }
