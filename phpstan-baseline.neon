@@ -111,11 +111,6 @@ parameters:
 			path: src/Form/Transformer/FileTransformer.php
 
 		-
-			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Repository\\\\ConfigurationRepository\\:\\:get\\(\\) should return array\\<string, mixed\\> but returns array\\|bool\\|float\\|int\\|string\\|null\\.$#"
-			count: 1
-			path: src/Repository/ConfigurationRepository.php
-
-		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Service\\\\FormService\\:\\:errors\\(\\) should return array but returns array\\|ArrayObject\\|bool\\|float\\|int\\|string\\|null\\.$#"
 			count: 1
 			path: src/Service/FormService.php

@@ -11,5 +11,8 @@ interface InputHandlerInterface
 {
     public function initialize(FormInterface $form, ?Request $request): void;
 
+    /**
+     * @return array<string,mixed>
+     */
     public function getAll(): array;
 }
