@@ -14,5 +14,5 @@ interface InputHandlerInterface
     /**
      * @return array<string,mixed>
      */
-    public function getAll(): array;
+    public function get(): array;
 }
