@@ -5,6 +5,7 @@ namespace Valantic\PimcoreFormsBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Valantic\PimcoreFormsBundle\Form\InputHandler\InputHandlerInterface;
 use Valantic\PimcoreFormsBundle\Form\Output\OutputInterface;
 use Valantic\PimcoreFormsBundle\Form\RedirectHandler\RedirectHandlerInterface;
 use Valantic\PimcoreFormsBundle\Form\Type\ChoicesInterface;
@@ -71,6 +72,20 @@ class Configuration implements ConfigurationInterface
                                     return !in_array(RedirectHandlerInterface::class, class_implements($handler) ?: [], true);
                                 })
                                 ->thenInvalid('Invalid redirect handler class found. If not null, the service must implement ' . RedirectHandlerInterface::class)
+                                ->end()
+                            ->end()
+                        ->scalarNode('input_handler')
+                            ->defaultNull()
+                            ->info('Service to handle inputs for the form')
+                                ->validate()
+                                ->ifTrue(function (?string $handler): bool {
+                                    if ($handler === null) {
+                                        return false;
+                                    }
+
+                                    return !in_array(InputHandlerInterface::class, class_implements($handler) ?: [], true);
+                                })
+                                ->thenInvalid('Invalid input handler class found. If not null, the service must implement ' . InputHandlerInterface::class)
                                 ->end()
                             ->end()
                         ->append($this->buildOutputsNode())

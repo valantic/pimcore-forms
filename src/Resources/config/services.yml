@@ -30,6 +30,10 @@ services:
     arguments:
       - !tagged_iterator valantic.pimcore_forms.output
 
+  Valantic\PimcoreFormsBundle\Repository\InputHandlerRepository:
+    arguments:
+      - !tagged_iterator valantic.pimcore_forms.input_handler
+
   Valantic\PimcoreFormsBundle\Repository\RedirectHandlerRepository:
     arguments:
       - !tagged_iterator valantic.pimcore_forms.redirect_handler
