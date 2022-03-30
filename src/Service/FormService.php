@@ -94,6 +94,10 @@ class FormService
             $inputs = $inputHandler->getAll();
 
             foreach ($inputs as $fieldName => $value) {
+                if (!$form->has($fieldName)) {
+                    continue;
+                }
+
                 $field = $form->get($fieldName);
                 $field->setData($value);
             }
