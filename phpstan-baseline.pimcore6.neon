@@ -271,11 +271,6 @@ parameters:
 			path: src/Form/Transformer/StringTransformer.php
 
 		-
-			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Repository\\\\ConfigurationRepository\\:\\:get\\(\\) should return array\\<string, mixed\\> but returns array\\|bool\\|float\\|int\\|string\\|null\\.$#"
-			count: 1
-			path: src/Repository/ConfigurationRepository.php
-
-		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Service\\\\FormService\\:\\:buildForm\\(\\) return type has no value type specified in iterable type Symfony\\\\Component\\\\Form\\\\FormInterface\\.$#"
 			count: 1
 			path: src/Service/FormService.php

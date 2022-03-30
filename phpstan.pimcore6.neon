@@ -7,6 +7,7 @@ parameters:
 
     ignoreErrors:
         - '#has parameter \$form with no value type specified in iterable type Symfony\\Component\\Form\\FormInterface#'
+        - '#\:\:\$form type has no value type specified in iterable type Symfony\\Component\\Form\\FormInterface#'
 
     bootstrapFiles:
         - vendor/pimcore/pimcore/stubs/dynamic-constants.php
