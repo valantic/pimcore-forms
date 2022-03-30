@@ -91,15 +91,11 @@ class FormService
         if ($inputHandlerName !== null) {
             $inputHandler = $this->inputHandlerRepository->get($inputHandlerName);
             $inputHandler->initialize($form->getForm(), $this->requestStack->getMasterRequest());
+            $inputs = $inputHandler->getAll();
 
-            foreach ($config['fields'] as $fieldName => $definition) {
+            foreach ($inputs as $fieldName => $value) {
                 $field = $form->get($fieldName);
-
-                if (!$inputHandler->supports($fieldName, $field->getForm())) {
-                    continue;
-                }
-
-                $field->setData($inputHandler->get($fieldName, $field->getForm()));
+                $field->setData($value);
             }
         }
 

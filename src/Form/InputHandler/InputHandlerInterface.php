@@ -11,10 +11,5 @@ interface InputHandlerInterface
 {
     public function initialize(FormInterface $form, ?Request $request): void;
 
-    public function supports(string $field, FormInterface $form): bool;
-
-    /**
-     * @return mixed
-     */
-    public function get(string $field, FormInterface $form);
+    public function getAll(): array;
 }
