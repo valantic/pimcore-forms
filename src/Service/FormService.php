@@ -17,6 +17,7 @@ use Valantic\PimcoreFormsBundle\Form\Builder;
 use Valantic\PimcoreFormsBundle\Form\Extension\ChoiceTypeExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormAttributeExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormConstraintExtension;
+use Valantic\PimcoreFormsBundle\Form\Extension\FormDataExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormNameExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormTypeExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\HiddenTypeExtension;
@@ -51,6 +52,7 @@ class FormService
         FormAttributeExtension $formAttributeExtension,
         ChoiceTypeExtension $choiceTypeExtension,
         HiddenTypeExtension $hiddenTypeExtension,
+        FormDataExtension $formDataExtension,
         RequestStack $requestStack
     ) {
         $this->builder = $builder;
@@ -66,6 +68,7 @@ class FormService
         $liform->addExtension($formAttributeExtension);
         $liform->addExtension($choiceTypeExtension);
         $liform->addExtension($hiddenTypeExtension);
+        $liform->addExtension($formDataExtension);
         $this->liform = $liform;
         $this->requestStack = $requestStack;
     }
