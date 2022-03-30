@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Valantic\PimcoreFormsBundle\Form\Extension;
 
 use Limenius\Liform\Transformer\ExtensionInterface;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\FormInterface;
 
 class FormDataExtension implements ExtensionInterface
