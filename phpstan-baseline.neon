@@ -41,16 +41,6 @@ parameters:
 			path: src/Form/Extension/FormConstraintExtension.php
 
 		-
-			message: "#^Instanceof between \\*NEVER\\* and Symfony\\\\Component\\\\Form\\\\FormError will always evaluate to false\\.$#"
-			count: 1
-			path: src/Form/FormErrorNormalizer.php
-
-		-
-			message: "#^Instanceof between Symfony\\\\Component\\\\Form\\\\FormError and Symfony\\\\Component\\\\Form\\\\FormErrorIterator will always evaluate to false\\.$#"
-			count: 1
-			path: src/Form/FormErrorNormalizer.php
-
-		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\FormErrorNormalizer\\:\\:normalize\\(\\) has parameter \\$context with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Form/FormErrorNormalizer.php
@@ -74,11 +64,6 @@ parameters:
 			message: "#^Unreachable statement \\- code above always terminates\\.$#"
 			count: 1
 			path: src/Form/FormErrorNormalizer.php
-
-		-
-			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\RedirectHandler\\\\AbstractRedirectHandler\\:\\:initialize\\(\\) has parameter \\$config with no value type specified in iterable type array\\.$#"
-			count: 1
-			path: src/Form/RedirectHandler/AbstractRedirectHandler.php
 
 		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ButtonTransformer\\:\\:transform\\(\\) return type has no value type specified in iterable type array\\.$#"
