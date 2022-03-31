@@ -9,6 +9,7 @@ use RuntimeException;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Csrf\CsrfTokenManager;
 use Symfony\Component\Serializer\Exception\ExceptionInterface as SerializerException;
 use Valantic\PimcoreFormsBundle\Exception\InvalidFormConfigException;
@@ -16,11 +17,13 @@ use Valantic\PimcoreFormsBundle\Form\Builder;
 use Valantic\PimcoreFormsBundle\Form\Extension\ChoiceTypeExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormAttributeExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormConstraintExtension;
+use Valantic\PimcoreFormsBundle\Form\Extension\FormDataExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormNameExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormTypeExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\HiddenTypeExtension;
 use Valantic\PimcoreFormsBundle\Form\FormErrorNormalizer;
 use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
+use Valantic\PimcoreFormsBundle\Repository\InputHandlerRepository;
 use Valantic\PimcoreFormsBundle\Repository\OutputRepository;
 use Valantic\PimcoreFormsBundle\Repository\RedirectHandlerRepository;
 
@@ -32,11 +35,14 @@ class FormService
     protected OutputRepository $outputRepository;
     protected RedirectHandlerRepository $redirectHandlerRepository;
     protected FormErrorNormalizer $errorNormalizer;
+    protected InputHandlerRepository $inputHandlerRepository;
+    protected RequestStack $requestStack;
 
     public function __construct(
         ConfigurationRepository $configurationRepository,
         OutputRepository $outputRepository,
         RedirectHandlerRepository $redirectHandlerRepository,
+        InputHandlerRepository $inputHandlerRepository,
         Builder $builder,
         Liform $liform,
         FormErrorNormalizer $errorNormalizer,
@@ -45,11 +51,14 @@ class FormService
         FormConstraintExtension $formConstraintExtension,
         FormAttributeExtension $formAttributeExtension,
         ChoiceTypeExtension $choiceTypeExtension,
-        HiddenTypeExtension $hiddenTypeExtension
+        HiddenTypeExtension $hiddenTypeExtension,
+        FormDataExtension $formDataExtension,
+        RequestStack $requestStack
     ) {
         $this->builder = $builder;
         $this->configurationRepository = $configurationRepository;
         $this->redirectHandlerRepository = $redirectHandlerRepository;
+        $this->inputHandlerRepository = $inputHandlerRepository;
         $this->outputRepository = $outputRepository;
         $this->errorNormalizer = $errorNormalizer;
 
@@ -59,7 +68,9 @@ class FormService
         $liform->addExtension($formAttributeExtension);
         $liform->addExtension($choiceTypeExtension);
         $liform->addExtension($hiddenTypeExtension);
+        $liform->addExtension($formDataExtension);
         $this->liform = $liform;
+        $this->requestStack = $requestStack;
     }
 
     public function build(string $name): FormBuilderInterface
@@ -76,6 +87,23 @@ class FormService
             $tokenProvider = $form->getOption('csrf_token_manager');
             $token = $tokenProvider->getToken($name)->getValue();
             $form->add($form->getOption('csrf_field_name'), HiddenType::class, ['data' => $token]);
+        }
+
+        $inputHandlerName = $this->getConfig($form->getName())['input_handler'];
+
+        if ($inputHandlerName !== null) {
+            $inputHandler = $this->inputHandlerRepository->get($inputHandlerName);
+            $inputHandler->initialize($form->getForm(), $this->requestStack->getMasterRequest());
+            $inputs = $inputHandler->get();
+
+            foreach ($inputs as $fieldName => $data) {
+                if (!$form->has($fieldName)) {
+                    continue;
+                }
+
+                $field = $form->get($fieldName);
+                $field->setData($data);
+            }
         }
 
         return $form;
