@@ -4,12 +4,12 @@
   "description": "Forms for Pimcore",
   "type": "pimcore-bundle",
   "require": {
-    "php": "^7.4 || ^8.0",
+    "php": "^8.0",
     "ext-json": "*",
     "limenius/liform": "dev-master#28828461425acfb9d30ae02f554055be17ca5530",
-    "pimcore/pimcore": "^6.8 || ^10.0",
-    "ramsey/uuid": "^3 || ^4",
-    "symfony/form": "^4.4 || ^5.0",
+    "pimcore/pimcore": "^10.0",
+    "ramsey/uuid": "^4.0",
+    "symfony/form": "^5.0",
     "voku/portable-ascii": "^1.5"
   },
   "require-dev": {
