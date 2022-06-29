@@ -8,7 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mime\MessageConverter;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Exception\ExceptionInterface as SerializerException;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -97,7 +96,6 @@ class FormController extends AbstractController
                         ->setType(MessageConstants::MESSAGE_TYPE_ERROR)
                         ->setMessage($translator->trans('valantic.pimcoreForms.formSubmitError')),
                 ];
-
 
             if (!empty($outputResponse->getMessages())) {
                 $messages = $outputResponse->getMessages();

@@ -10,7 +10,6 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Valantic\PimcoreFormsBundle\Constant\MessageConstants;
-use Valantic\PimcoreFormsBundle\Http\ApiResponse;
 use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 
 class FormErrorNormalizer implements NormalizerInterface
