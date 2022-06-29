@@ -23,8 +23,7 @@ class ApiResponse extends JsonResponse
         ?string $redirectUrl = null,
         array $headers = [],
         bool $isJson = false
-    )
-    {
+    ) {
         // messages needs to be an array of messages
         // for convenience, a single message can be passed
         if (array_key_exists('type', $messages)) {
