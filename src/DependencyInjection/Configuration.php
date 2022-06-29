@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Valantic\PimcoreFormsBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
@@ -21,7 +23,7 @@ class Configuration implements ConfigurationInterface
     public const SYMFONY_FORMTYPES_NAMESPACE = 'Symfony\\Component\\Form\\Extension\\Core\\Type\\';
 
     /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getConfigTreeBuilder(): TreeBuilder
     {
@@ -64,7 +66,7 @@ class Configuration implements ConfigurationInterface
                             ->defaultNull()
                             ->info('Service to handle redirecting the form')
                                 ->validate()
-                                ->ifTrue(function (?string $handler): bool {
+                                ->ifTrue(function(?string $handler): bool {
                                     if ($handler === null) {
                                         return false;
                                     }
@@ -78,7 +80,7 @@ class Configuration implements ConfigurationInterface
                             ->defaultNull()
                             ->info('Service to handle inputs for the form')
                                 ->validate()
-                                ->ifTrue(function (?string $handler): bool {
+                                ->ifTrue(function(?string $handler): bool {
                                     if ($handler === null) {
                                         return false;
                                     }
@@ -113,7 +115,7 @@ class Configuration implements ConfigurationInterface
                         ->cannotBeEmpty()
                         ->info('The type of this FormType')
                             ->validate()
-                            ->ifTrue(fn (string $type): bool =>  !(class_exists($type) || class_exists(self::SYMFONY_FORMTYPES_NAMESPACE . $type)))
+                            ->ifTrue(fn(string $type): bool => !(class_exists($type) || class_exists(self::SYMFONY_FORMTYPES_NAMESPACE . $type)))
                             ->thenInvalid('Invalid type class found. The type should either be a FQN or a subclass of ' . self::SYMFONY_FORMTYPES_NAMESPACE)
                             ->end()
                         ->example('TextType')
@@ -122,7 +124,7 @@ class Configuration implements ConfigurationInterface
                         ->defaultValue([])
                         ->info('Define the Symfony Constraints for this field')
                         ->validate()
-                            ->ifTrue(function (array $constraints): bool {
+                            ->ifTrue(function(array $constraints): bool {
                                 $hasError = false;
                                 foreach ($constraints as $constraint) {
                                     $classExists = fn(string $name): bool => class_exists($name) || class_exists(self::SYMFONY_CONSTRAINTS_NAMESPACE . $name);
@@ -177,15 +179,15 @@ class Configuration implements ConfigurationInterface
                         ->end()
                     ->end()
                 ->validate()
-                    ->ifTrue(function ($config): bool {
+                    ->ifTrue(function($config): bool {
                         $hasError = false;
 
                         if ($config['type'] === 'http') {
-                            $hasError = $hasError || (filter_var($config['options']['url'] ?? '', FILTER_VALIDATE_URL) === false);
+                            $hasError = $hasError || (filter_var($config['options']['url'] ?? '', \FILTER_VALIDATE_URL) === false);
                         }
 
                         if ($config['type'] === 'email') {
-                            $hasError = $hasError || (filter_var($config['options']['to'] ?? '', FILTER_VALIDATE_EMAIL) === false);
+                            $hasError = $hasError || (filter_var($config['options']['to'] ?? '', \FILTER_VALIDATE_EMAIL) === false);
                         }
 
                         if ($config['type'] === 'data_object') {
@@ -193,7 +195,7 @@ class Configuration implements ConfigurationInterface
                         }
 
                         if ($config['type'] === 'asset') {
-                            $hasError = $hasError || !array_key_exists('fields', $config['options'])|| !is_array($config['options']['fields']) || !array_key_exists('path', $config['options']);
+                            $hasError = $hasError || !array_key_exists('fields', $config['options']) || !is_array($config['options']['fields']) || !array_key_exists('path', $config['options']);
                         }
 
                         return $hasError;
