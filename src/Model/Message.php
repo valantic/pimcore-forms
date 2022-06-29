@@ -13,6 +13,10 @@ class Message extends AbstractMessage
     protected string $message;
     protected bool $expire;
     protected int $delay;
+
+    /**
+     * @var array<mixed>
+     */
     protected array $source;
     protected string $field;
 
@@ -48,6 +52,11 @@ class Message extends AbstractMessage
         return $this;
     }
 
+    /**
+     * @param array<mixed> $source
+     *
+     * @return $this
+     */
     public function setSource(array $source): self
     {
         $this->source = $source;

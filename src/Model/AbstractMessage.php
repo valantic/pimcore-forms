@@ -9,6 +9,9 @@ use JsonSerializable;
 use ReturnTypeWillChange;
 use RuntimeException;
 
+/**
+ * @implements Iterator<int, mixed>
+ */
 abstract class AbstractMessage implements JsonSerializable, Iterator, \Stringable
 {
     protected ?string $position = null;
@@ -18,6 +21,9 @@ abstract class AbstractMessage implements JsonSerializable, Iterator, \Stringabl
         return (string) json_encode($this->jsonSerialize(), \JSON_THROW_ON_ERROR);
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function jsonSerialize(): array
     {
         return $this->arraySerialize();
@@ -33,7 +39,7 @@ abstract class AbstractMessage implements JsonSerializable, Iterator, \Stringabl
         $keys = $this->validKeys();
         $pos = array_search($this->position, $keys, true);
 
-        $this->position = $keys[$pos + 1] ?? null;
+        $this->position = $keys[(int) $pos + 1] ?? null;
     }
 
     #[ReturnTypeWillChange]
@@ -47,6 +53,9 @@ abstract class AbstractMessage implements JsonSerializable, Iterator, \Stringabl
         $this->position = $this->validKeys()[0];
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function arraySerialize(): array
     {
         $data = [];
@@ -74,12 +83,21 @@ abstract class AbstractMessage implements JsonSerializable, Iterator, \Stringabl
         return $this->position;
     }
 
+    /**
+     * @return array<mixed>
+     */
     protected function validKeys(): array
     {
         return array_keys($this->arraySerialize());
     }
 
+    /**
+     * @return array<mixed>
+     */
     abstract protected function requiredAttributes(): array;
 
+    /**
+     * @return array<mixed>
+     */
     abstract protected function optionalAttributes(): array;
 }
