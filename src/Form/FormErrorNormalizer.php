@@ -9,6 +9,7 @@ use Symfony\Component\Form\FormErrorIterator;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Valantic\PimcoreFormsBundle\Constant\MessageConstants;
 use Valantic\PimcoreFormsBundle\Http\ApiResponse;
 use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 
@@ -105,7 +106,7 @@ class FormErrorNormalizer implements NormalizerInterface
 
         return [
             'message' => $message,
-            'type' => ApiResponse::MESSAGE_TYPE_ERROR,
+            'type' => MessageConstants::MESSAGE_TYPE_ERROR,
             'field' => $error->getOrigin() instanceof FormInterface ? $error->getOrigin()->getName() : '',
             'label' => $label,
         ];

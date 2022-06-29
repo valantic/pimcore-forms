@@ -8,9 +8,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mime\MessageConverter;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Exception\ExceptionInterface as SerializerException;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Valantic\PimcoreFormsBundle\Constant\MessageConstants;
 use Valantic\PimcoreFormsBundle\Http\ApiResponse;
 use Valantic\PimcoreFormsBundle\Model\Message;
 use Valantic\PimcoreFormsBundle\Service\FormService;
@@ -87,12 +89,12 @@ class FormController extends AbstractController
             $messages = $outputResponse->getOverallStatus()
                 ? [
                     (new Message())
-                        ->setType(ApiResponse::MESSAGE_TYPE_SUCCESS)
+                        ->setType(MessageConstants::MESSAGE_TYPE_SUCCESS)
                         ->setMessage($translator->trans('valantic.pimcoreForms.formSubmitSuccess')),
                 ]
                 : [
                     (new Message())
-                        ->setType(ApiResponse::MESSAGE_TYPE_ERROR)
+                        ->setType(MessageConstants::MESSAGE_TYPE_ERROR)
                         ->setMessage($translator->trans('valantic.pimcoreForms.formSubmitError')),
                 ];
 
