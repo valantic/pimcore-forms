@@ -6,6 +6,7 @@ namespace Valantic\PimcoreFormsBundle\Form\Output;
 
 use Pimcore\Mail;
 use Pimcore\Model\Document;
+use Valantic\PimcoreFormsBundle\Model\OutputResponse;
 
 class EmailOutput extends AbstractOutput
 {
@@ -14,7 +15,7 @@ class EmailOutput extends AbstractOutput
         return 'email';
     }
 
-    public function handle(): bool
+    public function handle(OutputResponse $outputResponse): OutputResponse
     {
         $mail = new Mail();
         $mail->addTo($this->getTo());
@@ -35,7 +36,7 @@ class EmailOutput extends AbstractOutput
 
         $mail->send();
 
-        return true;
+        return $outputResponse->addStatus(true);
     }
 
     protected function getTo(): string

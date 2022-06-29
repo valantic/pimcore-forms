@@ -9,6 +9,7 @@ use Pimcore\Model\Asset;
 use Pimcore\Model\Asset\Folder;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Valantic\PimcoreFormsBundle\Model\OutputResponse;
 use voku\helper\ASCII;
 
 class AssetOutput extends AbstractOutput
@@ -18,7 +19,7 @@ class AssetOutput extends AbstractOutput
         return 'asset';
     }
 
-    public function handle(): bool
+    public function handle(OutputResponse $outputResponse): OutputResponse
     {
         $path = Folder::getByPath($this->getPath());
 
@@ -50,7 +51,7 @@ class AssetOutput extends AbstractOutput
 
         OutputScratchpad::set($this->key, ['path' => $subfolder->getFullPath(), 'count' => $count]);
 
-        return true;
+        return $outputResponse->addStatus(true);
     }
 
     /**

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Valantic\PimcoreFormsBundle\Form\Output;
 
 use RuntimeException;
+use Valantic\PimcoreFormsBundle\Model\OutputResponse;
 
 class HttpOutput extends AbstractOutput
 {
@@ -13,7 +14,7 @@ class HttpOutput extends AbstractOutput
         return 'http';
     }
 
-    public function handle(): bool
+    public function handle(OutputResponse $outputResponse): OutputResponse
     {
         $ch = curl_init($this->config['url']);
         if ($ch === false) {
@@ -26,6 +27,6 @@ class HttpOutput extends AbstractOutput
         $status = curl_exec($ch);
         curl_close($ch);
 
-        return $status !== false;
+        return $outputResponse->addStatus($status !== false);
     }
 }

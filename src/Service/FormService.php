@@ -21,6 +21,7 @@ use Valantic\PimcoreFormsBundle\Form\Extension\FormNameExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\FormTypeExtension;
 use Valantic\PimcoreFormsBundle\Form\Extension\HiddenTypeExtension;
 use Valantic\PimcoreFormsBundle\Form\FormErrorNormalizer;
+use Valantic\PimcoreFormsBundle\Model\OutputResponse;
 use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 use Valantic\PimcoreFormsBundle\Repository\InputHandlerRepository;
 use Valantic\PimcoreFormsBundle\Repository\OutputRepository;
@@ -164,9 +165,9 @@ class FormService
         return $this->errorNormalizer->normalize($form);
     }
 
-    public function outputs(FormInterface $form): bool
+    public function outputs(FormInterface $form): OutputResponse
     {
-        $status = true;
+        $outputResponse = new OutputResponse();
 
         $outputs = $this->getConfig($form->getName())['outputs'];
         $handlers = [];
@@ -178,10 +179,10 @@ class FormService
 
         foreach ($handlers as $handler) {
             $handler->setOutputHandlers($handlers);
-            $status = $handler->handle() && $status; // DO NOT SWAP the two arguments!!!
+            $outputResponse = $handler->handle($outputResponse);
         }
 
-        return $status;
+        return $outputResponse;
     }
 
     public function getRedirectUrl(FormInterface $form, bool $success): ?string
