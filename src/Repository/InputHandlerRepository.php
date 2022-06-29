@@ -24,7 +24,7 @@ class InputHandlerRepository
 
     public function get(string $key): InputHandlerInterface
     {
-        if (strpos($key, '\\') === 0) {
+        if (str_starts_with($key, '\\')) {
             $key = substr($key, 1);
         }
 

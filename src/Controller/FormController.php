@@ -6,7 +6,6 @@ namespace Valantic\PimcoreFormsBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -65,8 +64,8 @@ class FormController extends AbstractController
         $form->handleRequest($request);
 
         if (!$form->isSubmitted() && $request->getContentType() === 'json') {
-            $content = (string) $request->getContent(false);
-            $data = json_decode($content, true);
+            $content = (string) $request->getContent();
+            $data = json_decode($content, true, flags: \JSON_THROW_ON_ERROR);
 
             if (!empty($content) && !empty($data)) {
                 $form->submit($data);
@@ -95,17 +94,17 @@ class FormController extends AbstractController
                 ];
 
             $statusCode = $outputSuccess
-                ? JsonResponse::HTTP_OK
-                : JsonResponse::HTTP_PRECONDITION_FAILED;
+                ? Response::HTTP_OK
+                : Response::HTTP_PRECONDITION_FAILED;
 
-            if ($statusCode === JsonResponse::HTTP_OK && $redirectUrl !== null) {
+            if ($statusCode === Response::HTTP_OK && $redirectUrl !== null) {
                 return new ApiResponse($data, [], $statusCode, $redirectUrl);
             }
 
             return new ApiResponse($data, $messages, $statusCode, $redirectUrl);
         }
 
-        return new ApiResponse([], $formService->errors($form), JsonResponse::HTTP_PRECONDITION_FAILED);
+        return new ApiResponse([], $formService->errors($form), Response::HTTP_PRECONDITION_FAILED);
     }
 
     /**
@@ -127,7 +126,7 @@ class FormController extends AbstractController
     {
         return array_filter(
             $request->attributes->all(),
-            fn($key): bool => is_string($key) && substr($key, 0, 1) !== '_',
+            fn($key): bool => is_string($key) && !str_starts_with($key, '_'),
             \ARRAY_FILTER_USE_KEY
         );
     }

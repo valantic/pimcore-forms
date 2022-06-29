@@ -46,7 +46,7 @@ class EmailOutput extends AbstractOutput
     /**
      * @return Document|int|string
      */
-    protected function getDocument()
+    protected function getDocument(): int|Document|string
     {
         return $this->config['document'];
     }

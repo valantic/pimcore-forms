@@ -50,7 +50,7 @@ class Form extends AbstractTemplateAreabrick implements EditableDialogBoxInterfa
         return 'Choose a form provided by valantic/pimcore-forms';
     }
 
-    public function getIcon()
+    public function getIcon(): string
     {
         return '/bundles/pimcoreadmin/img/flat-color-icons/view_details.svg';
     }

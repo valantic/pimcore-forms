@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Valantic\PimcoreFormsBundle\Service;
 
 use Limenius\Liform\Liform;
-use RuntimeException;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
@@ -134,12 +133,7 @@ class FormService
 
     public function buildJsonString(string $name): string
     {
-        $json = json_encode($this->buildJson($name));
-        if ($json === false) {
-            throw new RuntimeException();
-        }
-
-        return $json;
+        return json_encode($this->buildJson($name), \JSON_THROW_ON_ERROR);
     }
 
     public function buildForm(string $name): FormInterface

@@ -38,7 +38,7 @@ class ValanticPimcoreFormsBundle extends AbstractPimcoreBundle
             throw new RuntimeException();
         }
 
-        return json_decode($composer)->name;
+        return json_decode($composer, flags: \JSON_THROW_ON_ERROR)->name;
     }
 
     public function getInstaller(): ?InstallerInterface

@@ -120,16 +120,8 @@ class FormErrorNormalizer implements NormalizerInterface
      */
     protected function getErrorMessage(FormError $error): ?string
     {
-        if (null === $this->translator) {
-            return $error->getMessage();
-        }
-
-        if (null !== $error->getMessagePluralization()) {
-            if ($this->translator instanceof TranslatorInterface) {
-                return $this->translator->trans($error->getMessageTemplate(), ['%count%' => $error->getMessagePluralization()] + $error->getMessageParameters(), 'validators');
-            }
-
-            return $this->translator->transChoice($error->getMessageTemplate(), $error->getMessagePluralization(), $error->getMessageParameters(), 'validators');
+        if ((null !== $error->getMessagePluralization())) {
+            return $this->translator->trans($error->getMessageTemplate(), ['%count%' => $error->getMessagePluralization()] + $error->getMessageParameters(), 'validators');
         }
 
         return $this->translator->trans($error->getMessageTemplate(), $error->getMessageParameters(), 'validators');

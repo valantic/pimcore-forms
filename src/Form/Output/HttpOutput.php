@@ -20,7 +20,7 @@ class HttpOutput extends AbstractOutput
             throw new RuntimeException(sprintf('Failed to initialize curl for %s', $this->config['url']));
         }
 
-        curl_setopt($ch, \CURLOPT_POSTFIELDS, json_encode($this->form->getData()));
+        curl_setopt($ch, \CURLOPT_POSTFIELDS, json_encode($this->form->getData(), \JSON_THROW_ON_ERROR));
         curl_setopt($ch, \CURLOPT_HTTPHEADER, ['Content-Type:application/json']);
         curl_setopt($ch, \CURLOPT_RETURNTRANSFER, true);
         $status = curl_exec($ch);

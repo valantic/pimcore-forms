@@ -73,7 +73,7 @@ class Builder
 
     protected function getConstraintClass(string $name): string
     {
-        if (strpos($name, '\\') === false) {
+        if (!str_contains($name, '\\')) {
             return sprintf('%s%s', Configuration::SYMFONY_CONSTRAINTS_NAMESPACE, $name);
         }
 
@@ -82,7 +82,7 @@ class Builder
 
     protected function getType(string $name): string
     {
-        if (strpos($name, '\\') === false) {
+        if (!str_contains($name, '\\')) {
             return sprintf('%s%s', Configuration::SYMFONY_FORMTYPES_NAMESPACE, $name);
         }
 

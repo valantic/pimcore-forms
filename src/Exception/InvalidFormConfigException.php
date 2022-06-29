@@ -8,6 +8,6 @@ class InvalidFormConfigException extends BaseException
 {
     public function __construct(string $name)
     {
-        parent::__construct(sprintf('No valid config with name %s found', $name), 0, null);
+        parent::__construct(sprintf('No valid config with name %s found', $name));
     }
 }
