@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Valantic\PimcoreFormsBundle\Form\Output;
 
 use Symfony\Component\Form\FormInterface;
+use Valantic\PimcoreFormsBundle\Model\OutputResponse;
 
 interface OutputInterface
 {
@@ -22,7 +23,7 @@ interface OutputInterface
      */
     public function setOutputHandlers(array $handlers): void;
 
-    public function handle(): bool;
+    public function handle(OutputResponse $outputResponse): OutputResponse;
 
     public static function name(): string;
 }
