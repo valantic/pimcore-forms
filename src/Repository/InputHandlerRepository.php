@@ -49,7 +49,7 @@ class InputHandlerRepository
                 continue;
             }
 
-            $name = get_class($iterable);
+            $name = $iterable::class;
             $arr[$name] = $iterable;
         }
 
