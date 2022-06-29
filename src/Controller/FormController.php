@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Exception\ExceptionInterface as SerializerException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Valantic\PimcoreFormsBundle\Http\ApiResponse;
+use Valantic\PimcoreFormsBundle\Model\Message;
 use Valantic\PimcoreFormsBundle\Service\FormService;
 
 class FormController extends AbstractController
@@ -80,21 +81,27 @@ class FormController extends AbstractController
         if ($form->isValid()) {
             $data = $form->getData();
 
-            $outputSuccess = $formService->outputs($form);
+            $outputResponse = $formService->outputs($form);
 
-            $redirectUrl = $formService->getRedirectUrl($form, $outputSuccess);
+            $redirectUrl = $formService->getRedirectUrl($form, $outputResponse->getOverallStatus());
 
-            $messages = $outputSuccess
+            $messages = $outputResponse->getOverallStatus()
                 ? [
-                    'type' => ApiResponse::MESSAGE_TYPE_SUCCESS,
-                    'message' => $translator->trans('valantic.pimcoreForms.formSubmitSuccess'),
+                    (new Message())
+                        ->setType(ApiResponse::MESSAGE_TYPE_SUCCESS)
+                        ->setMessage($translator->trans('valantic.pimcoreForms.formSubmitSuccess')),
                 ]
                 : [
-                    'type' => ApiResponse::MESSAGE_TYPE_ERROR,
-                    'message' => $translator->trans('valantic.pimcoreForms.formSubmitError'),
+                    (new Message())
+                        ->setType(ApiResponse::MESSAGE_TYPE_ERROR)
+                        ->setMessage($translator->trans('valantic.pimcoreForms.formSubmitError')),
                 ];
 
-            $statusCode = $outputSuccess
+            if (!empty($outputResponse->getMessages())) {
+                $messages = $outputResponse->getMessages();
+            }
+
+            $statusCode = $outputResponse->getOverallStatus()
                 ? JsonResponse::HTTP_OK
                 : JsonResponse::HTTP_PRECONDITION_FAILED;
 

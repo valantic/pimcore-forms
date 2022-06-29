@@ -6,6 +6,7 @@ namespace Valantic\PimcoreFormsBundle\Form\Output;
 
 use InvalidArgumentException;
 use Pimcore\Model\DataObject\Concrete;
+use Valantic\PimcoreFormsBundle\Model\OutputResponse;
 
 class DataObjectOutput extends AbstractOutput
 {
@@ -14,7 +15,7 @@ class DataObjectOutput extends AbstractOutput
         return 'data_object';
     }
 
-    public function handle(): bool
+    public function handle(OutputResponse $outputResponse): OutputResponse
     {
         $objClass = 'Pimcore\\Model\\DataObject\\' . $this->config['class'];
 
@@ -46,7 +47,7 @@ class DataObjectOutput extends AbstractOutput
         $obj->setParentId($pathId);
         $obj->save();
 
-        return true;
+        return $outputResponse->addStatus(true);
     }
 
     /**

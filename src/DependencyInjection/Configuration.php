@@ -17,8 +17,8 @@ use Valantic\PimcoreFormsBundle\Form\Type\ChoicesInterface;
  */
 class Configuration implements ConfigurationInterface
 {
-    const SYMFONY_CONSTRAINTS_NAMESPACE = 'Symfony\\Component\\Validator\\Constraints\\';
-    const SYMFONY_FORMTYPES_NAMESPACE = 'Symfony\\Component\\Form\\Extension\\Core\\Type\\';
+    public const SYMFONY_CONSTRAINTS_NAMESPACE = 'Symfony\\Component\\Validator\\Constraints\\';
+    public const SYMFONY_FORMTYPES_NAMESPACE = 'Symfony\\Component\\Form\\Extension\\Core\\Type\\';
 
     /**
      * {@inheritdoc}
