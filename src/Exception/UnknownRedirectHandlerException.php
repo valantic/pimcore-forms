@@ -8,6 +8,6 @@ class UnknownRedirectHandlerException extends BaseException
 {
     public function __construct(string $name)
     {
-        parent::__construct(sprintf('Unknown redirect handler %s', $name), 0, null);
+        parent::__construct(sprintf('Unknown redirect handler %s', $name));
     }
 }

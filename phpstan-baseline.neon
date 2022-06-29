@@ -36,11 +36,6 @@ parameters:
 			path: src/Form/Extension/FormAttributeExtension.php
 
 		-
-			message: "#^Parameter \\#1 \\$json of function json_decode expects string, string\\|false given\\.$#"
-			count: 1
-			path: src/Form/Extension/FormConstraintExtension.php
-
-		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\FormErrorNormalizer\\:\\:normalize\\(\\) has parameter \\$context with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Form/FormErrorNormalizer.php
@@ -52,16 +47,6 @@ parameters:
 
 		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\FormErrorNormalizer\\:\\:normalize\\(\\) return type with generic class ArrayObject does not specify its types\\: TKey, TValue$#"
-			count: 1
-			path: src/Form/FormErrorNormalizer.php
-
-		-
-			message: "#^Strict comparison using \\=\\=\\= between null and Symfony\\\\Contracts\\\\Translation\\\\TranslatorInterface will always evaluate to false\\.$#"
-			count: 1
-			path: src/Form/FormErrorNormalizer.php
-
-		-
-			message: "#^Unreachable statement \\- code above always terminates\\.$#"
 			count: 1
 			path: src/Form/FormErrorNormalizer.php
 

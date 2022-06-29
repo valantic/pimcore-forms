@@ -60,11 +60,7 @@ class TransformerCompilerPass implements CompilerPassInterface
                     throw new InvalidArgumentException(sprintf("The service %s was tagged as a '%s' but does not specify the mandatory 'form_type' option.", $id, self::TRANSFORMER_TAG));
                 }
 
-                $widget = null;
-
-                if (isset($attribute['widget'])) {
-                    $widget = $attribute['widget'];
-                }
+                $widget = $attribute['widget'] ?? null;
 
                 $resolver->addMethodCall('setTransformer', [$attribute['form_type'], new Reference($id), $widget]);
             }

@@ -18,7 +18,7 @@ interface ChoicesInterface
      *
      * @return string|null
      */
-    public function choiceLabel($choice, $key, $value): ?string;
+    public function choiceLabel(mixed $choice, mixed $key, mixed $value): ?string;
 
     /**
      * @param mixed $choice
@@ -27,5 +27,5 @@ interface ChoicesInterface
      *
      * @return array<string,string|int>
      */
-    public function choiceAttribute($choice, $key, $value): array;
+    public function choiceAttribute(mixed $choice, mixed $key, mixed $value): array;
 }

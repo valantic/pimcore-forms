@@ -36,7 +36,7 @@ class AssetOutput extends AbstractOutput
 
         $count = 0;
 
-        foreach ($this->getFiles() as $field => $file) {
+        foreach ($this->getFiles() as $file) {
             if ($file->getRealPath() === false) {
                 continue;
             }

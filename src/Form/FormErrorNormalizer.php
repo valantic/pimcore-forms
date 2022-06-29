@@ -9,7 +9,7 @@ use Symfony\Component\Form\FormErrorIterator;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
-use Valantic\PimcoreFormsBundle\Http\ApiResponse;
+use Valantic\PimcoreFormsBundle\Constant\MessageConstants;
 use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 
 class FormErrorNormalizer implements NormalizerInterface
@@ -105,7 +105,7 @@ class FormErrorNormalizer implements NormalizerInterface
 
         return [
             'message' => $message,
-            'type' => ApiResponse::MESSAGE_TYPE_ERROR,
+            'type' => MessageConstants::MESSAGE_TYPE_ERROR,
             'field' => $error->getOrigin() instanceof FormInterface ? $error->getOrigin()->getName() : '',
             'label' => $label,
         ];
@@ -120,16 +120,8 @@ class FormErrorNormalizer implements NormalizerInterface
      */
     protected function getErrorMessage(FormError $error): ?string
     {
-        if (null === $this->translator) {
-            return $error->getMessage();
-        }
-
-        if (null !== $error->getMessagePluralization()) {
-            if ($this->translator instanceof TranslatorInterface) {
-                return $this->translator->trans($error->getMessageTemplate(), ['%count%' => $error->getMessagePluralization()] + $error->getMessageParameters(), 'validators');
-            }
-
-            return $this->translator->transChoice($error->getMessageTemplate(), $error->getMessagePluralization(), $error->getMessageParameters(), 'validators');
+        if ((null !== $error->getMessagePluralization())) {
+            return $this->translator->trans($error->getMessageTemplate(), ['%count%' => $error->getMessagePluralization()] + $error->getMessageParameters(), 'validators');
         }
 
         return $this->translator->trans($error->getMessageTemplate(), $error->getMessageParameters(), 'validators');

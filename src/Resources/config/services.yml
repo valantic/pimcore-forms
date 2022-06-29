@@ -9,11 +9,6 @@ services:
     # if you need to do this, you can override this setting on individual services
     public: false
 
-  # auto-register all commands as services
-  Valantic\PimcoreFormsBundle\Command\:
-    resource: '../../Command/*'
-    tags: [ 'console.command' ]
-
   Valantic\PimcoreFormsBundle\Controller\:
     resource: '../../Controller/*'
 

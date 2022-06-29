@@ -24,7 +24,7 @@ class RedirectHandlerRepository
 
     public function get(string $key): RedirectHandlerInterface
     {
-        if (strpos($key, '\\') === 0) {
+        if (str_starts_with($key, '\\')) {
             $key = substr($key, 1);
         }
 
@@ -49,7 +49,7 @@ class RedirectHandlerRepository
                 continue;
             }
 
-            $name = get_class($iterable);
+            $name = $iterable::class;
             $arr[$name] = $iterable;
         }
 

@@ -8,6 +8,6 @@ class UnknownInputHandlerException extends BaseException
 {
     public function __construct(string $name)
     {
-        parent::__construct(sprintf('Unknown input handler %s', $name), 0, null);
+        parent::__construct(sprintf('Unknown input handler %s', $name));
     }
 }

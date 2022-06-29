@@ -31,8 +31,8 @@ class FormConstraintExtension implements ExtensionInterface
         foreach ($constraints as $constraint) {
             /** @var Constraint $data */
             $data = [
-                'type' => str_replace(Configuration::SYMFONY_CONSTRAINTS_NAMESPACE, '', (string) get_class($constraint)),
-                'config' => json_decode(json_encode($constraint), true),
+                'type' => str_replace(Configuration::SYMFONY_CONSTRAINTS_NAMESPACE, '', $constraint::class),
+                'config' => json_decode(json_encode($constraint, \JSON_THROW_ON_ERROR), true, flags: \JSON_THROW_ON_ERROR),
             ];
 
             if ($constraint instanceof Regex && !empty($constraint->pattern) && empty($constraint->htmlPattern)) {
