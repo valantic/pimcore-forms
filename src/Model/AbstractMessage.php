@@ -8,11 +8,12 @@ use Iterator;
 use JsonSerializable;
 use ReturnTypeWillChange;
 use RuntimeException;
+use Stringable;
 
 /**
- * @implements Iterator<int, mixed>
+ * @implements Iterator<string, mixed>
  */
-abstract class AbstractMessage implements JsonSerializable, Iterator, \Stringable
+abstract class AbstractMessage implements JsonSerializable, Iterator, Stringable
 {
     protected ?string $position = null;
 

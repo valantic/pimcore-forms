@@ -9,12 +9,12 @@ class OutputResponse
     /**
      * @var array<AbstractMessage>
      */
-    private array $messages;
+    private array $messages = [];
 
     /**
      * @var array<bool>
      */
-    private array $statuses;
+    private array $statuses = [];
 
     /**
      * @return array<AbstractMessage>
@@ -58,18 +58,6 @@ class OutputResponse
             fn($previous, $current) => $previous && $current,
             true
         );
-    }
-
-    /**
-     * @param array<bool> $statuses
-     *
-     * @return $this
-     */
-    public function setStatuses(array $statuses): self
-    {
-        $this->statuses = $statuses;
-
-        return $this;
     }
 
     /**

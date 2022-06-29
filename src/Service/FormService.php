@@ -185,7 +185,7 @@ class FormService
 
         foreach ($handlers as $handler) {
             $handler->setOutputHandlers($handlers);
-            $outputResponse = $handler->handle($outputResponse); // DO NOT SWAP the two arguments!!!
+            $outputResponse = $handler->handle($outputResponse);
         }
 
         return $outputResponse;

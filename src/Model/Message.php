@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Valantic\PimcoreFormsBundle\Model;
 
 use InvalidArgumentException;
-use Valantic\PimcoreFormsBundle\Http\ApiResponse;
+use Valantic\PimcoreFormsBundle\Constant\MessageConstants;
 
 class Message extends AbstractMessage
 {
@@ -22,7 +22,7 @@ class Message extends AbstractMessage
 
     public function setType(string $type): self
     {
-        if (!in_array($type, ApiResponse::MESSAGE_TYPES, true)) {
+        if (!in_array($type, MessageConstants::MESSAGE_TYPES, true)) {
             throw new InvalidArgumentException();
         }
 
