@@ -120,7 +120,7 @@ class FormErrorNormalizer implements NormalizerInterface
      */
     protected function getErrorMessage(FormError $error): ?string
     {
-        if ((null !== $error->getMessagePluralization())) {
+        if (null !== $error->getMessagePluralization()) {
             return $this->translator->trans($error->getMessageTemplate(), ['%count%' => $error->getMessagePluralization()] + $error->getMessageParameters(), 'validators');
         }
 
