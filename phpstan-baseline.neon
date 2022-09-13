@@ -51,6 +51,14 @@ parameters:
 			path: src/Form/FormErrorNormalizer.php
 
 		-
+			message: """
+				#^Call to deprecated method setSubject\\(\\) of class Pimcore\\\\Mail\\:
+				use subject\\(\\) instead\\. Will be removed in Pimcore 11$#
+			"""
+			count: 1
+			path: src/Form/Output/EmailOutput.php
+
+		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ButtonTransformer\\:\\:transform\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Form/Transformer/ButtonTransformer.php
