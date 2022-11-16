@@ -134,7 +134,7 @@ class FormController extends AbstractController
     {
         return array_filter(
             $request->attributes->all(),
-            fn($key): bool => is_string($key) && !str_starts_with($key, '_'),
+            fn ($key): bool => is_string($key) && !str_starts_with($key, '_'),
             \ARRAY_FILTER_USE_KEY
         );
     }

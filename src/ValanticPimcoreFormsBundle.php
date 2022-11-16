@@ -7,7 +7,6 @@ namespace Valantic\PimcoreFormsBundle;
 use Pimcore\Extension\Bundle\AbstractPimcoreBundle;
 use Pimcore\Extension\Bundle\Installer\InstallerInterface;
 use Pimcore\Extension\Bundle\Traits\PackageVersionTrait;
-use RuntimeException;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Valantic\PimcoreFormsBundle\DependencyInjection\Compiler\ExtensionCompilerPass;
 use Valantic\PimcoreFormsBundle\DependencyInjection\Compiler\TransformerCompilerPass;
@@ -35,7 +34,7 @@ class ValanticPimcoreFormsBundle extends AbstractPimcoreBundle
         $composer = file_get_contents(__DIR__ . '/../composer.json');
 
         if ($composer === false) {
-            throw new RuntimeException();
+            throw new \RuntimeException();
         }
 
         return json_decode($composer, flags: \JSON_THROW_ON_ERROR)->name;

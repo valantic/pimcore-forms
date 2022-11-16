@@ -5,15 +5,12 @@ declare(strict_types=1);
 namespace Valantic\PimcoreFormsBundle\Model;
 
 use Iterator;
-use JsonSerializable;
 use ReturnTypeWillChange;
-use RuntimeException;
-use Stringable;
 
 /**
  * @implements Iterator<string, mixed>
  */
-abstract class AbstractMessage implements JsonSerializable, Iterator, Stringable
+abstract class AbstractMessage implements \JsonSerializable, \Iterator, \Stringable
 {
     protected ?string $position = null;
 
@@ -43,7 +40,7 @@ abstract class AbstractMessage implements JsonSerializable, Iterator, Stringable
         $this->position = $keys[(int) $pos + 1] ?? null;
     }
 
-    #[ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->{$this->position};
@@ -63,7 +60,7 @@ abstract class AbstractMessage implements JsonSerializable, Iterator, Stringable
 
         foreach ($this->requiredAttributes() as $attribute) {
             if (!isset($this->{$attribute})) {
-                throw new RuntimeException();
+                throw new \RuntimeException();
             }
             $data[$attribute] = $this->{$attribute};
         }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Valantic\PimcoreFormsBundle\Form\Output;
 
-use InvalidArgumentException;
 use Pimcore\Model\Asset;
 use Pimcore\Model\Asset\Folder;
 use Ramsey\Uuid\Uuid;
@@ -24,7 +23,7 @@ class AssetOutput extends AbstractOutput
         $path = Folder::getByPath($this->getPath());
 
         if ($path === null) {
-            throw new InvalidArgumentException(sprintf('Path %s not found', $this->getPath()));
+            throw new \InvalidArgumentException(sprintf('Path %s not found', $this->getPath()));
         }
 
         $subfolderName = $this->getSubfolderName();

@@ -62,7 +62,7 @@ class OutputRepository
         }
 
         if (count(array_unique($names)) !== count($names)) {
-            throw new DuplicateOutputException(array_keys(array_filter(array_count_values($names), fn(int $count): bool => $count > 1)));
+            throw new DuplicateOutputException(array_keys(array_filter(array_count_values($names), fn (int $count): bool => $count > 1)));
         }
 
         return $arr;

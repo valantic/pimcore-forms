@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Valantic\PimcoreFormsBundle\DependencyInjection;
 
-use Exception;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
@@ -31,7 +30,7 @@ class ValanticPimcoreFormsExtension extends Extension
      * @param array<mixed> $configs
      * @param ContainerBuilder $container
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function load(array $configs, ContainerBuilder $container): void
     {

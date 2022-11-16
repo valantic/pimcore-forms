@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Valantic\PimcoreFormsBundle\DependencyInjection\Compiler;
 
-use InvalidArgumentException;
 use Limenius\Liform\Transformer\ExtensionInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -52,7 +51,7 @@ class ExtensionCompilerPass implements CompilerPassInterface
             }
 
             if (!isset($implements[ExtensionInterface::class])) {
-                throw new InvalidArgumentException(sprintf("The service %s was tagged as a '%s' but does not implement the mandatory %s", $id, self::EXTENSION_TAG, ExtensionInterface::class));
+                throw new \InvalidArgumentException(sprintf("The service %s was tagged as a '%s' but does not implement the mandatory %s", $id, self::EXTENSION_TAG, ExtensionInterface::class));
             }
 
             $liform->addMethodCall('addExtension', [$extension]);

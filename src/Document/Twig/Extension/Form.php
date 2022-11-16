@@ -26,14 +26,14 @@ class Form extends AbstractExtension
         return [
             new TwigFunction(
                 'valantic_form_html',
-                fn(string $name): FormView => $this->formService->buildForm($name)->createView(),
+                fn (string $name): FormView => $this->formService->buildForm($name)->createView(),
                 [
                     'is_safe' => ['html'],
                 ]
             ),
             new TwigFunction(
                 'valantic_form_json',
-                fn(string $name): string => $this->formService->buildJsonString($name),
+                fn (string $name): string => $this->formService->buildJsonString($name),
                 [
                     'is_safe' => ['html'],
                 ]

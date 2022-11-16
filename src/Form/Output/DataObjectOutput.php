@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Valantic\PimcoreFormsBundle\Form\Output;
 
-use InvalidArgumentException;
 use Pimcore\Model\DataObject\Concrete;
 use Valantic\PimcoreFormsBundle\Model\OutputResponse;
 
@@ -20,19 +19,19 @@ class DataObjectOutput extends AbstractOutput
         $objClass = 'Pimcore\\Model\\DataObject\\' . $this->config['class'];
 
         if (!class_exists($objClass)) {
-            throw new InvalidArgumentException(sprintf('DataObject %s does not exist', $objClass));
+            throw new \InvalidArgumentException(sprintf('DataObject %s does not exist', $objClass));
         }
 
         $path = Concrete::getByPath($this->getPath());
 
         if ($path === null) {
-            throw new InvalidArgumentException(sprintf('Path %s not found', $this->getPath()));
+            throw new \InvalidArgumentException(sprintf('Path %s not found', $this->getPath()));
         }
 
         $pathId = $path->getId();
 
         if ($pathId === null) {
-            throw new InvalidArgumentException(sprintf('Path %s not found', $this->getPath()));
+            throw new \InvalidArgumentException(sprintf('Path %s not found', $this->getPath()));
         }
 
         /** @var Concrete $obj */

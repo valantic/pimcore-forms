@@ -114,7 +114,7 @@ class Builder
             ) {
                 $options['choices'] = array_combine(
                     array_map(
-                        fn(string $key): string => $this->translator->trans($key),
+                        fn (string $key): string => $this->translator->trans($key),
                         array_keys($definition['options']['choices'])
                     ),
                     $definition['options']['choices']
@@ -124,9 +124,9 @@ class Builder
                 /** @var ChoicesInterface $choices */
                 $choices = $this->container->get($definition['provider']);
                 $options['choices'] = $choices->choices();
-                $options['choice_value'] = fn($a) => $a;
-                $options['choice_label'] = fn($choice, $key, $value) => $choices->choiceLabel($choice, $key, $value);
-                $options['choice_attr'] = fn($choice, $key, $value) => $choices->choiceAttribute($choice, $key, $value);
+                $options['choice_value'] = fn ($a) => $a;
+                $options['choice_label'] = fn ($choice, $key, $value) => $choices->choiceLabel($choice, $key, $value);
+                $options['choice_attr'] = fn ($choice, $key, $value) => $choices->choiceAttribute($choice, $key, $value);
             }
         }
 

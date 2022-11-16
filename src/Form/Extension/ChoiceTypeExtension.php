@@ -28,7 +28,7 @@ class ChoiceTypeExtension implements ExtensionInterface
 
         foreach ($choices as $key => $choice) {
             $camelCaseKeys = array_map(
-                fn(string $key): string => lcfirst(str_replace('-', '', ucwords($key, '-'))), // https://stackoverflow.com/a/2792045
+                fn (string $key): string => lcfirst(str_replace('-', '', ucwords($key, '-'))), // https://stackoverflow.com/a/2792045
                 array_keys($choice->attr)
             );
 

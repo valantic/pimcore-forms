@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Valantic\PimcoreFormsBundle\Repository;
 
-use RuntimeException;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class ConfigurationRepository
@@ -27,7 +26,7 @@ class ConfigurationRepository
         $config = $this->parameterBag->get(self::CONTAINER_TAG);
 
         if (!is_array($config)) {
-            throw new RuntimeException();
+            throw new \RuntimeException();
         }
 
         return $config;
