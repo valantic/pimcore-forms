@@ -34,6 +34,8 @@ class EmailOutput extends AbstractOutput
             $mail->addFrom($from);
         }
 
+        $mail = $this->preSend($mail);
+
         $mail->send();
 
         return $outputResponse->addStatus(true);
@@ -68,5 +70,10 @@ class EmailOutput extends AbstractOutput
     protected function getAdditionalParams(): array
     {
         return [];
+    }
+
+    protected function preSend(Mail $mail): Mail
+    {
+        return $mail;
     }
 }
