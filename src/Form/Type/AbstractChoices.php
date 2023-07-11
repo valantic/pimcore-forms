@@ -4,8 +4,14 @@ declare(strict_types=1);
 
 namespace Valantic\PimcoreFormsBundle\Form\Type;
 
-abstract class AbstractChoices implements ChoicesInterface
+abstract class AbstractChoices implements ChoicesInterface, ConfigAwareInterface
 {
+    /**
+     * @var array<mixed>
+     */
+    protected array $fieldConfig;
+    protected string $formName;
+
     public function choiceLabel(mixed $choice, mixed $key, mixed $value): ?string
     {
         return $key;
@@ -15,7 +21,6 @@ abstract class AbstractChoices implements ChoicesInterface
     {
         return [];
     }
-
 
     public function setFieldConfig(array $formConfig): void
     {
