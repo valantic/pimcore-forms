@@ -13,10 +13,10 @@
     "voku/portable-ascii": "^1.5 || ^2.0"
   },
   "require-dev": {
-    "bamarni/composer-bin-plugin": "^1.4",
-    "phpstan/phpstan": "^1.5.2",
-    "phpstan/phpstan-deprecation-rules": "^1.0",
-    "phpstan/extension-installer": "^1.1"
+    "bamarni/composer-bin-plugin": "^1.8.2",
+    "phpstan/phpstan": "^1.10.25",
+    "phpstan/phpstan-deprecation-rules": "^1.1.3",
+    "phpstan/extension-installer": "^1.3.1"
   },
   "repositories": [
     {
@@ -56,15 +56,17 @@
       "@composer bin all install --ansi"
     ],
     "post-update-cmd": [
-      "@composer bin all update --ansi"
+      "@composer bump -D",
+      "@composer bin all update --ansi",
+      "@composer bin all bump -D"
     ],
     "phpstan": [
       "vendor/bin/phpstan analyse src --memory-limit=1G"
     ],
-    "phpcs": [
+    "php-cs-fixer": [
       "vendor-bin/phpcs/vendor/bin/php-cs-fixer fix --diff"
     ],
-    "phpcs-check": [
+    "php-cs-fixer-check": [
       "vendor-bin/phpcs/vendor/bin/php-cs-fixer fix --diff --dry-run"
     ]
   },
