@@ -36,6 +36,11 @@ parameters:
 			path: src/Form/Extension/FormAttributeExtension.php
 
 		-
+			message: "#^Cannot access offset 'config' on Symfony\\\\Component\\\\Validator\\\\Constraint\\.$#"
+			count: 1
+			path: src/Form/Extension/FormConstraintExtension.php
+
+		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\FormErrorNormalizer\\:\\:normalize\\(\\) has parameter \\$context with no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Form/FormErrorNormalizer.php

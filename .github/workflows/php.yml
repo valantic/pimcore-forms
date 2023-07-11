@@ -1,77 +1,70 @@
 name: PHP Checks
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
   phpstan_pimcore10:
-    name: phpstan for Pimcore 10 (PHP ${{ matrix.php-versions }} on ${{ matrix.operating-system }})
+
+    name: phpstan (PHP ${{ matrix.php }} with Pimcore ${{ matrix.pimcore }} (${{ matrix.stability }}) on ${{ matrix.operating-system }})
     runs-on: ${{ matrix.operating-system }}
 
     strategy:
       fail-fast: false
       matrix:
-        operating-system: [ubuntu-latest]
-        php-versions: ["8.0", "8.1"]
+        operating-system: [ ubuntu-latest ]
+        php: [ "8.0", "8.1" ]
+        pimcore: [ '^10.0' ]
+        stability: [ prefer-lowest, prefer-stable ]
+        exclude:
+          - stability: prefer-lowest # TODO: remove ASAP
+
 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+      - name: Checkout code
+        uses: actions/checkout@v3
         with:
-          php-version: ${{ matrix.php-versions }}
+          ref: ${{ github.head_ref }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
           extensions: curl
           coverage: xdebug
 
-      - name: Get composer cache directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - name: Install dependencies
+        run: |
+          composer require "pimcore/pimcore:${{ matrix.pimcore }}" --no-interaction --no-update
+          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
-      - name: Cache composer dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-pimcore10
-          restore-keys: ${{ runner.os }}-composer-pimcore10
-
-      - name: Require Pimcore 10.x
-        run: composer require pimcore/pimcore:^10.0 --no-progress --prefer-dist
+      - name: List installed dependencies
+        run: composer show -D
 
       - name: Static analysis using phpstan
         run: composer run phpstan -- --error-format=github
 
-  phpcs:
-    name: phpcs
+  php-cs-fixer:
+
+    name: php-cs-fixer
     runs-on: ${{ matrix.operating-system }}
 
     strategy:
       fail-fast: false
       matrix:
-        operating-system: [ubuntu-latest]
+        operating-system: [ ubuntu-latest ]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Setup PHP, with composer and extensions
-        uses: shivammathur/setup-php@v2 #https://github.com/shivammathur/setup-php
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.0
+          php-version: 8.1
           extensions: curl
           coverage: xdebug
 
-      - name: Get composer cache directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-
-      - name: Cache composer dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-          restore-keys: ${{ runner.os }}-composer-
-
-      - name: Install Composer dependencies
-        run: composer install --no-progress --prefer-dist --optimize-autoloader
+      - name: Install composer dependencies
+        uses: ramsey/composer-install@v2
 
       - name: Ensure code style using php-cs-fixer
-        run: composer run phpcs-check
+        run: composer run php-cs-fixer-check
