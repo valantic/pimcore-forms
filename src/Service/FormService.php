@@ -79,7 +79,7 @@ class FormService
         $form = $this->builder->form($name, $config);
 
         foreach ($config['fields'] as $fieldName => $definition) {
-            $form->add($fieldName, ...$this->builder->field($definition, $config));
+            $form->add($fieldName, ...$this->builder->field($name, $definition, $config));
         }
 
         if ($form->getOption('csrf_protection') === true) {

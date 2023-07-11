@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Valantic\PimcoreFormsBundle\DependencyInjection\Configuration;
 use Valantic\PimcoreFormsBundle\Form\Type\ChoicesInterface;
+use Valantic\PimcoreFormsBundle\Form\Type\ConfigAwareInterface;
 
 class Builder
 {
@@ -58,9 +59,9 @@ class Builder
      *
      * @return array{string,array}
      */
-    public function field(array $definition, array $formConfig): array
+    public function field(string $formName, array $definition, array $formConfig): array
     {
-        $options = $this->getOptions($definition, $formConfig);
+        $options = $this->getOptions($formName, $definition, $formConfig);
 
         $constraints = $this->getConstraints($definition, $options);
 
@@ -95,7 +96,7 @@ class Builder
      *
      * @return array<mixed>
      */
-    protected function getOptions(array $definition, array $formConfig): array
+    protected function getOptions(string $formName, array $definition, array $formConfig): array
     {
         $options = $definition['options'];
 
@@ -123,6 +124,11 @@ class Builder
             if (!empty($definition['provider']) && is_string($definition['provider'])) {
                 /** @var ChoicesInterface $choices */
                 $choices = $this->container->get($definition['provider']);
+                if ($choices instanceof ConfigAwareInterface) {
+                    $choices->setFormName($formName);
+                    $choices->setFieldConfig($formConfig);
+                }
+
                 $options['choices'] = $choices->choices();
                 $options['choice_value'] = fn ($a) => $a;
                 $options['choice_label'] = fn ($choice, $key, $value) => $choices->choiceLabel($choice, $key, $value);
