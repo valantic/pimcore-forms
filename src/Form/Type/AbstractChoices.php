@@ -15,4 +15,25 @@ abstract class AbstractChoices implements ChoicesInterface
     {
         return [];
     }
+
+
+    public function setFieldConfig(array $formConfig): void
+    {
+        $this->fieldConfig = $formConfig;
+    }
+
+    public function getFieldConfig(): array
+    {
+        return $this->fieldConfig;
+    }
+
+    public function setFormName(string $formName): void
+    {
+        $this->formName = $formName;
+    }
+
+    public function getFormName(): string
+    {
+        return $this->formName;
+    }
 }
