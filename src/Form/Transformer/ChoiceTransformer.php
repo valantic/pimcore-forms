@@ -20,7 +20,7 @@ class ChoiceTransformer extends \Limenius\Liform\Transformer\ChoiceTransformer
     /**
      * {@inheritDoc}
      */
-    public function transform(FormInterface $form, array $extensions = [], $widget = null)
+    public function transform(FormInterface $form, array $extensions = [], $widget = null): array
     {
         $formView = $form->createView();
 
@@ -47,7 +47,8 @@ class ChoiceTransformer extends \Limenius\Liform\Transformer\ChoiceTransformer
         return $this->addCommonSpecs($form, $schema, $extensions, $widget);
     }
 
-    private function transformSingle(FormInterface $form, $choices, $titles)
+    /** @return array<string,mixed> */
+    private function transformSingle(FormInterface $form, $choices, $titles): array
     {
         $formView = $form->createView();
 
@@ -67,7 +68,8 @@ class ChoiceTransformer extends \Limenius\Liform\Transformer\ChoiceTransformer
         return $schema;
     }
 
-    private function transformMultiple(FormInterface $form, $choices, $titles)
+    /** @return array<string,mixed> */
+    private function transformMultiple(FormInterface $form, $choices, $titles): array
     {
         $formView = $form->createView();
 

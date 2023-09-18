@@ -6,7 +6,7 @@
   "require": {
     "php": "^8.0",
     "ext-json": "*",
-    "limenius/liform": "dev-master#28828461425acfb9d30ae02f554055be17ca5530",
+    "limenius/liform": "^0.19.0",
     "pimcore/pimcore": "^10.0",
     "ramsey/uuid": "^4.0",
     "symfony/form": "^5.0",
@@ -18,12 +18,6 @@
     "phpstan/phpstan-deprecation-rules": "^1.1.4",
     "phpstan/extension-installer": "^1.3.1"
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/phpwutz/Liform"
-    }
-  ],
   "autoload": {
     "psr-4": {
       "Valantic\\PimcoreFormsBundle\\": "src/"
