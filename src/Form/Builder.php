@@ -111,15 +111,22 @@ class Builder
             if (
                 empty($definition['provider'])
                 && $formConfig['translate']['inline_choices']
-                && array_key_exists('choices', $definition['options'])
             ) {
-                $options['choices'] = array_combine(
-                    array_map(
-                        fn (string $key): string => $this->translator->trans($key),
-                        array_keys($definition['options']['choices'])
-                    ),
-                    $definition['options']['choices']
-                );
+                // Attribute(s) are matched via label hence both the actual label
+                // and the "attribute label" need to be translated.
+                foreach (['choices', 'choice_attr'] as $key) {
+                    if (!array_key_exists($key, $definition['options'])) {
+                        continue;
+                    }
+
+                    $options[$key] = array_combine(
+                        array_map(
+                            fn (string $key): string => $this->translator->trans($key),
+                            array_keys($definition['options'][$key])
+                        ),
+                        $definition['options'][$key]
+                    );
+                }
             }
             if (!empty($definition['provider']) && is_string($definition['provider'])) {
                 /** @var ChoicesInterface $choices */
