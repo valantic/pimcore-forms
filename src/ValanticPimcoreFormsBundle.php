@@ -42,7 +42,7 @@ class ValanticPimcoreFormsBundle extends AbstractPimcoreBundle
 
     public function getInstaller(): ?InstallerInterface
     {
-        $installer = $this->container->get(Installer::class);
+        $installer = $this->container?->get(Installer::class);
 
         if (!$installer instanceof InstallerInterface) {
             return null;

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Valantic\PimcoreFormsBundle\Model;
 
 use Iterator;
-use ReturnTypeWillChange;
 
 /**
  * @implements Iterator<string, mixed>
