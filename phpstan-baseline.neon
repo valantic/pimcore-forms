@@ -91,6 +91,11 @@ parameters:
 			path: src/Form/Transformer/FileTransformer.php
 
 		-
+			message: "#^Return type \\(string\\|null\\) of method Valantic\\\\PimcoreFormsBundle\\\\Model\\\\AbstractMessage\\:\\:key\\(\\) should be covariant with return type \\(string\\) of method Iterator\\<string,mixed\\>\\:\\:key\\(\\)$#"
+			count: 1
+			path: src/Model/AbstractMessage.php
+
+		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Service\\\\FormService\\:\\:errors\\(\\) should return array but returns array\\|ArrayObject\\|bool\\|float\\|int\\|string\\|null\\.$#"
 			count: 1
 			path: src/Service/FormService.php

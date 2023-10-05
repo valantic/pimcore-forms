@@ -19,22 +19,14 @@ use Valantic\PimcoreFormsBundle\Form\Type\ConfigAwareInterface;
 
 class Builder
 {
-    protected ContainerInterface $container;
-    protected UrlGeneratorInterface $urlGenerator;
-    protected TranslatorInterface $translator;
-
     public function __construct(
-        ContainerInterface $container,
-        UrlGeneratorInterface $urlGenerator,
-        TranslatorInterface $translator
+        protected ContainerInterface $container,
+        protected UrlGeneratorInterface $urlGenerator,
+        protected TranslatorInterface $translator
     ) {
-        $this->container = $container;
-        $this->urlGenerator = $urlGenerator;
-        $this->translator = $translator;
     }
 
     /**
-     * @param string $name
      * @param array<string,mixed> $config
      *
      * @return FormBuilderInterface

@@ -19,8 +19,8 @@ use Valantic\PimcoreFormsBundle\Form\Type\ChoicesInterface;
  */
 class Configuration implements ConfigurationInterface
 {
-    public const SYMFONY_CONSTRAINTS_NAMESPACE = 'Symfony\\Component\\Validator\\Constraints\\';
-    public const SYMFONY_FORMTYPES_NAMESPACE = 'Symfony\\Component\\Form\\Extension\\Core\\Type\\';
+    final public const SYMFONY_CONSTRAINTS_NAMESPACE = 'Symfony\\Component\\Validator\\Constraints\\';
+    final public const SYMFONY_FORMTYPES_NAMESPACE = 'Symfony\\Component\\Form\\Extension\\Core\\Type\\';
 
     /**
      * {@inheritDoc}
@@ -115,7 +115,7 @@ class Configuration implements ConfigurationInterface
                         ->cannotBeEmpty()
                         ->info('The type of this FormType')
                             ->validate()
-                            ->ifTrue(fn(string $type): bool => !(class_exists($type) || class_exists(self::SYMFONY_FORMTYPES_NAMESPACE . $type)))
+                            ->ifTrue(fn(string $type): bool => !class_exists($type) && !class_exists(self::SYMFONY_FORMTYPES_NAMESPACE . $type))
                             ->thenInvalid('Invalid type class found. The type should either be a FQN or a subclass of ' . self::SYMFONY_FORMTYPES_NAMESPACE)
                             ->end()
                         ->example('TextType')

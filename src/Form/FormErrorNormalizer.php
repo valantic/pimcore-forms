@@ -14,13 +14,10 @@ use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 
 class FormErrorNormalizer implements NormalizerInterface
 {
-    protected TranslatorInterface $translator;
-    protected ConfigurationRepository $configurationRepository;
-
-    public function __construct(TranslatorInterface $translator, ConfigurationRepository $configurationRepository)
-    {
-        $this->translator = $translator;
-        $this->configurationRepository = $configurationRepository;
+    public function __construct(
+        protected TranslatorInterface $translator,
+        protected ConfigurationRepository $configurationRepository
+    ) {
     }
 
     /**
@@ -40,8 +37,6 @@ class FormErrorNormalizer implements NormalizerInterface
     }
 
     /**
-     * @param FormInterface $data
-     *
      * @return array<int,array<mixed>>
      *
      * @see https://github.com/schmittjoh/serializer/blob/master/src/Handler/FormErrorHandler.php
@@ -79,7 +74,6 @@ class FormErrorNormalizer implements NormalizerInterface
     }
 
     /**
-     * @param FormError $error
      * @param string|null $customErrorMessageTemplate
      *
      * @return array<string,mixed>
@@ -112,8 +106,6 @@ class FormErrorNormalizer implements NormalizerInterface
     }
 
     /**
-     * @param FormError $error
-     *
      * @return string|null
      *
      * @see https://github.com/schmittjoh/serializer/blob/master/src/Handler/FormErrorHandler.php

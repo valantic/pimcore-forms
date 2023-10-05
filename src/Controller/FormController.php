@@ -21,9 +21,6 @@ class FormController extends AbstractController
     /**
      * @Route("/ui/{name}")
      *
-     * @param string $name
-     * @param FormService $formService
-     *
      * @return Response
      */
     public function uiAction(string $name, FormService $formService): Response
@@ -36,9 +33,6 @@ class FormController extends AbstractController
     /**
      * @Route("/html/{name}")
      *
-     * @param string $name
-     * @param FormService $formService
-     *
      * @return Response
      */
     public function htmlAction(string $name, FormService $formService): Response
@@ -50,11 +44,6 @@ class FormController extends AbstractController
 
     /**
      * @Route("/api/{name}")
-     *
-     * @param string $name
-     * @param FormService $formService
-     * @param Request $request
-     * @param TranslatorInterface $translator
      *
      * @throws SerializerException
      *

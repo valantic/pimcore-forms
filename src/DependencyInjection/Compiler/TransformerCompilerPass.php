@@ -23,7 +23,7 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class TransformerCompilerPass implements CompilerPassInterface
 {
-    public const TRANSFORMER_TAG = 'liform.transformer';
+    final public const TRANSFORMER_TAG = 'liform.transformer';
 
     /**
      * {@inheritDoc}
