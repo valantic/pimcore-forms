@@ -22,13 +22,6 @@ class ValanticPimcoreFormsBundle extends AbstractPimcoreBundle
         $container->addCompilerPass(new ExtensionCompilerPass());
     }
 
-    public function getJsPaths(): array
-    {
-        return [
-            '/bundles/valanticpimcoreforms/js/pimcore/startup.js',
-        ];
-    }
-
     protected function getComposerPackageName(): string
     {
         $composer = file_get_contents(__DIR__ . '/../composer.json');

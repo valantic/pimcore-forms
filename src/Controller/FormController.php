@@ -65,7 +65,7 @@ class FormController extends AbstractController
         $form = $formService->buildForm($name);
         $form->handleRequest($request);
 
-        if (!$form->isSubmitted() && $request->getContentType() === 'json') {
+        if (!$form->isSubmitted() && $request->getContentTypeFormat() === 'json') {
             $content = (string) $request->getContent();
             $data = json_decode($content, true, flags: \JSON_THROW_ON_ERROR);
 

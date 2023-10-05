@@ -12,16 +12,14 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ ubuntu-latest ]
-        php: [ "8.0", "8.1" ]
-        pimcore: [ '^10.0' ]
+        php: [ "8.1", "8.2" ]
+        pimcore: [ '^11.0' ]
         stability: [ prefer-lowest, prefer-stable ]
-        exclude:
-          - stability: prefer-lowest # TODO: remove ASAP
 
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
 
@@ -54,7 +52,7 @@ jobs:
         operating-system: [ ubuntu-latest ]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
