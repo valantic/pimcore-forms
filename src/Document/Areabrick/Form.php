@@ -14,7 +14,7 @@ use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 class Form extends AbstractTemplateAreabrick implements EditableDialogBoxInterface
 {
     public function __construct(
-        protected ConfigurationRepository $configurationRepository
+        protected readonly ConfigurationRepository $configurationRepository
     ) {
     }
 

@@ -13,7 +13,7 @@ class ConfigurationRepository
     final public const EDITOR_STORAGE_FILE = self::EDITOR_STORAGE_DIRECTORY . '/forms.yml';
 
     public function __construct(
-        protected ParameterBagInterface $parameterBag
+        protected readonly ParameterBagInterface $parameterBag
     ) {
     }
 

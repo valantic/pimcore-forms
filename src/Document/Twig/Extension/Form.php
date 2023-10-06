@@ -12,7 +12,7 @@ use Valantic\PimcoreFormsBundle\Service\FormService;
 class Form extends AbstractExtension
 {
     public function __construct(
-        protected FormService $formService
+        protected readonly FormService $formService
     ) {
     }
 

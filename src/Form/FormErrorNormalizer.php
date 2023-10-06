@@ -15,8 +15,8 @@ use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 class FormErrorNormalizer implements NormalizerInterface
 {
     public function __construct(
-        protected TranslatorInterface $translator,
-        protected ConfigurationRepository $configurationRepository
+        protected readonly TranslatorInterface $translator,
+        protected readonly ConfigurationRepository $configurationRepository
     ) {
     }
 

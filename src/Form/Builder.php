@@ -21,10 +21,10 @@ use Valantic\PimcoreFormsBundle\Form\Type\ConfigAwareInterface;
 class Builder
 {
     public function __construct(
-        protected ParameterBagInterface $container,
-        protected UrlGeneratorInterface $urlGenerator,
-        protected TranslatorInterface $translator,
-        protected FormFactoryInterface $formFactory
+        protected readonly ParameterBagInterface $container,
+        protected readonly UrlGeneratorInterface $urlGenerator,
+        protected readonly TranslatorInterface $translator,
+        protected readonly FormFactoryInterface $formFactory
     ) {
     }
 
