@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Valantic\PimcoreFormsBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,10 +19,9 @@ use Valantic\PimcoreFormsBundle\Service\FormService;
 class FormController extends AbstractController
 {
     /**
-     * @Route("/ui/{name}")
-     *
      * @return Response
      */
+    #[Route('/ui/{name}')]
     public function uiAction(string $name, FormService $formService): Response
     {
         return $this->render('@ValanticPimcoreForms/vue.html.twig', [
@@ -31,10 +30,9 @@ class FormController extends AbstractController
     }
 
     /**
-     * @Route("/html/{name}")
-     *
      * @return Response
      */
+    #[Route('/html/{name}')]
     public function htmlAction(string $name, FormService $formService): Response
     {
         return $this->render('@ValanticPimcoreForms/html.html.twig', [
@@ -43,12 +41,11 @@ class FormController extends AbstractController
     }
 
     /**
-     * @Route("/api/{name}")
-     *
      * @throws SerializerException
      *
      * @return ApiResponse
      */
+    #[Route('/api/{name}')]
     public function apiAction(string $name, FormService $formService, Request $request, TranslatorInterface $translator): ApiResponse
     {
         $form = $formService->buildForm($name);
@@ -115,10 +112,9 @@ class FormController extends AbstractController
      * Sample usage: create a Twig document with the contents:
      * `{{ form_contents | raw }}`
      *
-     * @Template
-     *
      * @return array<string,mixed>
      */
+    #[Template('')]
     public function mailDocumentAction(Request $request): array
     {
         return array_filter(

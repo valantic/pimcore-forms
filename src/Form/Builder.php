@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Valantic\PimcoreFormsBundle\Form;
 
-use Psr\Container\ContainerInterface;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -20,9 +21,10 @@ use Valantic\PimcoreFormsBundle\Form\Type\ConfigAwareInterface;
 class Builder
 {
     public function __construct(
-        protected ContainerInterface $container,
+        protected ParameterBagInterface $container,
         protected UrlGeneratorInterface $urlGenerator,
-        protected TranslatorInterface $translator
+        protected TranslatorInterface $translator,
+        protected FormFactoryInterface $formFactory
     ) {
     }
 
@@ -34,7 +36,7 @@ class Builder
     public function form(string $name, array $config): FormBuilderInterface
     {
         /** @var FormBuilderInterface $builder */
-        $builder = $this->container->get('form.factory')
+        $builder = $this->formFactory
             ->createNamedBuilder($name, FormType::class, null, [
                 'csrf_protection' => $config['csrf'],
             ]);

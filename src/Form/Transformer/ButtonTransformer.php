@@ -11,6 +11,11 @@ class ButtonTransformer extends AbstractTransformer
 {
     use OverwriteAbstractTransformerTrait;
 
+    public function isRequired(FormInterface $form): bool
+    {
+        return false;
+    }
+
     public function transform(FormInterface $form, array $extensions = [], $widget = null): array
     {
         $schema = ['type' => 'string'];
