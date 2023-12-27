@@ -25,7 +25,7 @@ class FormController extends AbstractController
     public function uiAction(string $name, FormService $formService): Response
     {
         return $this->render('@ValanticPimcoreForms/vue.html.twig', [
-            'form' => $formService->buildForm($name)->createView(),
+            'name' => $name,
         ]);
     }
 
