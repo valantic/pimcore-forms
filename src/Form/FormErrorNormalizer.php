@@ -20,17 +20,11 @@ class FormErrorNormalizer implements NormalizerInterface
     ) {
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function normalize($object, ?string $format = null, array $context = [])
     {
         return $this->convertFormToArray($object);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function supportsNormalization($data, ?string $format = null): bool
     {
         return $data instanceof FormInterface && $data->isSubmitted() && !$data->isValid();

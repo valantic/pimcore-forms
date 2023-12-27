@@ -17,9 +17,6 @@ class ChoiceTransformer extends \Limenius\Liform\Transformer\ChoiceTransformer
 {
     use OverwriteAbstractTransformerTrait;
 
-    /**
-     * {@inheritDoc}
-     */
     public function transform(FormInterface $form, array $extensions = [], $widget = null): array
     {
         $formView = $form->createView();

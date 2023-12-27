@@ -35,7 +35,6 @@ class Builder
      */
     public function form(string $name, array $config): FormBuilderInterface
     {
-        /** @var FormBuilderInterface $builder */
         $builder = $this->formFactory
             ->createNamedBuilder($name, FormType::class, null, [
                 'csrf_protection' => $config['csrf'],

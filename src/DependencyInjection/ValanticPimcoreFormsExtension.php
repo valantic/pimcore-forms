@@ -25,10 +25,7 @@ class ValanticPimcoreFormsExtension extends Extension
     final public const TAG_INPUT_HANDLER = 'valantic.pimcore_forms.input_handler';
 
     /**
-     * {@inheritDoc}
-     *
      * @param array<mixed> $configs
-     * @param ContainerBuilder $container
      *
      * @throws \Exception
      */

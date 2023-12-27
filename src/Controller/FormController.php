@@ -18,20 +18,14 @@ use Valantic\PimcoreFormsBundle\Service\FormService;
 
 class FormController extends AbstractController
 {
-    /**
-     * @return Response
-     */
     #[Route('/ui/{name}')]
-    public function uiAction(string $name, FormService $formService): Response
+    public function uiAction(string $name): Response
     {
         return $this->render('@ValanticPimcoreForms/vue.html.twig', [
             'name' => $name,
         ]);
     }
 
-    /**
-     * @return Response
-     */
     #[Route('/html/{name}')]
     public function htmlAction(string $name, FormService $formService): Response
     {
@@ -42,8 +36,6 @@ class FormController extends AbstractController
 
     /**
      * @throws SerializerException
-     *
-     * @return ApiResponse
      */
     #[Route('/api/{name}')]
     public function apiAction(string $name, FormService $formService, Request $request, TranslatorInterface $translator): ApiResponse

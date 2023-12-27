@@ -16,9 +16,6 @@ class Form extends AbstractExtension
     ) {
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getFunctions(): array
     {
         return [
