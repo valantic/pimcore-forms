@@ -43,6 +43,7 @@ class Configuration implements ConfigurationInterface
                             ->info('Whether to enable CSRF protection for this form')
                         ->end()
                         ->arrayNode('translate')
+                            ->addDefaultsIfNotSet()
                             ->children()
                                 ->booleanNode('field_labels')
                                     ->defaultValue(false)
