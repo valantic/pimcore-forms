@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 abstract class AbstractInputHandler implements InputHandlerInterface
 {
     protected FormInterface $form;
-    protected ?Request $request;
+    protected ?Request $request = null;
 
     public function initialize(FormInterface $form, ?Request $request): void
     {

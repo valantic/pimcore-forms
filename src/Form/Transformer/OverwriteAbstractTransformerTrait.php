@@ -9,7 +9,6 @@ use Symfony\Component\Form\FormInterface;
 trait OverwriteAbstractTransformerTrait
 {
     /**
-     * @param FormInterface $form
      * @param array<mixed> $schema
      *
      * @return array<mixed>
@@ -19,7 +18,9 @@ trait OverwriteAbstractTransformerTrait
     protected function addLabel(FormInterface $form, array $schema): array
     {
         $translationDomain = $form->getConfig()->getOption('translation_domain');
-        if ($label = $form->getConfig()->getOption('label')) {
+        $label = $form->getConfig()->getOption('label');
+
+        if ($label !== null) {
             // translation is handled in \Valantic\PimcoreFormsBundle\Form\Builder::getOptions
             $schema['title'] = $label;
         } else {
@@ -30,7 +31,6 @@ trait OverwriteAbstractTransformerTrait
     }
 
     /**
-     * @param FormInterface $form
      * @param array<mixed> $schema
      *
      * @return array<mixed>

@@ -37,8 +37,6 @@ class OutputResponse
     }
 
     /**
-     * @param AbstractMessage $message
-     *
      * @return $this
      */
     public function addMessage(AbstractMessage $message): self
@@ -61,8 +59,6 @@ class OutputResponse
     }
 
     /**
-     * @param bool $status
-     *
      * @return $this
      */
     public function addStatus(bool $status): self

@@ -5,8 +5,12 @@ parameters:
 
     level: 8
 
-    ignoreErrors:
-        - '#Constant PIMCORE_APP_ROOT not found#'
-
     bootstrapFiles:
         - vendor/pimcore/pimcore/stubs/dynamic-constants.php
+
+    treatPhpDocTypesAsCertain: false
+
+    strictRules:
+        booleansInConditions: false
+        disallowedConstructs: false
+        noVariableVariables: false

@@ -29,23 +29,16 @@ use Valantic\PimcoreFormsBundle\Repository\RedirectHandlerRepository;
 
 class FormService
 {
-    protected ConfigurationRepository $configurationRepository;
-    protected Builder $builder;
     protected Liform $liform;
-    protected OutputRepository $outputRepository;
-    protected RedirectHandlerRepository $redirectHandlerRepository;
-    protected FormErrorNormalizer $errorNormalizer;
-    protected InputHandlerRepository $inputHandlerRepository;
-    protected RequestStack $requestStack;
 
     public function __construct(
-        ConfigurationRepository $configurationRepository,
-        OutputRepository $outputRepository,
-        RedirectHandlerRepository $redirectHandlerRepository,
-        InputHandlerRepository $inputHandlerRepository,
-        Builder $builder,
+        protected ConfigurationRepository $configurationRepository,
+        protected OutputRepository $outputRepository,
+        protected RedirectHandlerRepository $redirectHandlerRepository,
+        protected InputHandlerRepository $inputHandlerRepository,
+        protected Builder $builder,
         Liform $liform,
-        FormErrorNormalizer $errorNormalizer,
+        protected FormErrorNormalizer $errorNormalizer,
         FormTypeExtension $formTypeExtension,
         FormNameExtension $formNameExtension,
         FormConstraintExtension $formConstraintExtension,
@@ -53,15 +46,8 @@ class FormService
         ChoiceTypeExtension $choiceTypeExtension,
         HiddenTypeExtension $hiddenTypeExtension,
         FormDataExtension $formDataExtension,
-        RequestStack $requestStack
+        protected RequestStack $requestStack
     ) {
-        $this->builder = $builder;
-        $this->configurationRepository = $configurationRepository;
-        $this->redirectHandlerRepository = $redirectHandlerRepository;
-        $this->inputHandlerRepository = $inputHandlerRepository;
-        $this->outputRepository = $outputRepository;
-        $this->errorNormalizer = $errorNormalizer;
-
         $liform->addExtension($formTypeExtension);
         $liform->addExtension($formNameExtension);
         $liform->addExtension($formConstraintExtension);
@@ -70,7 +56,6 @@ class FormService
         $liform->addExtension($hiddenTypeExtension);
         $liform->addExtension($formDataExtension);
         $this->liform = $liform;
-        $this->requestStack = $requestStack;
     }
 
     public function build(string $name): FormBuilderInterface
@@ -110,8 +95,6 @@ class FormService
     }
 
     /**
-     * @param FormInterface $form
-     *
      * @return array<mixed>
      */
     public function json(FormInterface $form): array
@@ -123,8 +106,6 @@ class FormService
     }
 
     /**
-     * @param string $name
-     *
      * @return array<mixed>
      */
     public function buildJson(string $name): array
@@ -153,8 +134,6 @@ class FormService
      *     %2$s = Localized field label
      * Sample for a valid template string: '(%2$s) %1$s'
      * Sample result for example in German: '(Dateiupload) Die Datei ist gross (12MB), die maximal zulässige Grösse beträgt 10MB.'
-     *
-     * @param FormInterface $form
      *
      * @throws SerializerException
      *
@@ -199,8 +178,6 @@ class FormService
     }
 
     /**
-     * @param string $name
-     *
      * @return array<string,mixed>
      */
     protected function getConfig(string $name): array

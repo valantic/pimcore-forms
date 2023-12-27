@@ -14,34 +14,23 @@ use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 
 class FormErrorNormalizer implements NormalizerInterface
 {
-    protected TranslatorInterface $translator;
-    protected ConfigurationRepository $configurationRepository;
-
-    public function __construct(TranslatorInterface $translator, ConfigurationRepository $configurationRepository)
-    {
-        $this->translator = $translator;
-        $this->configurationRepository = $configurationRepository;
+    public function __construct(
+        protected readonly TranslatorInterface $translator,
+        protected readonly ConfigurationRepository $configurationRepository
+    ) {
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function normalize($object, $format = null, array $context = [])
+    public function normalize($object, ?string $format = null, array $context = [])
     {
         return $this->convertFormToArray($object);
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function supportsNormalization($data, $format = null): bool
+    public function supportsNormalization($data, ?string $format = null): bool
     {
         return $data instanceof FormInterface && $data->isSubmitted() && !$data->isValid();
     }
 
     /**
-     * @param FormInterface $data
-     *
      * @return array<int,array<mixed>>
      *
      * @see https://github.com/schmittjoh/serializer/blob/master/src/Handler/FormErrorHandler.php
@@ -79,7 +68,6 @@ class FormErrorNormalizer implements NormalizerInterface
     }
 
     /**
-     * @param FormError $error
      * @param string|null $customErrorMessageTemplate
      *
      * @return array<string,mixed>
@@ -112,8 +100,6 @@ class FormErrorNormalizer implements NormalizerInterface
     }
 
     /**
-     * @param FormError $error
-     *
      * @return string|null
      *
      * @see https://github.com/schmittjoh/serializer/blob/master/src/Handler/FormErrorHandler.php

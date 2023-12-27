@@ -11,16 +11,11 @@ use Valantic\PimcoreFormsBundle\Service\FormService;
 
 class Form extends AbstractExtension
 {
-    protected FormService $formService;
-
-    public function __construct(FormService $formService)
-    {
-        $this->formService = $formService;
+    public function __construct(
+        protected readonly FormService $formService
+    ) {
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getFunctions(): array
     {
         return [

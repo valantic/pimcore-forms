@@ -20,15 +20,12 @@ use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
  */
 class ValanticPimcoreFormsExtension extends Extension
 {
-    public const TAG_OUTPUT = 'valantic.pimcore_forms.output';
-    public const TAG_REDIRECT_HANDLER = 'valantic.pimcore_forms.redirect_handler';
-    public const TAG_INPUT_HANDLER = 'valantic.pimcore_forms.input_handler';
+    final public const TAG_OUTPUT = 'valantic.pimcore_forms.output';
+    final public const TAG_REDIRECT_HANDLER = 'valantic.pimcore_forms.redirect_handler';
+    final public const TAG_INPUT_HANDLER = 'valantic.pimcore_forms.input_handler';
 
     /**
-     * {@inheritDoc}
-     *
      * @param array<mixed> $configs
-     * @param ContainerBuilder $container
      *
      * @throws \Exception
      */

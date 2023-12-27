@@ -12,7 +12,6 @@ class OutputScratchpad
     protected static array $scratchpad = [];
 
     /**
-     * @param string $key
      * @param array<mixed> $payload
      */
     public static function set(string $key, array $payload): void
@@ -21,8 +20,6 @@ class OutputScratchpad
     }
 
     /**
-     * @param string $key
-     *
      * @return array<mixed>
      */
     public static function get(string $key): array

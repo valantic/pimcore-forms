@@ -56,7 +56,7 @@ class FormTypeExtension implements ExtensionInterface
             return $schema;
         }
 
-        $type = get_class($form->getConfig()->getType()->getInnerType());
+        $type = $form->getConfig()->getType()->getInnerType()::class;
 
         $formType = null;
 

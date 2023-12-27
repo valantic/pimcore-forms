@@ -25,7 +25,7 @@ class EmailOutput extends AbstractOutput
         $subject = $this->getSubject();
 
         if ($subject !== null) {
-            $mail->setSubject($subject);
+            $mail->subject($subject);
         }
 
         $from = $this->getFrom();

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Valantic\PimcoreFormsBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,29 +18,15 @@ use Valantic\PimcoreFormsBundle\Service\FormService;
 
 class FormController extends AbstractController
 {
-    /**
-     * @Route("/ui/{name}")
-     *
-     * @param string $name
-     * @param FormService $formService
-     *
-     * @return Response
-     */
-    public function uiAction(string $name, FormService $formService): Response
+    #[Route('/ui/{name}')]
+    public function uiAction(string $name): Response
     {
         return $this->render('@ValanticPimcoreForms/vue.html.twig', [
-            'form' => $formService->buildForm($name)->createView(),
+            'name' => $name,
         ]);
     }
 
-    /**
-     * @Route("/html/{name}")
-     *
-     * @param string $name
-     * @param FormService $formService
-     *
-     * @return Response
-     */
+    #[Route('/html/{name}')]
     public function htmlAction(string $name, FormService $formService): Response
     {
         return $this->render('@ValanticPimcoreForms/html.html.twig', [
@@ -49,23 +35,15 @@ class FormController extends AbstractController
     }
 
     /**
-     * @Route("/api/{name}")
-     *
-     * @param string $name
-     * @param FormService $formService
-     * @param Request $request
-     * @param TranslatorInterface $translator
-     *
      * @throws SerializerException
-     *
-     * @return ApiResponse
      */
+    #[Route('/api/{name}')]
     public function apiAction(string $name, FormService $formService, Request $request, TranslatorInterface $translator): ApiResponse
     {
         $form = $formService->buildForm($name);
         $form->handleRequest($request);
 
-        if (!$form->isSubmitted() && $request->getContentType() === 'json') {
+        if (!$form->isSubmitted() && $request->getContentTypeFormat() === 'json') {
             $content = (string) $request->getContent();
             $data = json_decode($content, true, flags: \JSON_THROW_ON_ERROR);
 
@@ -126,10 +104,9 @@ class FormController extends AbstractController
      * Sample usage: create a Twig document with the contents:
      * `{{ form_contents | raw }}`
      *
-     * @Template
-     *
      * @return array<string,mixed>
      */
+    #[Template('')]
     public function mailDocumentAction(Request $request): array
     {
         return array_filter(

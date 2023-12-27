@@ -56,14 +56,6 @@ parameters:
 			path: src/Form/FormErrorNormalizer.php
 
 		-
-			message: """
-				#^Call to deprecated method setSubject\\(\\) of class Pimcore\\\\Mail\\:
-				use subject\\(\\) instead\\. Will be removed in Pimcore 11$#
-			"""
-			count: 1
-			path: src/Form/Output/EmailOutput.php
-
-		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ButtonTransformer\\:\\:transform\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Form/Transformer/ButtonTransformer.php
@@ -74,22 +66,12 @@ parameters:
 			path: src/Form/Transformer/ChoiceTransformer.php
 
 		-
-			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformMultiple\\(\\) has no return type specified\\.$#"
-			count: 1
-			path: src/Form/Transformer/ChoiceTransformer.php
-
-		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformMultiple\\(\\) has parameter \\$choices with no type specified\\.$#"
 			count: 1
 			path: src/Form/Transformer/ChoiceTransformer.php
 
 		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformMultiple\\(\\) has parameter \\$titles with no type specified\\.$#"
-			count: 1
-			path: src/Form/Transformer/ChoiceTransformer.php
-
-		-
-			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\ChoiceTransformer\\:\\:transformSingle\\(\\) has no return type specified\\.$#"
 			count: 1
 			path: src/Form/Transformer/ChoiceTransformer.php
 
@@ -107,6 +89,11 @@ parameters:
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Form\\\\Transformer\\\\FileTransformer\\:\\:transform\\(\\) return type has no value type specified in iterable type array\\.$#"
 			count: 1
 			path: src/Form/Transformer/FileTransformer.php
+
+		-
+			message: "#^Return type \\(string\\|null\\) of method Valantic\\\\PimcoreFormsBundle\\\\Model\\\\AbstractMessage\\:\\:key\\(\\) should be covariant with return type \\(string\\) of method Iterator\\<string,mixed\\>\\:\\:key\\(\\)$#"
+			count: 1
+			path: src/Model/AbstractMessage.php
 
 		-
 			message: "#^Method Valantic\\\\PimcoreFormsBundle\\\\Service\\\\FormService\\:\\:errors\\(\\) should return array but returns array\\|ArrayObject\\|bool\\|float\\|int\\|string\\|null\\.$#"

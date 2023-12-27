@@ -36,6 +36,3 @@ services:
   Valantic\PimcoreFormsBundle\Document\Twig\Extension\:
     resource: '../../Document/Twig/Extension'
     tags: [ 'twig.extension' ]
-
-  Valantic\PimcoreFormsBundle\Installer\Installer:
-    public: true

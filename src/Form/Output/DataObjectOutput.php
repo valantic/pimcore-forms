@@ -24,7 +24,7 @@ class DataObjectOutput extends AbstractOutput
 
         $path = Concrete::getByPath($this->getPath());
 
-        if ($path === null) {
+        if (!$path instanceof Concrete) {
             throw new \InvalidArgumentException(sprintf('Path %s not found', $this->getPath()));
         }
 

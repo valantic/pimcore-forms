@@ -22,7 +22,7 @@ class AssetOutput extends AbstractOutput
     {
         $path = Folder::getByPath($this->getPath());
 
-        if ($path === null) {
+        if (!$path instanceof Folder) {
             throw new \InvalidArgumentException(sprintf('Path %s not found', $this->getPath()));
         }
 
