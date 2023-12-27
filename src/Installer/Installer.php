@@ -44,7 +44,7 @@ class Installer extends AbstractInstaller
             touch(ConfigurationRepository::EDITOR_STORAGE_FILE);
         }
 
-        $this->getOutput()->write(sprintf("Please add the following lines to e.g. %s/config/config.yml\n\n", PIMCORE_APP_ROOT));
+        $this->getOutput()->write(sprintf("Please add the following lines to e.g. %s/config/config.yml\n\n", PIMCORE_PROJECT_ROOT));
         $this->getOutput()->write('');
         $this->getOutput()->write('imports:');
         $this->getOutput()->write(sprintf("  - { resource: '../..%s/' }", str_replace(PIMCORE_PROJECT_ROOT, '', ConfigurationRepository::EDITOR_STORAGE_DIRECTORY)));
