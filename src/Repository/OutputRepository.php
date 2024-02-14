@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Valantic\PimcoreFormsBundle\Repository;
 
+use Symfony\Component\DependencyInjection\Attribute\TaggedIterator;
+use Valantic\PimcoreFormsBundle\DependencyInjection\ValanticPimcoreFormsExtension;
 use Valantic\PimcoreFormsBundle\Exception\DuplicateOutputException;
 use Valantic\PimcoreFormsBundle\Exception\UnknownOutputException;
 use Valantic\PimcoreFormsBundle\Form\Output\OutputInterface;
@@ -18,8 +20,10 @@ class OutputRepository
     /**
      * @param iterable<OutputInterface> $outputs
      */
-    public function __construct(iterable $outputs)
-    {
+    public function __construct(
+        #[TaggedIterator(ValanticPimcoreFormsExtension::TAG_OUTPUT)]
+        iterable $outputs
+    ) {
         $this->outputs = $this->iterableToArray($outputs);
     }
 
