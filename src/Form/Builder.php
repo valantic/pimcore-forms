@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Valantic\PimcoreFormsBundle\Form;
 
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -15,16 +14,16 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Valantic\PimcoreFormsBundle\DependencyInjection\Configuration;
-use Valantic\PimcoreFormsBundle\Form\Type\ChoicesInterface;
 use Valantic\PimcoreFormsBundle\Form\Type\ConfigAwareInterface;
+use Valantic\PimcoreFormsBundle\Repository\ChoicesRepository;
 
 class Builder
 {
     public function __construct(
-        protected readonly ParameterBagInterface $container,
         protected readonly UrlGeneratorInterface $urlGenerator,
         protected readonly TranslatorInterface $translator,
-        protected readonly FormFactoryInterface $formFactory
+        protected readonly FormFactoryInterface $formFactory,
+        protected readonly ChoicesRepository $choicesRepository,
     ) {
     }
 
@@ -122,8 +121,7 @@ class Builder
                 }
             }
             if (!empty($definition['provider']) && is_string($definition['provider'])) {
-                /** @var ChoicesInterface $choices */
-                $choices = $this->container->get($definition['provider']);
+                $choices = $this->choicesRepository->get($definition['provider']);
                 if ($choices instanceof ConfigAwareInterface) {
                     $choices->setFormName($formName);
                     $choices->setFieldConfig($formConfig);

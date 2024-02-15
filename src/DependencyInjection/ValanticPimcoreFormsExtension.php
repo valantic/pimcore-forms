@@ -11,6 +11,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Valantic\PimcoreFormsBundle\Form\InputHandler\InputHandlerInterface;
 use Valantic\PimcoreFormsBundle\Form\Output\OutputInterface;
 use Valantic\PimcoreFormsBundle\Form\RedirectHandler\RedirectHandlerInterface;
+use Valantic\PimcoreFormsBundle\Form\Type\ChoicesInterface;
 use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 
 /**
@@ -23,6 +24,7 @@ class ValanticPimcoreFormsExtension extends Extension
     final public const TAG_OUTPUT = 'valantic.pimcore_forms.output';
     final public const TAG_REDIRECT_HANDLER = 'valantic.pimcore_forms.redirect_handler';
     final public const TAG_INPUT_HANDLER = 'valantic.pimcore_forms.input_handler';
+    final public const TAG_CHOICES = 'valantic.pimcore_forms.choices';
 
     /**
      * @param array<mixed> $configs
@@ -38,6 +40,7 @@ class ValanticPimcoreFormsExtension extends Extension
         $container->registerForAutoconfiguration(OutputInterface::class)->addTag(self::TAG_OUTPUT);
         $container->registerForAutoconfiguration(RedirectHandlerInterface::class)->addTag(self::TAG_REDIRECT_HANDLER);
         $container->registerForAutoconfiguration(InputHandlerInterface::class)->addTag(self::TAG_INPUT_HANDLER);
+        $container->registerForAutoconfiguration(ChoicesInterface::class)->addTag(self::TAG_CHOICES);
 
         $ymlLoader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $ymlLoader->load('services.yml');

@@ -21,9 +21,9 @@ services:
   Valantic\PimcoreFormsBundle\Service\:
     resource: '../../Service/*'
 
-  Valantic\PimcoreFormsBundle\Repository\OutputRepository:
+  Valantic\PimcoreFormsBundle\Repository\ChoicesRepository:
     arguments:
-      - !tagged_iterator valantic.pimcore_forms.output
+      - !tagged_iterator valantic.pimcore_forms.choices
 
   Valantic\PimcoreFormsBundle\Repository\InputHandlerRepository:
     arguments:
