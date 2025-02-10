@@ -4,9 +4,9 @@
   "description": "Forms for Pimcore",
   "type": "pimcore-bundle",
   "require": {
-    "php": "^8.1",
+    "php": "^8.2",
     "ext-json": "*",
-    "limenius/liform": "^0.19",
+    "limenius/liform": "^2.0",
     "pimcore/pimcore": "^11.0",
     "ramsey/uuid": "^4.0",
     "symfony/form": "^6.0",
