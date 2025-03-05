@@ -51,9 +51,9 @@ class Builder
      *
      * @return array{string,array}
      */
-    public function field(string $formName, array $definition, array $formConfig): array
+    public function field(string $formName, array $definition, array $formConfig, mixed $context): array
     {
-        $options = $this->getOptions($formName, $definition, $formConfig);
+        $options = $this->getOptions($formName, $definition, $formConfig, $context);
 
         $constraints = $this->getConstraints($definition, $options);
 
@@ -88,7 +88,7 @@ class Builder
      *
      * @return array<mixed>
      */
-    protected function getOptions(string $formName, array $definition, array $formConfig): array
+    protected function getOptions(string $formName, array $definition, array $formConfig, mixed $context): array
     {
         $options = $definition['options'];
 
@@ -127,10 +127,10 @@ class Builder
                     $choices->setFieldConfig($formConfig);
                 }
 
-                $options['choices'] = $choices->choices();
+                $options['choices'] = $choices->choices($context);
                 $options['choice_value'] = fn ($a) => $a;
-                $options['choice_label'] = fn ($choice, $key, $value) => $choices->choiceLabel($choice, $key, $value);
-                $options['choice_attr'] = fn ($choice, $key, $value) => $choices->choiceAttribute($choice, $key, $value);
+                $options['choice_label'] = fn ($choice, $key, $value) => $choices->choiceLabel($choice, $key, $value, $context);
+                $options['choice_attr'] = fn ($choice, $key, $value) => $choices->choiceAttribute($choice, $key, $value, $context);
             }
         }
 
