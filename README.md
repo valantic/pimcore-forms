@@ -95,3 +95,9 @@ public function contactAction(\Valantic\PimcoreFormsBundle\Service\FormService $
 ```twig
 {% include '@ValanticPimcoreForms/form.html.twig' with {'form': valantic_form_json('contact')} %}
 ```
+
+## License
+
+In order to comply with [Pimcore's updated licensing policy](https://pimcore.com/en/resources/blog/breaking-free-pimcore-says-goodbye-to-gpl-and-enters-a-new-era-with-pocl), this bundle is (now) published under the GPLv3 license for compatibility Pimcore Platform Version 2024.4 and will be re-licensed under the POCL license as soon as it is compatible with Pimcore Platform Version 2025.1.
+
+If you have any questiosn regarding licensing, please reach out to us via [mailto:info@cec.valantic.ch](info@cec.valantic.ch).
