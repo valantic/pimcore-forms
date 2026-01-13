@@ -8,24 +8,38 @@
     "ext-json": "*",
     "limenius/liform": "^2.0",
     "pimcore/pimcore": "^12.0",
-    "ramsey/uuid": "^4.0",
-    "symfony/form": "^6.0",
+    "ramsey/uuid": "^4.9",
+    "symfony/form": "^6.4 || ^7.3",
     "voku/portable-ascii": "^2.0"
   },
   "require-dev": {
+    "doctrine/data-fixtures": "^1.8.2",
+    "fakerphp/faker": "^1.24.1",
     "friendsofphp/php-cs-fixer": "^3.92.5",
+    "mockery/mockery": "^1.6.12",
     "phpstan/extension-installer": "^1.4.3",
     "phpstan/phpstan": "^2.1.33",
     "phpstan/phpstan-deprecation-rules": "^2.0.3",
     "phpstan/phpstan-strict-rules": "^2.0.7",
-    "rector/rector": "^2.3",
+    "phpunit/phpunit": "^12.5.5",
+    "rector/rector": "^2.3.1",
     "roave/security-advisories": "dev-latest",
-    "symfony/dependency-injection": "^6.4.31",
+    "symfony/browser-kit": "^6.4 || ^7.4.3",
+    "symfony/css-selector": "^6.4 || ^7.4",
+    "symfony/dependency-injection": "^6.4 || ^7.4.3",
+    "symfony/phpunit-bridge":"^6.4 || ^7.4.3",
+    "symfony/test-pack": "^1.2",
     "valantic/php-cs-fixer-config": "^2.2.1"
   },
   "autoload": {
     "psr-4": {
       "Valantic\\PimcoreFormsBundle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Valantic\\PimcoreFormsBundle\\Tests\\": "tests/",
+      "App\\": "tests/Examples/"
     }
   },
   "extra": {
@@ -61,6 +75,12 @@
     ],
     "rector": [
       "./vendor/bin/rector process"
+    ],
+    "test": [
+      "vendor/bin/phpunit"
+    ],
+    "test-coverage": [
+      "vendor/bin/phpunit --coverage-html coverage/html --coverage-clover coverage/clover.xml"
     ]
   },
   "config": {

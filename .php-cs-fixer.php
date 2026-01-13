@@ -9,6 +9,7 @@ return ConfigFactory::createValanticConfig([
     ->setFinder(
         PhpCsFixer\Finder::create()
             ->in(__DIR__ . '/src')
+            ->in(__DIR__ . '/tests')
     )
     // Enable risky rules (recommended as the ruleset includes risky rules)
     ->setRiskyAllowed(true)

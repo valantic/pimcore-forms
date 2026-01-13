@@ -189,7 +189,7 @@ class FormService
      */
     protected function getConfig(string $name): array
     {
-        $config = $this->configurationRepository->get()['forms'][$name];
+        $config = $this->configurationRepository->get()['forms'][$name] ?? null;
 
         if (empty($config) || !is_array($config)) {
             throw new InvalidFormConfigException($name);
