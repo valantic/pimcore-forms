@@ -23,15 +23,15 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class TransformerCompilerPass implements CompilerPassInterface
 {
-    final public const TRANSFORMER_TAG = 'liform.transformer';
+    final public const string TRANSFORMER_TAG = 'liform.transformer';
 
     public function process(ContainerBuilder $container): void
     {
-        if (!$container->hasDefinition('Limenius\Liform\Resolver')) {
+        if (!$container->hasDefinition(\Limenius\Liform\Resolver::class)) {
             return;
         }
 
-        $resolver = $container->getDefinition('Limenius\Liform\Resolver');
+        $resolver = $container->getDefinition(\Limenius\Liform\Resolver::class);
 
         foreach ($container->findTaggedServiceIds(self::TRANSFORMER_TAG) as $id => $attributes) {
             $transformer = $container->getDefinition($id);
@@ -47,6 +47,7 @@ class TransformerCompilerPass implements CompilerPassInterface
             if ($implements === false) {
                 continue;
             }
+
             if (!isset($implements[TransformerInterface::class])) {
                 throw new \InvalidArgumentException(sprintf("The service %s was tagged as a '%s' but does not implement the mandatory %s", $id, self::TRANSFORMER_TAG, TransformerInterface::class));
             }

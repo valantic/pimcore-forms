@@ -17,12 +17,14 @@ class ChoiceTransformer extends \Limenius\Liform\Transformer\ChoiceTransformer
 {
     use OverwriteAbstractTransformerTrait;
 
+    #[\Override]
     public function transform(FormInterface $form, array $extensions = [], $widget = null): array
     {
         $formView = $form->createView();
 
         $choices = [];
         $titles = [];
+
         foreach ($formView->vars['choices'] as $choiceView) {
             if ($choiceView instanceof ChoiceGroupView) {
                 foreach ($choiceView->choices as $choiceItem) {
@@ -83,7 +85,7 @@ class ChoiceTransformer extends \Limenius\Liform\Transformer\ChoiceTransformer
                     'enum_titles' => $titles,
                 ],
             ],
-            'minItems' => $this->isRequired($form) ? 1 : 0,
+            'minItems' => $this->isRequired($form) === true ? 1 : 0,
             'uniqueItems' => true,
             'type' => 'array',
         ];

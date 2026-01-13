@@ -22,7 +22,7 @@ class OutputRepository
      */
     public function __construct(
         #[TaggedIterator(ValanticPimcoreFormsExtension::TAG_OUTPUT)]
-        iterable $outputs
+        iterable $outputs,
     ) {
         $this->outputs = $this->iterableToArray($outputs);
     }

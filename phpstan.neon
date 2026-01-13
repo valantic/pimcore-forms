@@ -2,6 +2,8 @@ includes:
 	- phpstan-baseline.neon
 
 parameters:
+    paths:
+        - src
 
     level: 8
 
@@ -10,7 +12,9 @@ parameters:
 
     treatPhpDocTypesAsCertain: false
 
-    strictRules:
-        booleansInConditions: false
-        disallowedConstructs: false
-        noVariableVariables: false
+    ignoreErrors:
+        -
+            identifiers:
+                   - ternary.shortNotAllowed
+                   - empty.notAllowed
+                   - property.dynamicName

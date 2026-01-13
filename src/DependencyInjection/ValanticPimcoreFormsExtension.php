@@ -21,10 +21,10 @@ use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
  */
 class ValanticPimcoreFormsExtension extends Extension
 {
-    final public const TAG_OUTPUT = 'valantic.pimcore_forms.output';
-    final public const TAG_REDIRECT_HANDLER = 'valantic.pimcore_forms.redirect_handler';
-    final public const TAG_INPUT_HANDLER = 'valantic.pimcore_forms.input_handler';
-    final public const TAG_CHOICES = 'valantic.pimcore_forms.choices';
+    final public const string TAG_OUTPUT = 'valantic.pimcore_forms.output';
+    final public const string TAG_REDIRECT_HANDLER = 'valantic.pimcore_forms.redirect_handler';
+    final public const string TAG_INPUT_HANDLER = 'valantic.pimcore_forms.input_handler';
+    final public const string TAG_CHOICES = 'valantic.pimcore_forms.choices';
 
     /**
      * @param array<mixed> $configs

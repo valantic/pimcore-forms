@@ -16,6 +16,7 @@ class HttpOutput extends AbstractOutput
     public function handle(OutputResponse $outputResponse): OutputResponse
     {
         $ch = curl_init($this->config['url']);
+
         if ($ch === false) {
             throw new \RuntimeException(sprintf('Failed to initialize curl for %s', $this->config['url']));
         }

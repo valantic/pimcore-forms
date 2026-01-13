@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Valantic\PimcoreFormsBundle\Form;
 
+use Symfony\Component\Form\Form;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormErrorIterator;
 use Symfony\Component\Form\FormInterface;
@@ -16,18 +17,23 @@ class FormErrorNormalizer implements NormalizerInterface
 {
     public function __construct(
         protected readonly TranslatorInterface $translator,
-        protected readonly ConfigurationRepository $configurationRepository
+        protected readonly ConfigurationRepository $configurationRepository,
     ) {
     }
 
-    public function normalize($object, ?string $format = null, array $context = [])
+    public function normalize($object, ?string $format = null, array $context = []): float|int|bool|\ArrayObject|array|string|null
     {
         return $this->convertFormToArray($object);
     }
 
-    public function supportsNormalization($data, ?string $format = null): bool
+    public function supportsNormalization($data, ?string $format = null, array $context = []): bool
     {
         return $data instanceof FormInterface && $data->isSubmitted() && !$data->isValid();
+    }
+
+    public function getSupportedTypes(?string $format): array
+    {
+        return [Form::class => true];
     }
 
     /**
@@ -68,8 +74,6 @@ class FormErrorNormalizer implements NormalizerInterface
     }
 
     /**
-     * @param string|null $customErrorMessageTemplate
-     *
      * @return array<string,mixed>
      */
     protected function buildErrorEntry(FormError $error, ?string $customErrorMessageTemplate = null): array
@@ -100,13 +104,11 @@ class FormErrorNormalizer implements NormalizerInterface
     }
 
     /**
-     * @return string|null
-     *
      * @see https://github.com/schmittjoh/serializer/blob/master/src/Handler/FormErrorHandler.php
      */
     protected function getErrorMessage(FormError $error): ?string
     {
-        if (null !== $error->getMessagePluralization()) {
+        if ($error->getMessagePluralization() !== null) {
             return $this->translator->trans($error->getMessageTemplate(), ['%count%' => $error->getMessagePluralization()] + $error->getMessageParameters(), 'validators');
         }
 
