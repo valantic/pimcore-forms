@@ -1,595 +1,157 @@
-GNU General Public License
-==========================
-
-_Version 3, 29 June 2007_
-_Copyright © 2007 Free Software Foundation, Inc. &lt;<http://fsf.org/>&gt;_
-
-Everyone is permitted to copy and distribute verbatim copies of this license
-document, but changing it is not allowed.
-
-## Preamble
-
-The GNU General Public License is a free, copyleft license for software and other
-kinds of works.
-
-The licenses for most software and other practical works are designed to take away
-your freedom to share and change the works. By contrast, the GNU General Public
-License is intended to guarantee your freedom to share and change all versions of a
-program--to make sure it remains free software for all its users. We, the Free
-Software Foundation, use the GNU General Public License for most of our software; it
-applies also to any other work released this way by its authors. You can apply it to
-your programs, too.
-
-When we speak of free software, we are referring to freedom, not price. Our General
-Public Licenses are designed to make sure that you have the freedom to distribute
-copies of free software (and charge for them if you wish), that you receive source
-code or can get it if you want it, that you can change the software or use pieces of
-it in new free programs, and that you know you can do these things.
-
-To protect your rights, we need to prevent others from denying you these rights or
-asking you to surrender the rights. Therefore, you have certain responsibilities if
-you distribute copies of the software, or if you modify it: responsibilities to
-respect the freedom of others.
-
-For example, if you distribute copies of such a program, whether gratis or for a fee,
-you must pass on to the recipients the same freedoms that you received. You must make
-sure that they, too, receive or can get the source code. And you must show them these
-terms so they know their rights.
-
-Developers that use the GNU GPL protect your rights with two steps: **(1)** assert
-copyright on the software, and **(2)** offer you this License giving you legal permission
-to copy, distribute and/or modify it.
-
-For the developers' and authors' protection, the GPL clearly explains that there is
-no warranty for this free software. For both users' and authors' sake, the GPL
-requires that modified versions be marked as changed, so that their problems will not
-be attributed erroneously to authors of previous versions.
-
-Some devices are designed to deny users access to install or run modified versions of
-the software inside them, although the manufacturer can do so. This is fundamentally
-incompatible with the aim of protecting users' freedom to change the software. The
-systematic pattern of such abuse occurs in the area of products for individuals to
-use, which is precisely where it is most unacceptable. Therefore, we have designed
-this version of the GPL to prohibit the practice for those products. If such problems
-arise substantially in other domains, we stand ready to extend this provision to
-those domains in future versions of the GPL, as needed to protect the freedom of
-users.
-
-Finally, every program is threatened constantly by software patents. States should
-not allow patents to restrict development and use of software on general-purpose
-computers, but in those that do, we wish to avoid the special danger that patents
-applied to a free program could make it effectively proprietary. To prevent this, the
-GPL assures that patents cannot be used to render the program non-free.
-
-The precise terms and conditions for copying, distribution and modification follow.
-
-## TERMS AND CONDITIONS
-
-### 0. Definitions
-
-“This License” refers to version 3 of the GNU General Public License.
-
-“Copyright” also means copyright-like laws that apply to other kinds of
-works, such as semiconductor masks.
-
-“The Program” refers to any copyrightable work licensed under this
-License. Each licensee is addressed as “you”. “Licensees” and
-“recipients” may be individuals or organizations.
-
-To “modify” a work means to copy from or adapt all or part of the work in
-a fashion requiring copyright permission, other than the making of an exact copy. The
-resulting work is called a “modified version” of the earlier work or a
-work “based on” the earlier work.
-
-A “covered work” means either the unmodified Program or a work based on
-the Program.
-
-To “propagate” a work means to do anything with it that, without
-permission, would make you directly or secondarily liable for infringement under
-applicable copyright law, except executing it on a computer or modifying a private
-copy. Propagation includes copying, distribution (with or without modification),
-making available to the public, and in some countries other activities as well.
-
-To “convey” a work means any kind of propagation that enables other
-parties to make or receive copies. Mere interaction with a user through a computer
-network, with no transfer of a copy, is not conveying.
-
-An interactive user interface displays “Appropriate Legal Notices” to the
-extent that it includes a convenient and prominently visible feature that **(1)**
-displays an appropriate copyright notice, and **(2)** tells the user that there is no
-warranty for the work (except to the extent that warranties are provided), that
-licensees may convey the work under this License, and how to view a copy of this
-License. If the interface presents a list of user commands or options, such as a
-menu, a prominent item in the list meets this criterion.
-
-### 1. Source Code
-
-The “source code” for a work means the preferred form of the work for
-making modifications to it. “Object code” means any non-source form of a
-work.
-
-A “Standard Interface” means an interface that either is an official
-standard defined by a recognized standards body, or, in the case of interfaces
-specified for a particular programming language, one that is widely used among
-developers working in that language.
-
-The “System Libraries” of an executable work include anything, other than
-the work as a whole, that **(a)** is included in the normal form of packaging a Major
-Component, but which is not part of that Major Component, and **(b)** serves only to
-enable use of the work with that Major Component, or to implement a Standard
-Interface for which an implementation is available to the public in source code form.
-A “Major Component”, in this context, means a major essential component
-(kernel, window system, and so on) of the specific operating system (if any) on which
-the executable work runs, or a compiler used to produce the work, or an object code
-interpreter used to run it.
-
-The “Corresponding Source” for a work in object code form means all the
-source code needed to generate, install, and (for an executable work) run the object
-code and to modify the work, including scripts to control those activities. However,
-it does not include the work's System Libraries, or general-purpose tools or
-generally available free programs which are used unmodified in performing those
-activities but which are not part of the work. For example, Corresponding Source
-includes interface definition files associated with source files for the work, and
-the source code for shared libraries and dynamically linked subprograms that the work
-is specifically designed to require, such as by intimate data communication or
-control flow between those subprograms and other parts of the work.
-
-The Corresponding Source need not include anything that users can regenerate
-automatically from other parts of the Corresponding Source.
-
-The Corresponding Source for a work in source code form is that same work.
-
-### 2. Basic Permissions
-
-All rights granted under this License are granted for the term of copyright on the
-Program, and are irrevocable provided the stated conditions are met. This License
-explicitly affirms your unlimited permission to run the unmodified Program. The
-output from running a covered work is covered by this License only if the output,
-given its content, constitutes a covered work. This License acknowledges your rights
-of fair use or other equivalent, as provided by copyright law.
-
-You may make, run and propagate covered works that you do not convey, without
-conditions so long as your license otherwise remains in force. You may convey covered
-works to others for the sole purpose of having them make modifications exclusively
-for you, or provide you with facilities for running those works, provided that you
-comply with the terms of this License in conveying all material for which you do not
-control copyright. Those thus making or running the covered works for you must do so
-exclusively on your behalf, under your direction and control, on terms that prohibit
-them from making any copies of your copyrighted material outside their relationship
-with you.
-
-Conveying under any other circumstances is permitted solely under the conditions
-stated below. Sublicensing is not allowed; section 10 makes it unnecessary.
-
-### 3. Protecting Users' Legal Rights From Anti-Circumvention Law
-
-No covered work shall be deemed part of an effective technological measure under any
-applicable law fulfilling obligations under article 11 of the WIPO copyright treaty
-adopted on 20 December 1996, or similar laws prohibiting or restricting circumvention
-of such measures.
-
-When you convey a covered work, you waive any legal power to forbid circumvention of
-technological measures to the extent such circumvention is effected by exercising
-rights under this License with respect to the covered work, and you disclaim any
-intention to limit operation or modification of the work as a means of enforcing,
-against the work's users, your or third parties' legal rights to forbid circumvention
-of technological measures.
-
-### 4. Conveying Verbatim Copies
-
-You may convey verbatim copies of the Program's source code as you receive it, in any
-medium, provided that you conspicuously and appropriately publish on each copy an
-appropriate copyright notice; keep intact all notices stating that this License and
-any non-permissive terms added in accord with section 7 apply to the code; keep
-intact all notices of the absence of any warranty; and give all recipients a copy of
-this License along with the Program.
-
-You may charge any price or no price for each copy that you convey, and you may offer
-support or warranty protection for a fee.
-
-### 5. Conveying Modified Source Versions
-
-You may convey a work based on the Program, or the modifications to produce it from
-the Program, in the form of source code under the terms of section 4, provided that
-you also meet all of these conditions:
-
-* **a)** The work must carry prominent notices stating that you modified it, and giving a
-relevant date.
-* **b)** The work must carry prominent notices stating that it is released under this
-License and any conditions added under section 7. This requirement modifies the
-requirement in section 4 to “keep intact all notices”.
-* **c)** You must license the entire work, as a whole, under this License to anyone who
-comes into possession of a copy. This License will therefore apply, along with any
-applicable section 7 additional terms, to the whole of the work, and all its parts,
-regardless of how they are packaged. This License gives no permission to license the
-work in any other way, but it does not invalidate such permission if you have
-separately received it.
-* **d)** If the work has interactive user interfaces, each must display Appropriate Legal
-Notices; however, if the Program has interactive interfaces that do not display
-Appropriate Legal Notices, your work need not make them do so.
-
-A compilation of a covered work with other separate and independent works, which are
-not by their nature extensions of the covered work, and which are not combined with
-it such as to form a larger program, in or on a volume of a storage or distribution
-medium, is called an “aggregate” if the compilation and its resulting
-copyright are not used to limit the access or legal rights of the compilation's users
-beyond what the individual works permit. Inclusion of a covered work in an aggregate
-does not cause this License to apply to the other parts of the aggregate.
-
-### 6. Conveying Non-Source Forms
-
-You may convey a covered work in object code form under the terms of sections 4 and
-5, provided that you also convey the machine-readable Corresponding Source under the
-terms of this License, in one of these ways:
-
-* **a)** Convey the object code in, or embodied in, a physical product (including a
-physical distribution medium), accompanied by the Corresponding Source fixed on a
-durable physical medium customarily used for software interchange.
-* **b)** Convey the object code in, or embodied in, a physical product (including a
-physical distribution medium), accompanied by a written offer, valid for at least
-three years and valid for as long as you offer spare parts or customer support for
-that product model, to give anyone who possesses the object code either **(1)** a copy of
-the Corresponding Source for all the software in the product that is covered by this
-License, on a durable physical medium customarily used for software interchange, for
-a price no more than your reasonable cost of physically performing this conveying of
-source, or **(2)** access to copy the Corresponding Source from a network server at no
-charge.
-* **c)** Convey individual copies of the object code with a copy of the written offer to
-provide the Corresponding Source. This alternative is allowed only occasionally and
-noncommercially, and only if you received the object code with such an offer, in
-accord with subsection 6b.
-* **d)** Convey the object code by offering access from a designated place (gratis or for
-a charge), and offer equivalent access to the Corresponding Source in the same way
-through the same place at no further charge. You need not require recipients to copy
-the Corresponding Source along with the object code. If the place to copy the object
-code is a network server, the Corresponding Source may be on a different server
-(operated by you or a third party) that supports equivalent copying facilities,
-provided you maintain clear directions next to the object code saying where to find
-the Corresponding Source. Regardless of what server hosts the Corresponding Source,
-you remain obligated to ensure that it is available for as long as needed to satisfy
-these requirements.
-* **e)** Convey the object code using peer-to-peer transmission, provided you inform
-other peers where the object code and Corresponding Source of the work are being
-offered to the general public at no charge under subsection 6d.
-
-A separable portion of the object code, whose source code is excluded from the
-Corresponding Source as a System Library, need not be included in conveying the
-object code work.
-
-A “User Product” is either **(1)** a “consumer product”, which
-means any tangible personal property which is normally used for personal, family, or
-household purposes, or **(2)** anything designed or sold for incorporation into a
-dwelling. In determining whether a product is a consumer product, doubtful cases
-shall be resolved in favor of coverage. For a particular product received by a
-particular user, “normally used” refers to a typical or common use of
-that class of product, regardless of the status of the particular user or of the way
-in which the particular user actually uses, or expects or is expected to use, the
-product. A product is a consumer product regardless of whether the product has
-substantial commercial, industrial or non-consumer uses, unless such uses represent
-the only significant mode of use of the product.
-
-“Installation Information” for a User Product means any methods,
-procedures, authorization keys, or other information required to install and execute
-modified versions of a covered work in that User Product from a modified version of
-its Corresponding Source. The information must suffice to ensure that the continued
-functioning of the modified object code is in no case prevented or interfered with
-solely because modification has been made.
-
-If you convey an object code work under this section in, or with, or specifically for
-use in, a User Product, and the conveying occurs as part of a transaction in which
-the right of possession and use of the User Product is transferred to the recipient
-in perpetuity or for a fixed term (regardless of how the transaction is
-characterized), the Corresponding Source conveyed under this section must be
-accompanied by the Installation Information. But this requirement does not apply if
-neither you nor any third party retains the ability to install modified object code
-on the User Product (for example, the work has been installed in ROM).
-
-The requirement to provide Installation Information does not include a requirement to
-continue to provide support service, warranty, or updates for a work that has been
-modified or installed by the recipient, or for the User Product in which it has been
-modified or installed. Access to a network may be denied when the modification itself
-materially and adversely affects the operation of the network or violates the rules
-and protocols for communication across the network.
-
-Corresponding Source conveyed, and Installation Information provided, in accord with
-this section must be in a format that is publicly documented (and with an
-implementation available to the public in source code form), and must require no
-special password or key for unpacking, reading or copying.
-
-### 7. Additional Terms
-
-“Additional permissions” are terms that supplement the terms of this
-License by making exceptions from one or more of its conditions. Additional
-permissions that are applicable to the entire Program shall be treated as though they
-were included in this License, to the extent that they are valid under applicable
-law. If additional permissions apply only to part of the Program, that part may be
-used separately under those permissions, but the entire Program remains governed by
-this License without regard to the additional permissions.
-
-When you convey a copy of a covered work, you may at your option remove any
-additional permissions from that copy, or from any part of it. (Additional
-permissions may be written to require their own removal in certain cases when you
-modify the work.) You may place additional permissions on material, added by you to a
-covered work, for which you have or can give appropriate copyright permission.
-
-Notwithstanding any other provision of this License, for material you add to a
-covered work, you may (if authorized by the copyright holders of that material)
-supplement the terms of this License with terms:
-
-* **a)** Disclaiming warranty or limiting liability differently from the terms of
-sections 15 and 16 of this License; or
-* **b)** Requiring preservation of specified reasonable legal notices or author
-attributions in that material or in the Appropriate Legal Notices displayed by works
-containing it; or
-* **c)** Prohibiting misrepresentation of the origin of that material, or requiring that
-modified versions of such material be marked in reasonable ways as different from the
-original version; or
-* **d)** Limiting the use for publicity purposes of names of licensors or authors of the
-material; or
-* **e)** Declining to grant rights under trademark law for use of some trade names,
-trademarks, or service marks; or
-* **f)** Requiring indemnification of licensors and authors of that material by anyone
-who conveys the material (or modified versions of it) with contractual assumptions of
-liability to the recipient, for any liability that these contractual assumptions
-directly impose on those licensors and authors.
-
-All other non-permissive additional terms are considered “further
-restrictions” within the meaning of section 10. If the Program as you received
-it, or any part of it, contains a notice stating that it is governed by this License
-along with a term that is a further restriction, you may remove that term. If a
-license document contains a further restriction but permits relicensing or conveying
-under this License, you may add to a covered work material governed by the terms of
-that license document, provided that the further restriction does not survive such
-relicensing or conveying.
-
-If you add terms to a covered work in accord with this section, you must place, in
-the relevant source files, a statement of the additional terms that apply to those
-files, or a notice indicating where to find the applicable terms.
-
-Additional terms, permissive or non-permissive, may be stated in the form of a
-separately written license, or stated as exceptions; the above requirements apply
-either way.
-
-### 8. Termination
-
-You may not propagate or modify a covered work except as expressly provided under
-this License. Any attempt otherwise to propagate or modify it is void, and will
-automatically terminate your rights under this License (including any patent licenses
-granted under the third paragraph of section 11).
-
-However, if you cease all violation of this License, then your license from a
-particular copyright holder is reinstated **(a)** provisionally, unless and until the
-copyright holder explicitly and finally terminates your license, and **(b)** permanently,
-if the copyright holder fails to notify you of the violation by some reasonable means
-prior to 60 days after the cessation.
-
-Moreover, your license from a particular copyright holder is reinstated permanently
-if the copyright holder notifies you of the violation by some reasonable means, this
-is the first time you have received notice of violation of this License (for any
-work) from that copyright holder, and you cure the violation prior to 30 days after
-your receipt of the notice.
-
-Termination of your rights under this section does not terminate the licenses of
-parties who have received copies or rights from you under this License. If your
-rights have been terminated and not permanently reinstated, you do not qualify to
-receive new licenses for the same material under section 10.
-
-### 9. Acceptance Not Required for Having Copies
-
-You are not required to accept this License in order to receive or run a copy of the
-Program. Ancillary propagation of a covered work occurring solely as a consequence of
-using peer-to-peer transmission to receive a copy likewise does not require
-acceptance. However, nothing other than this License grants you permission to
-propagate or modify any covered work. These actions infringe copyright if you do not
-accept this License. Therefore, by modifying or propagating a covered work, you
-indicate your acceptance of this License to do so.
-
-### 10. Automatic Licensing of Downstream Recipients
-
-Each time you convey a covered work, the recipient automatically receives a license
-from the original licensors, to run, modify and propagate that work, subject to this
-License. You are not responsible for enforcing compliance by third parties with this
-License.
-
-An “entity transaction” is a transaction transferring control of an
-organization, or substantially all assets of one, or subdividing an organization, or
-merging organizations. If propagation of a covered work results from an entity
-transaction, each party to that transaction who receives a copy of the work also
-receives whatever licenses to the work the party's predecessor in interest had or
-could give under the previous paragraph, plus a right to possession of the
-Corresponding Source of the work from the predecessor in interest, if the predecessor
-has it or can get it with reasonable efforts.
-
-You may not impose any further restrictions on the exercise of the rights granted or
-affirmed under this License. For example, you may not impose a license fee, royalty,
-or other charge for exercise of rights granted under this License, and you may not
-initiate litigation (including a cross-claim or counterclaim in a lawsuit) alleging
-that any patent claim is infringed by making, using, selling, offering for sale, or
-importing the Program or any portion of it.
-
-### 11. Patents
-
-A “contributor” is a copyright holder who authorizes use under this
-License of the Program or a work on which the Program is based. The work thus
-licensed is called the contributor's “contributor version”.
-
-A contributor's “essential patent claims” are all patent claims owned or
-controlled by the contributor, whether already acquired or hereafter acquired, that
-would be infringed by some manner, permitted by this License, of making, using, or
-selling its contributor version, but do not include claims that would be infringed
-only as a consequence of further modification of the contributor version. For
-purposes of this definition, “control” includes the right to grant patent
-sublicenses in a manner consistent with the requirements of this License.
-
-Each contributor grants you a non-exclusive, worldwide, royalty-free patent license
-under the contributor's essential patent claims, to make, use, sell, offer for sale,
-import and otherwise run, modify and propagate the contents of its contributor
-version.
-
-In the following three paragraphs, a “patent license” is any express
-agreement or commitment, however denominated, not to enforce a patent (such as an
-express permission to practice a patent or covenant not to sue for patent
-infringement). To “grant” such a patent license to a party means to make
-such an agreement or commitment not to enforce a patent against the party.
-
-If you convey a covered work, knowingly relying on a patent license, and the
-Corresponding Source of the work is not available for anyone to copy, free of charge
-and under the terms of this License, through a publicly available network server or
-other readily accessible means, then you must either **(1)** cause the Corresponding
-Source to be so available, or **(2)** arrange to deprive yourself of the benefit of the
-patent license for this particular work, or **(3)** arrange, in a manner consistent with
-the requirements of this License, to extend the patent license to downstream
-recipients. “Knowingly relying” means you have actual knowledge that, but
-for the patent license, your conveying the covered work in a country, or your
-recipient's use of the covered work in a country, would infringe one or more
-identifiable patents in that country that you have reason to believe are valid.
-
-If, pursuant to or in connection with a single transaction or arrangement, you
-convey, or propagate by procuring conveyance of, a covered work, and grant a patent
-license to some of the parties receiving the covered work authorizing them to use,
-propagate, modify or convey a specific copy of the covered work, then the patent
-license you grant is automatically extended to all recipients of the covered work and
-works based on it.
-
-A patent license is “discriminatory” if it does not include within the
-scope of its coverage, prohibits the exercise of, or is conditioned on the
-non-exercise of one or more of the rights that are specifically granted under this
-License. You may not convey a covered work if you are a party to an arrangement with
-a third party that is in the business of distributing software, under which you make
-payment to the third party based on the extent of your activity of conveying the
-work, and under which the third party grants, to any of the parties who would receive
-the covered work from you, a discriminatory patent license **(a)** in connection with
-copies of the covered work conveyed by you (or copies made from those copies), or **(b)**
-primarily for and in connection with specific products or compilations that contain
-the covered work, unless you entered into that arrangement, or that patent license
-was granted, prior to 28 March 2007.
-
-Nothing in this License shall be construed as excluding or limiting any implied
-license or other defenses to infringement that may otherwise be available to you
-under applicable patent law.
-
-### 12. No Surrender of Others' Freedom
-
-If conditions are imposed on you (whether by court order, agreement or otherwise)
-that contradict the conditions of this License, they do not excuse you from the
-conditions of this License. If you cannot convey a covered work so as to satisfy
-simultaneously your obligations under this License and any other pertinent
-obligations, then as a consequence you may not convey it at all. For example, if you
-agree to terms that obligate you to collect a royalty for further conveying from
-those to whom you convey the Program, the only way you could satisfy both those terms
-and this License would be to refrain entirely from conveying the Program.
-
-### 13. Use with the GNU Affero General Public License
-
-Notwithstanding any other provision of this License, you have permission to link or
-combine any covered work with a work licensed under version 3 of the GNU Affero
-General Public License into a single combined work, and to convey the resulting work.
-The terms of this License will continue to apply to the part which is the covered
-work, but the special requirements of the GNU Affero General Public License, section
-13, concerning interaction through a network will apply to the combination as such.
-
-### 14. Revised Versions of this License
-
-The Free Software Foundation may publish revised and/or new versions of the GNU
-General Public License from time to time. Such new versions will be similar in spirit
-to the present version, but may differ in detail to address new problems or concerns.
-
-Each version is given a distinguishing version number. If the Program specifies that
-a certain numbered version of the GNU General Public License “or any later
-version” applies to it, you have the option of following the terms and
-conditions either of that numbered version or of any later version published by the
-Free Software Foundation. If the Program does not specify a version number of the GNU
-General Public License, you may choose any version ever published by the Free
-Software Foundation.
-
-If the Program specifies that a proxy can decide which future versions of the GNU
-General Public License can be used, that proxy's public statement of acceptance of a
-version permanently authorizes you to choose that version for the Program.
-
-Later license versions may give you additional or different permissions. However, no
-additional obligations are imposed on any author or copyright holder as a result of
-your choosing to follow a later version.
-
-### 15. Disclaimer of Warranty
-
-THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.
-EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
-PROVIDE THE PROGRAM “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER
-EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE
-QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE
-DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
-
-### 16. Limitation of Liability
-
-IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY
-COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR CONVEYS THE PROGRAM AS
-PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, SPECIAL,
-INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE
-PROGRAM (INCLUDING BUT NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE
-OR LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE
-WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
-POSSIBILITY OF SUCH DAMAGES.
-
-### 17. Interpretation of Sections 15 and 16
-
-If the disclaimer of warranty and limitation of liability provided above cannot be
-given local legal effect according to their terms, reviewing courts shall apply local
-law that most closely approximates an absolute waiver of all civil liability in
-connection with the Program, unless a warranty or assumption of liability accompanies
-a copy of the Program in return for a fee.
-
-_END OF TERMS AND CONDITIONS_
-
-## How to Apply These Terms to Your New Programs
-
-If you develop a new program, and you want it to be of the greatest possible use to
-the public, the best way to achieve this is to make it free software which everyone
-can redistribute and change under these terms.
-
-To do so, attach the following notices to the program. It is safest to attach them
-to the start of each source file to most effectively state the exclusion of warranty;
-and each file should have at least the “copyright” line and a pointer to
-where the full notice is found.
-
-    <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) <year>  <name of author>
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-Also add information on how to contact you by electronic and paper mail.
-
-If the program does terminal interaction, make it output a short notice like this
-when it starts in an interactive mode:
-
-    <program>  Copyright (C) <year>  <name of author>
-    This program comes with ABSOLUTELY NO WARRANTY; for details type 'show w'.
-    This is free software, and you are welcome to redistribute it
-    under certain conditions; type 'show c' for details.
-
-The hypothetical commands `show w` and `show c` should show the appropriate parts of
-the General Public License. Of course, your program's commands might be different;
-for a GUI interface, you would use an “about box”.
-
-You should also get your employer (if you work as a programmer) or school, if any, to
-sign a “copyright disclaimer” for the program, if necessary. For more
-information on this, and how to apply and follow the GNU GPL, see
-&lt;<http://www.gnu.org/licenses/>&gt;.
-
-The GNU General Public License does not permit incorporating your program into
-proprietary programs. If your program is a subroutine library, you may consider it
-more useful to permit linking proprietary applications with the library. If this is
-what you want to do, use the GNU Lesser General Public License instead of this
-License. But first, please read
-&lt;<http://www.gnu.org/philosophy/why-not-lgpl.html>&gt;.
+# License
+Copyright (C) Pimcore GmbH (https://www.pimcore.com)
+
+This software is available under the terms of the
+following Pimcore Open Core License (POCL)
+
+
+**PIMCORE OPEN CORE LICENSE AGREEMENT (POCL)**
+
+**Last Update: June 2025**
+
+This Open Core License Agreement ("**Agreement**" or “**POCL**”), effective as of the day of the first installation or use by Customer (the "**Effective Date**"), is by and between Pimcore GmbH, Söllheimer Straße 16, AT-5020 Salzburg, Republic of Austria (hereinafter "**Licensor**" or “**Pimcore**”) and the user of the Software, as defined herein, (hereinafter "**Licensee**" or "**Customer**"). Licensor and Licensee may be referred to herein collectively as the "**Parties**" or individually as a "**Party**."
+
+**WHEREAS** Licensor desires to license out certain Pimcore Software (“**Software**“).
+
+**WHEREAS** (a) Software for which the source code is publicly available but which is not licensed out as open source software is "**Open Core Software**" and
+    (b) Software for which the source code is not publicly available is "**Proprietary Software**",
+    both covered by this Agreement.
+
+**WHEREAS** the exact products that are available under this Agreement are defined in the additional contractual documents or by inclusion of, or referral to, this Agreement within the source code or within the source code repositories; if not provided for otherwise, a software element is Proprietary Software.
+
+**WHEREAS** the Software is protected by copyright world- wide; and
+
+**WHEREAS** Licensee desires to obtain a license to use the Software for its internal business purposes, subject to the terms and conditions of this Agreement.
+
+**NOW, THEREFORE**, in consideration of the mutual covenants, terms, and conditions set forth herein, and for other good and valuable consideration, the receipt and sufficiency of which are hereby acknowledged, the Parties agree as follows.
+
+### 1. LICENSE
+1.1 PLEASE READ THIS PIMCORE SOFTWARE LICENSE AGREEMENT CAREFULLY AS IT CONSTITUTES A LEGALLY BINDING AGREEMENT. BY INSTALLING OR USING THE SOFTWARE, YOU ACCEPT AND AGREE TO ALL TERMS AND CONDITIONS OF THIS AGREEMENT, AND CONFIRM THAT YOUR STATEMENT – IF APPLICABLE – ON THE RELEVANT GLOBAL REVENUE IS CORRECT AND COMPLETE. IF YOU REPRESENT A LEGAL ENTITY, YOU REPRESENT AND WARRANT THAT YOU HAVE FULL LEGAL AUTHORITY TO ENTER INTO THIS AGREEMENT TO BIND THAT LEGAL ENTITY. IF YOU DO NOT AGREE TO THESE TERMS AND CONDITIONS, YOU MAY NOT INSTALL OR USE THE SOFTWARE.
+
+1.2 Pimcore grants the Customer a non-exclusive, non-transferable, non-sublicensable, geographically unlimited right, limited in time to the term of the Agreement, to use the Software and to customize, modify or adapt it for its own purposes. Unless if required by Pimcore for compliance with applicable laws or any order of a governmental authority, the Customer is not obliged to share these modifications, adaptations, and customizations (“**Derivatives**”) with Pimcore or anyone else.
+
+1.2.1 Solution Development and Production Use (Open Core Software)
+
+“**Production Use**” means the usage of a software for development of solutions and productions within a business operation.
+
+a) An organization with total global revenue not exceeding €5 million (€5M) or equivalent amount in other currency annually (“**Threshold**”) may qualify for a free license for Production Use of the Open Core Software, provided such organization is not a part, subsidiary, affiliate, or shell company to another organization, entity, or company group whose total combined revenue exceeds the Threshold. Eligibility must be self-certified by the Customer when starting the use of the Open Core Software and is subject to periodic review and audit by Pimcore. If at any time the Customer’s revenue exceeds the Threshold, a paid commercial license will be required for continued Production Use of the software. The Customer is obliged to inform Pimcore about relevant changes in revenues. Pimcore is entitled to charge license fees retroactively from the date on which Customer exceeded the Threshold.
+
+b) Non-profit and educational organizations are eligible for a free license for Production Use of the Open Core Software, subject to Pimcore’s non-profit criteria. For this purpose, “non-profit” refers to entities that are legally recognized as non-profit or tax-exempt under applicable law and operate exclusively for charitable, educational, or scientific purposes without profit distribution. Government bodies, municipalities, political parties, and public institutions are excluded unless explicitly approved by Pimcore.
+
+Pimcore shall decide at its own reasonable discretion whether (a) the Threshold is exceeded or (b) the requirements for non-profit or educational usage are met. Legal recourse is excluded with regard to such decision of Pimcore.
+
+1.2.2 Non-Production Use and Transition to Production Use (Open Core Software)
+
+For non-production purposes—such as demonstrations, prototype design, proofs of concept, and sales presentations (collectively referred to as “**Non-Production Use**”)—the use of POCL-based software is free of charge. However, to showcase or demonstrate the features of the Enterprise Edition of Pimcore for any Non-Production Use, a Pimcore Developer License Agreement (PDLA) must be purchased.
+
+If the Customer or a Partner or any other third person acting on the Customer’s behalf initiates development of a solution with the intention or foreseeable or actual effect of deploying it into production, such use from its beginning shall be deemed Production Use of the Open Core Software for which the Threshold applies from the outset. Individual transition periods to Production Use may be agreed between Pimcore and Customer in writing.
+
+Pimcore reserves the right to audit, verify and enforce compliance with these terms, including restricting or terminating access to the Open Core Software.
+
+1.2.3 The use of Proprietary Software is never free of charge. Sect. 1.2.1 and 1.2.2 do not apply to Proprietary Software.
+
+1.3 Restrictions on Use
+
+1.3.1 The Customer may not offer the Software as a hosted or managed service by granting third parties access to a significant part of its features or functions. Additionally, the Customer may not fork, modify, or redistribute the Software, or any Derivative, in a manner that results in a competing or functionally comparable product that is offered as a free or commercial alternative to Pimcore’s official offerings.
+
+1.3.2 The Customer shall also refrain from incorporating the Software, or any Derivative, into a commercial product or service offering materially deriving its economic value from the Software, even if it is not directly exposed or obvious.
+
+1.3.3 The Customer is also prohibited from representing, implying, or otherwise suggesting that its use, distribution, or customization of the Software is endorsed, certified, or supported by Pimcore, unless such authorization has been explicitly granted in writing.
+
+1.3.4 The Customer may only use the Software for its own enterprise. The Customer may not use the Software simultaneously in more instances than Customer has acquired usage licences for. The Customer is only permitted to copy the Software to the extent that this is necessary for the intended use, including the correction of errors. The creation of a backup copy is permitted if it is necessary to secure the contractual use.
+
+1.3.5 The Customer must not, at any time, (i) rent, lease, lend, sell, license, assign, distribute, publish, transfer, or otherwise make available the Software; (ii) reverse engineer, disassemble, decompile, decode, adapt, or otherwise attempt to derive or gain access to source code of the Proprietary Software, in whole or in part; (iii) use the Software in any manner or for any purpose that infringes, misappropriate, or otherwise wireless any intellectual property ride or other ride of any person, or that violates any applicable law.
+
+1.4 If the Customer violates any of the provisions Sect. 1.2 and 1.3, all rights of usage granted under the POCL shall immediately become invalid and shall automatically revert to Pimcore. In this case, the Customer must immediately and completely cease using the Software, delete all copies of the Software installed on its systems and delete any backup copies made or hand them over to Pimcore. In addition, Pimcore reserves the right to take all legal steps.
+
+1.5 Sect. 1.4 applies accordingly if a Derivative of the Customer infringe upon patents.
+
+1.6 The parties may agree on expanded usage rights, arrangements for enterprise customers, and special OEM provisions separately.
+
+1.7 Upon request, the Customer shall enable Pimcore to verify the proper use of the Software, in particular whether the Customer is using the Software as agreed. For this purpose, the Customer shall provide Pimcore with information, grant access to relevant documents and records and enable an audit of the hardware and software environment by Pimcore or an auditing company named by Pimcore and acceptable to the Customer. Pimcore may carry out the audit on the Customer's premises during the Customer's regular business hours or have it carried out by third parties bound to secrecy. Pimcore shall ensure that the Customer's business operations are disturbed as little as possible by the on-site audit. If the inspection reveals a licence violation by the Customer that is not merely minimal, the Customer shall bear the costs of the inspection, otherwise Pimcore shall bear them. Pimcore reserves all other rights.
+
+1.8 Licensee acknowledges that, as between Licensee and Licensor, Licensor owns all right, title, and interest, including all intellectual property rights, in and to the Software and, with respect to third-party products, the applicable third-party licensors own all right, title and interest, including all intellectual property rights, in and to the third-party products.
+
+1.9 Licensor reserves all rights not expressly granted to Licensee in this Agreement. Except for the limited rights and licenses expressly granted under this Agreement, nothing in this Agreement grants, by implication, waiver, estoppel, or otherwise, to Licensee or any third party any intellectual property rights or other right, title, or interest in or to the Software.
+
+### 2. CONTRIBUTIONS OF DERIVATIVES
+2.1 If the Customer wishes to contribute to the Software or to distribute a Derivative, both must be made in accordance with the Pimcore Contributors License Agreement (“PCLA”), available at <https://github.com/pimcore/pimcore/blob/12.x/CLA.md>. The PCLA stipulates the terms under which intellectual contributions are managed, ensuring that all parties' rights are protected. Acceptance of the PCLA is mandatory for all contributors and can be reviewed on the source-code repository. Contributions without adherence to the PCLA will not be accepted.
+
+2.2 Any contribution to the Software by a Derivative must be clearly documented, in order to maintain transparency and integrity of the source code.
+
+2.3. Any Derivative distributed must prominently be specified as “Derivative”, comply with the terms of the POCL, include copyright notices, and be licensed as a whole under the terms of the POCL, with the proviso that the recipient (licensee) of the out-licensed Derivative gets the role of the “Customer” regarding rights and obligations. Upon distribution of any Derivative, recipient must be provided with a copy of this POCL.
+
+### 3. COLLATERAL OBLIGATIONS OF THE CUSTOMER
+
+3.1 The Customer shall not manipulate, in particular modify, move, remove, suppress, switch off or circumvent licence keys and technical protection mechanisms in the Software, e. g. directly, or through the use of intermediaries, white-labelling, or segmentation of services designed to avoid licensing obligations.
+
+3.2 The Customer shall not alter or obfuscate any of the Pimcore's licensing, copyright, or other proprietary notices within the Software. Any use of Pimcore’s trademarks must comply with applicable laws.
+
+3.3 The Customer shall not modify, relocate, disable, or bypass any functionalities associated with the Pimcore Store.
+
+3.4 The Customer shall not (a) use GPLv3-licensed Pimcore software alongside POCL licensed Software, and shall not (b) revert from POCL to GPLv3, to protect the Customer’s rights in Derivatives.
+
+3.5 The Customer must ensure that the access data to the user accounts is not passed on to unauthorised third parties and is protected against unauthorised access by third parties. The authorised users shall be instructed accordingly. The Customer shall inform Pimcore immediately if there is a suspicion of misuse of the Software.
+
+3.6 If Customer infringes upon one of the provisions set up by Sect. 3.1 through 3.5, Sect. 1.4 sentence 1 applies accordingly.
+
+### 4. CONFIDENTIALITY
+
+From time to time during the Term, either Party may disclose or make available to the other Party information about its business affairs, products, confidential intellectual property, trade secrets, third-party confidential information, and other sensitive or proprietary information, whether orally or in written, electronic, or other form or media, and whether or not marked, designated or otherwise identified as "confidential" (collectively, "**Confidential Information**"). Confidential Information does not include information that, at the time of disclosure is: (a) in the public domain; (b) known to the receiving Party at the time of disclosure; (c) rightfully obtained by the receiving Party on a non-confidential basis from a third party; or (d) independently developed by the receiving Party. The receiving Party shall not disclose the disclosing Party's Confidential Information to any person or entity, except to the receiving Party's employees who have a need to know the Confidential Information for the receiving Party to exercise its rights or perform its obligations hereunder. Notwithstanding the foregoing, each Party may disclose Confidential Information to the limited extent required (i) in order to comply with the order of a court or other governmental body, or as otherwise necessary to comply with applicable law, provided that the Party making the disclosure pursuant to the order shall first have given written notice to the other Party and made a reasonable effort to obtain a protective order; or (ii) to establish a Party's rights under this Agreement, including to make required court filings. On the expiration or termination of this Agreement, the receiving Party shall promptly return to the disclosing Party all copies, whether in written, electronic, or other form or media, of the disclosing Party's Confidential Information, or destroy all such copies and certify in writing to the disclosing Party that such Confidential Information has been destroyed. Each Party's obligations of non­disclosure with regard to Confidential Information are effective as of the Effective Date and will expire five years from the date first disclosed to the receiving Party; provided, however, with respect to any Confidential Information that constitutes a trade secret (as determined under applicable law), such obligations of non-disclosure will survive the termination or expiration of this Agreement for as long as such Confidential Information remains subject to trade secret protection under applicable law.
+
+### 5. LIMITED WARRANTY AND WARRANTY DISCLAIMER
+
+Pimcore warrants that, at the time of delivery, the Software does not contain any virus or other malicious code that would cause the Software to become inoperable or incapable of being used in accordance with its documentation. The warranties set forth herein do not apply and become null and void if Licensee breaches any material provision of this Agreement or any instrument related hereto, or if Licensee, or any person provided access to the Software by Licensee whether or not in violation of this Agreement: (i) installs or uses the Software on or in connection with any hardware or software not specified in the documentation or expressly authorized by Licensor in writing; (ii) illicitly modifies or damages the Software; or (iii) misuses the Software, including any use of the Software other than as specified in the documentation or expressly authorized by Licensor in writing. If any Software fails to comply with the warranty set forth hereinbefore, and such failure is not excluded from warranty pursuant to this provision, Licensor shall, subject to Licensee's promptly notifying Licensor in writing of such failure, at its sole option, either: (i) repair or replace the Software, provided that Licensee provides Licensor with all information Licensor reasonably requests to resolve the reported failure, including sufficient information to enable the Licensor to recreate such failure; or (ii) refund the fees paid for such Software, subject to Licensee's ceasing all use of and, if requested by Licensor, returning to Licensor all copies of the Software. If Licensor repairs or replaces the Software, the warranty will continue to run from the Effective Date and not from Licensee's receipt of the repair or replacement. The remedies set forth in this Section 5 are Licensee's sole remedies and Licensor's sole liability under the limited warranty set forth in this Section 5.
+
+EXCEPT FOR THE LIMITED WARRANTY SET FORTH IN THIS SECTION 5, THE SOFTWARE AND DOCUMENTATION ARE PROVIDED "AS IS" AND LICENSOR HEREBY DISCLAIMS ALL WARRANTIES, WHETHER EXPRESS, IMPLIED, STATUTORY, OR OTHERWISE. LICENSOR SPECIFICALLY DISCLAIMS ALL IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT, AND ALL WARRANTIES ARISING FROM COURSE OF DEALING, USAGE, OR TRADE PRACTICE. LICENSOR MAKES NO WARRANTY OF ANY KIND THAT THE SOFTWARE AND DOCUMENTATION, OR ANY PRODUCTS OR RESULTS OF THE USE THEREOF, WILL MEET LICENSEE'S OR ANY OTHER PERSON'S REQUIREMENTS, OPERATE WITHOUT INTERRUPTION, ACHIEVE ANY INTENDED RESULT, BE COMPATIBLE OR WORK WITH ANY SOFTWARE, SYSTEM OR OTHER SERVICES, OR BE SECURE, ACCURATE, COMPLETE, FREE OF HARMFUL CODE, OR ERROR FREE.
+
+### 6. DEFECTS
+
+6.1 The Customer is obliged to notify Pimcore of any defect or error in the Software immediately after its occurrence.
+
+6.2 Before reporting any defect or error, the Customer must carry out an analysis of the system environment as far as possible to ensure that the defect or error is not due to system components that are not covered by this Agreement.
+
+6.3 The Customer shall immediately install or carry out updates or other troubleshooting measures provided by Pimcore.
+
+6.4 Violations of the obligations to co-operate may result in additional costs for Pimcore. The Customer must reimburse Pimcore for such costs, unless it is not responsible for them.
+
+### 7. LIMITATION OF LIABILITY
+
+IN NO EVENT WILL LICENSOR BE LIABLE UNDER OR IN CONNECTION WITH THIS AGREEMENT UNDER ANY LEGAL OR EQUITABLE THEORY, INCLUDING BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY, AND OTHERWISE, FOR ANY: (a) CONSEQUENTIAL, INCIDENTAL, INDIRECT, EXEMPLARY, SPECIAL, ENHANCED, OR PUNITIVE DAMAGES; (b) INCREASED COSTS, DIMINUTION IN VALUE OR LOST BUSINESS, PRODUCTION, REVENUES, OR PROFITS; (c) LOSS OF GOODWILL OR REPUTATION; (d) USE, INABILITY TO USE, LOSS, INTERRUPTION, DELAY OR RECOVERY OF ANY DATA, OR BREACH OF DATA OR SYSTEM SECURITY; OR (e) COST OF REPLACEMENT GOODS OR SERVICES, IN EACH CASE REGARDLESS OF WHETHER LICENSOR WAS ADVISED OF THE POSSIBILITY OF SUCH LOSSES OR DAMAGES OR SUCH LOSSES OR DAMAGES WERE OTHERWISE FORESEEABLE.
+
+IN NO EVENT WILL LICENSOR'S AGGREGATE LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT UNDER ANY LEGAL OR EQUITABLE THEORY, INCLUDING BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE), STRICT LIABILITY, AND OTHERWISE EXCEED THE TOTAL AMOUNTS PAID TO LICENSOR UNDER THIS AGREEMENT IN THE TWELVE (12) MONTH PERIOD PRECEDING THE EVENT GIVING RISE TO THE CLAIM.
+
+### 8. INDEMNIFICATION
+
+The Customer shall indemnify Pimcore and its affiliates, officers, directors, employees, agents, and assigns, from and against all claims, losses, damages, liabilities, costs, and expenses (including reasonable attorney’s fees and costs) against Pimcore arising out of or relating to the Customer’s use of the Software or Derivatives.
+
+### 9. TERMINATION
+
+Term and termination will be regulated separately. If Customer uses the Software in violation of this Agreement or otherwise violates the use rights or prohibitions contained in this Agreement, Customer’s License shall automatically terminate. Upon termination of this Agreement, the Customer shall uninstall the Software, including all copies, and delete any remaining Software residues from its IT system. The Customer must destroy any backup copies made. At Pimcore's request, the Customer must confirm that it has fulfilled these obligations.
+
+### 10. REMUNERATION
+
+The remuneration for the use of the software shall be agreed separately.
+
+### 11. MISCELLANEOUS
+
+11.1 The Software may automatically collect and transmit non-personal statistical data related to its installation and use, including but not limited to the number of records in the database, installed modules, system configuration, and usage metrics ("Usage Data"). Such data is collected solely for the purposes of product improvement, support, and analytics. Licensee agrees not to interfere with the collection and transmission of Usage Data.
+
+11.2 Licensee may not assign or transfer any of its rights or delegate any of its obligations hereunder, in each case whether voluntarily, involuntarily, by operation of law or otherwise, without the prior written consent of Licensor. Any purported assignment, transfer, or delegation in violation of this Section is null and void. No assignment, transfer, or delegation will relieve the assigning or delegating Party of any of its obligations hereunder. This Agreement is binding upon and inures to the benefit of the Parties hereto and their respective permitted successors and assigns.
+
+11.3 Each Party acknowledges and agrees that a breach or threatened breach by such Party of any of its contractual obligations may cause the other Party irreparable harm for which monetary damages would not be an adequate remedy and agrees that, in the event of such breach or threatened breach, the other Party will be entitled to equitable relief, including a restraining order, an injunction, specific performance, and any other relief that may be available from any court, without any requirement to post a bond or other security, or to prove actual damages or that monetary damages are not an adequate remedy. Such remedies are not exclusive and are in addition to all other remedies that may be available at law, in equity, or otherwise.
+
+11.4 No amendment to or modification of this Agreement is effective unless it is in writing and signed by an authorized representative of each Party. No waiver by any Party of any of the provisions hereof will be effective unless explicitly set forth in writing and signed by the Party so waiving. Except as otherwise set forth in this Agreement, (i) no failure to exercise, or delay in exercising, any rights, remedy, power, or privilege arising from this Agreement will operate or be construed as a waiver thereof, and (ii) no single or partial exercise of any right, remedy, power, or privilege hereunder will preclude any other or further exercise thereof or the exercise of any other right, remedy, power, or privilege.
+
+11.5 If any provision of this Agreement is invalid, illegal, or unenforceable in any jurisdiction, such invalidity, illegality, or unenforceability will not affect any other term or provision of this Agreement or invalidate or render unenforceable such term or provision in any other jurisdiction. Upon such determination that any term or other provision is invalid, illegal, or unenforceable, the Parties hereto shall negotiate in good faith to modify this Agreement so as to effect the original intent of the Parties as closely as possible in a mutually acceptable manner in order that the transactions contemplated hereby be consummated as originally contemplated to the greatest extent possible.
+
+11.6 In all relevant respects that are not regulated by this Agreement, the following documents shall apply, as far as applicable:
+
+- Pimcore Terms & Conditions, available at [<https://pimcore.com/en/about/gtc>]
+- Pimcore Privacy Statement (PPS)
+- Pimcore Data Processing Agreement (PDPA)
+- Pimcore PaaS Terms & Conditions
+
+11.7 Specifications originating from the Customer regarding the service content and legal elements, such as GTC or contractual clauses, do not apply.
+
+11.8 Support, maintenance, and other services remain subject to separate agreements.

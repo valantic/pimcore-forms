@@ -98,6 +98,6 @@ public function contactAction(\Valantic\PimcoreFormsBundle\Service\FormService $
 
 ## License
 
-In order to comply with [Pimcore's updated licensing policy](https://pimcore.com/en/resources/blog/breaking-free-pimcore-says-goodbye-to-gpl-and-enters-a-new-era-with-pocl), this bundle is (now) published under the GPLv3 license for compatibility Pimcore Platform Version 2024.4 and will be re-licensed under the POCL license as soon as it is compatible with Pimcore Platform Version 2025.1.
+In order to comply with [Pimcore's updated licensing policy](https://pimcore.com/en/resources/blog/breaking-free-pimcore-says-goodbye-to-gpl-and-enters-a-new-era-with-pocl), this bundle is now re-licensed under the POCL license.
 
 If you have any questiosn regarding licensing, please reach out to us at [info@cec.valantic.ch](mailto:info@cec.valantic.ch).

@@ -11,10 +11,7 @@ class ApiResponse extends JsonResponse
     /**
      * @param string|array<mixed>|null $data
      * @param array<string,mixed>|array<array<string,mixed>> $messages
-     * @param int $status
-     * @param string|null $redirectUrl
      * @param array<string,mixed> $headers
-     * @param bool $isJson
      */
     public function __construct(
         $data = null,
@@ -22,7 +19,7 @@ class ApiResponse extends JsonResponse
         int $status = self::HTTP_OK,
         ?string $redirectUrl = null,
         array $headers = [],
-        bool $isJson = false
+        bool $isJson = false,
     ) {
         // messages needs to be an array of messages
         // for convenience, a single message can be passed

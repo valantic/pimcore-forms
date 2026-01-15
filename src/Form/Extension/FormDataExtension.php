@@ -10,7 +10,6 @@ use Symfony\Component\Form\FormInterface;
 class FormDataExtension implements ExtensionInterface
 {
     /**
-     * @param FormInterface $form
      * @param array<mixed> $schema
      *
      * @return array<mixed>

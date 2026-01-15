@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormInterface;
 
 class FileTransformer extends StringTransformer
 {
+    #[\Override]
     public function transform(FormInterface $form, array $extensions = [], $widget = null): array
     {
         $schema = ['type' => 'file'];

@@ -12,7 +12,6 @@ use Symfony\Component\Form\FormInterface;
 class ChoiceTypeExtension implements ExtensionInterface
 {
     /**
-     * @param FormInterface $form
      * @param array<mixed> $schema
      *
      * @return array<mixed>
@@ -29,12 +28,12 @@ class ChoiceTypeExtension implements ExtensionInterface
         foreach ($choices as $key => $choice) {
             $camelCaseKeys = array_map(
                 fn (string $key): string => lcfirst(str_replace('-', '', ucwords($key, '-'))), // https://stackoverflow.com/a/2792045
-                array_keys($choice->attr)
+                array_keys($choice->attr),
             );
 
             $choice->attr = array_combine(
                 $camelCaseKeys,
-                array_values($choice->attr)
+                array_values($choice->attr),
             );
             $choices[$key] = $choice;
         }

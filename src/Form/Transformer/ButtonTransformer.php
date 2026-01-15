@@ -11,6 +11,7 @@ class ButtonTransformer extends AbstractTransformer
 {
     use OverwriteAbstractTransformerTrait;
 
+    #[\Override]
     public function isRequired(FormInterface $form): bool
     {
         return false;

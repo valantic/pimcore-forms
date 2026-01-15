@@ -1,2 +1,4 @@
-forms:
-  resource: "@ValanticPimcoreFormsBundle/Resources/config/routing.yml"
+valantic_app_usage:
+  resource: "@ValanticPimcoreFormsBundle/Controller/"
+  type: attribute
+  prefix: /valantic-forms

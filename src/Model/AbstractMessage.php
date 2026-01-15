@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace Valantic\PimcoreFormsBundle\Model;
 
-use Iterator;
-
 /**
- * @implements Iterator<string, mixed>
+ * @implements \Iterator<string, mixed>
  */
 abstract class AbstractMessage implements \JsonSerializable, \Iterator, \Stringable
 {
@@ -17,6 +15,16 @@ abstract class AbstractMessage implements \JsonSerializable, \Iterator, \Stringa
     {
         return (string) json_encode($this->jsonSerialize(), \JSON_THROW_ON_ERROR);
     }
+
+    /**
+     * @return array<mixed>
+     */
+    abstract protected function requiredAttributes(): array;
+
+    /**
+     * @return array<mixed>
+     */
+    abstract protected function optionalAttributes(): array;
 
     /**
      * @return array<mixed>
@@ -87,14 +95,4 @@ abstract class AbstractMessage implements \JsonSerializable, \Iterator, \Stringa
     {
         return array_keys($this->arraySerialize());
     }
-
-    /**
-     * @return array<mixed>
-     */
-    abstract protected function requiredAttributes(): array;
-
-    /**
-     * @return array<mixed>
-     */
-    abstract protected function optionalAttributes(): array;
 }
