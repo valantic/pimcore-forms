@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -48,7 +49,7 @@ class Builder
      * @param array<string,mixed> $definition
      * @param array<string,mixed> $formConfig
      *
-     * @return array{string,array}
+     * @return array{class-string<FormTypeInterface>,array}
      */
     public function field(string $formName, array $definition, array $formConfig): array
     {
@@ -72,13 +73,18 @@ class Builder
         return $name;
     }
 
+    /**
+     * @return class-string<FormTypeInterface>
+     */
     protected function getType(string $name): string
     {
         if (!str_contains($name, '\\')) {
-            return sprintf('%s%s', Configuration::SYMFONY_FORMTYPES_NAMESPACE, $name);
+            $type = sprintf('%s%s', Configuration::SYMFONY_FORMTYPES_NAMESPACE, $name);
+        } else {
+            $type = $name;
         }
 
-        return $name;
+        return $type;
     }
 
     /**

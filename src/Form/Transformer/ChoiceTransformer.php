@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Valantic\PimcoreFormsBundle\Form\Transformer;
 
 use Symfony\Component\Form\ChoiceList\View\ChoiceGroupView;
+use Symfony\Component\Form\ChoiceList\View\ChoiceView;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -28,10 +29,12 @@ class ChoiceTransformer extends \Limenius\Liform\Transformer\ChoiceTransformer
         foreach ($formView->vars['choices'] as $choiceView) {
             if ($choiceView instanceof ChoiceGroupView) {
                 foreach ($choiceView->choices as $choiceItem) {
-                    $choices[] = $choiceItem->value;
-                    $titles[] = $choiceItem->label;
+                    if ($choiceItem instanceof ChoiceView) {
+                        $choices[] = $choiceItem->value;
+                        $titles[] = $choiceItem->label;
+                    }
                 }
-            } else {
+            } elseif ($choiceView instanceof ChoiceView) {
                 $choices[] = $choiceView->value;
                 $titles[] = $choiceView->label;
             }
