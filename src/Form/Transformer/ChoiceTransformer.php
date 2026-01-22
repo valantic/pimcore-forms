@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Valantic\PimcoreFormsBundle\Form\Transformer;
 
 use Symfony\Component\Form\ChoiceList\View\ChoiceGroupView;
+use Symfony\Component\Form\ChoiceList\View\ChoiceView;
 use Symfony\Component\Form\FormInterface;
 
 /**
@@ -17,19 +18,23 @@ class ChoiceTransformer extends \Limenius\Liform\Transformer\ChoiceTransformer
 {
     use OverwriteAbstractTransformerTrait;
 
+    #[\Override]
     public function transform(FormInterface $form, array $extensions = [], $widget = null): array
     {
         $formView = $form->createView();
 
         $choices = [];
         $titles = [];
+
         foreach ($formView->vars['choices'] as $choiceView) {
             if ($choiceView instanceof ChoiceGroupView) {
                 foreach ($choiceView->choices as $choiceItem) {
-                    $choices[] = $choiceItem->value;
-                    $titles[] = $choiceItem->label;
+                    if ($choiceItem instanceof ChoiceView) {
+                        $choices[] = $choiceItem->value;
+                        $titles[] = $choiceItem->label;
+                    }
                 }
-            } else {
+            } elseif ($choiceView instanceof ChoiceView) {
                 $choices[] = $choiceView->value;
                 $titles[] = $choiceView->label;
             }
@@ -83,7 +88,7 @@ class ChoiceTransformer extends \Limenius\Liform\Transformer\ChoiceTransformer
                     'enum_titles' => $titles,
                 ],
             ],
-            'minItems' => $this->isRequired($form) ? 1 : 0,
+            'minItems' => $this->isRequired($form) === true ? 1 : 0,
             'uniqueItems' => true,
             'type' => 'array',
         ];

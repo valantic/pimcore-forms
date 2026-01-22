@@ -21,10 +21,10 @@ use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
  */
 class ValanticPimcoreFormsExtension extends Extension
 {
-    final public const TAG_OUTPUT = 'valantic.pimcore_forms.output';
-    final public const TAG_REDIRECT_HANDLER = 'valantic.pimcore_forms.redirect_handler';
-    final public const TAG_INPUT_HANDLER = 'valantic.pimcore_forms.input_handler';
-    final public const TAG_CHOICES = 'valantic.pimcore_forms.choices';
+    final public const string TAG_OUTPUT = 'valantic.pimcore_forms.output';
+    final public const string TAG_REDIRECT_HANDLER = 'valantic.pimcore_forms.redirect_handler';
+    final public const string TAG_INPUT_HANDLER = 'valantic.pimcore_forms.input_handler';
+    final public const string TAG_CHOICES = 'valantic.pimcore_forms.choices';
 
     /**
      * @param array<mixed> $configs
@@ -42,12 +42,10 @@ class ValanticPimcoreFormsExtension extends Extension
         $container->registerForAutoconfiguration(InputHandlerInterface::class)->addTag(self::TAG_INPUT_HANDLER);
         $container->registerForAutoconfiguration(ChoicesInterface::class)->addTag(self::TAG_CHOICES);
 
-        $ymlLoader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $ymlLoader->load('services.yml');
-        $ymlLoader->load('transformers.yml');
-
-        $xmlLoader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $xmlLoader->load('liform_services.xml');
-        $xmlLoader->load('liform_transformers.xml');
+        $yamlLoader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $yamlLoader->load('services.yaml');
+        $yamlLoader->load('transformers.yaml');
+        $yamlLoader->load('liform_services.yaml');
+        $yamlLoader->load('liform_transformers.yaml');
     }
 }

@@ -46,7 +46,7 @@ class FormService
         ChoiceTypeExtension $choiceTypeExtension,
         HiddenTypeExtension $hiddenTypeExtension,
         FormDataExtension $formDataExtension,
-        protected RequestStack $requestStack
+        protected RequestStack $requestStack,
     ) {
         $liform->addExtension($formTypeExtension);
         $liform->addExtension($formNameExtension);
@@ -135,13 +135,19 @@ class FormService
      * Sample for a valid template string: '(%2$s) %1$s'
      * Sample result for example in German: '(Dateiupload) Die Datei ist gross (12MB), die maximal zulässige Grösse beträgt 10MB.'
      *
-     * @throws SerializerException
-     *
      * @return array<mixed>
+     *
+     * @throws SerializerException
      */
     public function errors(FormInterface $form): array
     {
-        return $this->errorNormalizer->normalize($form);
+        $normalized = $this->errorNormalizer->normalize($form);
+
+        if (!is_array($normalized)) {
+            throw new \RuntimeException();
+        }
+
+        return $normalized;
     }
 
     public function outputs(FormInterface $form): OutputResponse
@@ -150,6 +156,7 @@ class FormService
 
         $outputs = $this->getConfig($form->getName())['outputs'];
         $handlers = [];
+
         foreach ($outputs as $name => ['type' => $type, 'options' => $options]) {
             $output = $this->outputRepository->get($type);
             $output->initialize($name, $form, $options);
@@ -182,7 +189,7 @@ class FormService
      */
     protected function getConfig(string $name): array
     {
-        $config = $this->configurationRepository->get()['forms'][$name];
+        $config = $this->configurationRepository->get()['forms'][$name] ?? null;
 
         if (empty($config) || !is_array($config)) {
             throw new InvalidFormConfigException($name);

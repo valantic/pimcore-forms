@@ -38,7 +38,8 @@ trait OverwriteAbstractTransformerTrait
     protected function addAttr(FormInterface $form, array $schema): array
     {
         $attr = $form->getConfig()->getOption('attr');
-        if ($attr) {
+
+        if (!empty($attr)) {
             $schema['attr'] = $attr;
         }
 

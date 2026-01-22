@@ -1,42 +1,18 @@
 <?php
 
-$finder = PhpCsFixer\Finder::create()
-    ->notPath('DependencyInjection/Configuration.php')
-    ->in('src');
+require_once __DIR__ . '/vendor/autoload.php';
 
-return (new PhpCsFixer\Config())
-    ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
-    ->setRules([
-        '@Symfony' => true,
-        '@Symfony:risky' => true,
-        '@PHP80Migration' => true,
-        '@PHP80Migration:risky' => true,
-        'align_multiline_comment' => true,
-        'array_indentation' => true,
-        'array_syntax' => ['syntax' => 'short'],
-        'concat_space' => ['spacing' => 'one'],
-        'function_declaration' => ['closure_function_spacing' => 'none'],
-        'increment_style' => ['style' => 'post'],
-        'method_chaining_indentation' => true,
-        'multiline_comment_opening_closing' => true,
-        'native_function_invocation' => false,
-        'no_null_property_initialization' => true,
-        'no_superfluous_phpdoc_tags' => false,
-        'no_unset_on_property' => true,
-        'no_useless_else' => true,
-        'no_useless_return' => true,
-        'nullable_type_declaration_for_default_null_value' => true,
-        'operator_linebreak' => ['only_booleans' => true],
-        'phpdoc_align' => ['align' => 'left'],
-        'phpdoc_order' => true,
-        'phpdoc_tag_casing' => true,
-        'phpdoc_to_comment' => false,
-        'regular_callable_call' => true,
-        'return_assignment' => true,
-        'strict_comparison' => true,
-        'strict_param' => true,
-        'yoda_style' => false,
-    ])
-    ->setFinder($finder)
+use Valantic\PhpCsFixerConfig\ConfigFactory;
+
+return ConfigFactory::createValanticConfig([
+])
+    ->setFinder(
+        PhpCsFixer\Finder::create()
+            ->in(__DIR__ . '/src')
+            ->in(__DIR__ . '/tests')
+    )
+    // Enable risky rules (recommended as the ruleset includes risky rules)
     ->setRiskyAllowed(true)
-    ->setUsingCache(true);
+    // Enable parallel execution
+    ->setParallelConfig(PhpCsFixer\Runner\Parallel\ParallelConfigFactory::detect())
+    ;

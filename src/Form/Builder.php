@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -29,15 +30,14 @@ class Builder
 
     /**
      * @param array<string,mixed> $config
-     *
-     * @return FormBuilderInterface
      */
     public function form(string $name, array $config): FormBuilderInterface
     {
         $builder = $this->formFactory
             ->createNamedBuilder($name, FormType::class, null, [
                 'csrf_protection' => $config['csrf'],
-            ]);
+            ])
+        ;
 
         $builder->setMethod($config['method']);
         $builder->setAction($this->urlGenerator->generate('valantic_pimcoreforms_form_api', ['name' => $name]));
@@ -49,7 +49,7 @@ class Builder
      * @param array<string,mixed> $definition
      * @param array<string,mixed> $formConfig
      *
-     * @return array{string,array}
+     * @return array{class-string<FormTypeInterface>,array}
      */
     public function field(string $formName, array $definition, array $formConfig): array
     {
@@ -73,13 +73,18 @@ class Builder
         return $name;
     }
 
+    /**
+     * @return class-string<FormTypeInterface>
+     */
     protected function getType(string $name): string
     {
         if (!str_contains($name, '\\')) {
-            return sprintf('%s%s', Configuration::SYMFONY_FORMTYPES_NAMESPACE, $name);
+            $type = sprintf('%s%s', Configuration::SYMFONY_FORMTYPES_NAMESPACE, $name);
+        } else {
+            $type = $name;
         }
 
-        return $name;
+        return $type;
     }
 
     /**
@@ -92,17 +97,18 @@ class Builder
     {
         $options = $definition['options'];
 
-        if ($formConfig['translate']['field_labels'] && !empty($options['label'])) {
+        if (!empty($formConfig['translate']['field_labels']) && !empty($options['label'])) {
             $options['label'] = $this->translator->trans($options['label']);
         }
 
         if (in_array($this->getType($definition['type']), [DateType::class, TimeType::class], true)) {
             $options['widget'] ??= 'single_text';
         }
+
         if ($this->getType($definition['type']) === ChoiceType::class) {
             if (
                 empty($definition['provider'])
-                && $formConfig['translate']['inline_choices']
+                && !empty($formConfig['translate']['inline_choices'])
             ) {
                 // Attribute(s) are matched via label hence both the actual label
                 // and the "attribute label" need to be translated.
@@ -114,14 +120,16 @@ class Builder
                     $options[$key] = array_combine(
                         array_map(
                             fn (string $key): string => $this->translator->trans($key),
-                            array_keys($definition['options'][$key])
+                            array_keys($definition['options'][$key]),
                         ),
-                        $definition['options'][$key]
+                        $definition['options'][$key],
                     );
                 }
             }
+
             if (!empty($definition['provider']) && is_string($definition['provider'])) {
                 $choices = $this->choicesRepository->get($definition['provider']);
+
                 if ($choices instanceof ConfigAwareInterface) {
                     $choices->setFormName($formName);
                     $choices->setFieldConfig($formConfig);
@@ -146,6 +154,7 @@ class Builder
     protected function getConstraints(array $definition, array $options): array
     {
         $constraints = [];
+
         foreach ($definition['constraints'] as $constraint) {
             $className = null;
             $payload = null;

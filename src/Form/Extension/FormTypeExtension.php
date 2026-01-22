@@ -45,7 +45,6 @@ use Valantic\PimcoreFormsBundle\Form\Type\SubheaderType;
 class FormTypeExtension implements ExtensionInterface
 {
     /**
-     * @param FormInterface $form
      * @param array<mixed> $schema
      *
      * @return array<mixed>
@@ -62,18 +61,21 @@ class FormTypeExtension implements ExtensionInterface
 
         if ($type === ChoiceType::class) {
             // https://symfony.com/doc/current/reference/forms/types/choice.html#select-tag-checkboxes-or-radio-buttons
-            $expanded = $form->getConfig()->getOption('expanded');
-            $multiple = $form->getConfig()->getOption('multiple');
+            $expanded = $form->getConfig()->getOption('expanded') === true;
+            $multiple = $form->getConfig()->getOption('multiple') === true;
 
             if (!$expanded && !$multiple) {
                 $formType = 'select.single';
             }
+
             if (!$expanded && $multiple) {
                 $formType = 'select.multiple';
             }
+
             if ($expanded && !$multiple) {
                 $formType = 'radio';
             }
+
             if ($expanded && $multiple) {
                 $formType = 'checkboxes';
             }
