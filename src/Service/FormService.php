@@ -58,13 +58,13 @@ class FormService
         $this->liform = $liform;
     }
 
-    public function build(string $name): FormBuilderInterface
+    public function build(string $name, mixed $context = null): FormBuilderInterface
     {
         $config = $this->getConfig($name);
         $form = $this->builder->form($name, $config);
 
         foreach ($config['fields'] as $fieldName => $definition) {
-            $form->add($fieldName, ...$this->builder->field($name, $definition, $config));
+            $form->add($fieldName, ...$this->builder->field($name, $definition, $config, $context));
         }
 
         if ($form->getOption('csrf_protection') === true) {

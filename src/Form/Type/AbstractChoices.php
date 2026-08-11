@@ -12,12 +12,12 @@ abstract class AbstractChoices implements ChoicesInterface, ConfigAwareInterface
     protected array $fieldConfig;
     protected string $formName;
 
-    public function choiceLabel(mixed $choice, mixed $key, mixed $value): ?string
+    public function choiceLabel(mixed $choice, mixed $key, mixed $value, mixed $context): ?string
     {
         return $key;
     }
 
-    public function choiceAttribute(mixed $choice, mixed $key, mixed $value): array
+    public function choiceAttribute(mixed $choice, mixed $key, mixed $value, mixed $context): array
     {
         return [];
     }
