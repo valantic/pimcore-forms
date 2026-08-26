@@ -7,7 +7,7 @@
     "php": "^8.3",
     "ext-json": "*",
     "limenius/liform": "^2.1",
-    "pimcore/pimcore": "^12.3.10",
+    "pimcore/pimcore": "^12.3",
     "ramsey/uuid": "^4.9",
     "symfony/config": "^7.4.2",
     "symfony/contracts": "^3.6",
