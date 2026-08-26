@@ -45,7 +45,16 @@ class FormController extends AbstractController
 
         if (!$form->isSubmitted() && $request->getContentTypeFormat() === 'json') {
             $content = (string) $request->getContent();
-            $data = json_decode($content, true, flags: \JSON_THROW_ON_ERROR);
+
+            try {
+                $data = json_decode($content, true, flags: \JSON_THROW_ON_ERROR);
+            } catch (\JsonException) {
+                return new ApiResponse([], [
+                    (new Message())
+                        ->setType(MessageConstants::MESSAGE_TYPE_ERROR)
+                        ->setMessage($translator->trans('valantic.pimcoreForms.formSubmitError')),
+                ], Response::HTTP_PRECONDITION_FAILED);
+            }
 
             if (!empty($content) && !empty($data)) {
                 $form->submit($data);

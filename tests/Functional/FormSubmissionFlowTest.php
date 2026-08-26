@@ -4,40 +4,21 @@ declare(strict_types=1);
 
 namespace Valantic\PimcoreFormsBundle\Tests\Functional;
 
-use Limenius\Liform\Liform;
 use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use Pimcore\Model\Document\Email;
-use Symfony\Component\Form\Extension\Csrf\CsrfExtension;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\Forms;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\HttpFoundation\Session\Storage\MockArraySessionStorage;
-use Symfony\Component\Security\Csrf\CsrfTokenManager;
-use Symfony\Component\Security\Csrf\TokenGenerator\UriSafeTokenGenerator;
-use Symfony\Component\Security\Csrf\TokenStorage\SessionTokenStorage;
-use Symfony\Component\Validator\Validation;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Twig\Environment;
+use Valantic\PimcoreFormsBundle\Constant\MessageConstants;
 use Valantic\PimcoreFormsBundle\Controller\FormController;
-use Valantic\PimcoreFormsBundle\Form\Builder;
-use Valantic\PimcoreFormsBundle\Form\Extension\ChoiceTypeExtension;
-use Valantic\PimcoreFormsBundle\Form\Extension\FormAttributeExtension;
-use Valantic\PimcoreFormsBundle\Form\Extension\FormConstraintExtension;
-use Valantic\PimcoreFormsBundle\Form\Extension\FormDataExtension;
-use Valantic\PimcoreFormsBundle\Form\Extension\FormNameExtension;
-use Valantic\PimcoreFormsBundle\Form\Extension\FormTypeExtension;
-use Valantic\PimcoreFormsBundle\Form\Extension\HiddenTypeExtension;
-use Valantic\PimcoreFormsBundle\Form\FormErrorNormalizer;
-use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
-use Valantic\PimcoreFormsBundle\Repository\InputHandlerRepository;
-use Valantic\PimcoreFormsBundle\Repository\OutputRepository;
 use Valantic\PimcoreFormsBundle\Repository\RedirectHandlerRepository;
 use Valantic\PimcoreFormsBundle\Service\FormService;
 use Valantic\PimcoreFormsBundle\Tests\Support\Factories\ConfigurationFactory;
-use Valantic\PimcoreFormsBundle\Tests\Support\Traits\CreatesFormBuilders;
+use Valantic\PimcoreFormsBundle\Tests\Support\RedirectHandlerStub;
+use Valantic\PimcoreFormsBundle\Tests\Support\Traits\CreatesFormServices;
 use Valantic\PimcoreFormsBundle\Tests\Support\Traits\MocksPimcoreDocument;
 use Valantic\PimcoreFormsBundle\Tests\Support\Traits\MocksPimcoreMail;
 
@@ -48,71 +29,31 @@ use Valantic\PimcoreFormsBundle\Tests\Support\Traits\MocksPimcoreMail;
 #[AllowMockObjectsWithoutExpectations]
 class FormSubmissionFlowTest extends TestCase
 {
-    use CreatesFormBuilders;
+    use CreatesFormServices;
     use MocksPimcoreDocument;
     use MocksPimcoreMail;
 
     private FormController $controller;
     private FormService $formService;
-    private FormFactoryInterface $formFactory;
     private TranslatorInterface $translator;
+    private MockObject $twig;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        // Create form factory with CSRF protection
-        $session = new Session(new MockArraySessionStorage());
-        $requestStack = new RequestStack();
-        $request = new Request();
-        $request->setSession($session);
-        $requestStack->push($request);
-
-        $csrfTokenManager = new CsrfTokenManager(
-            new UriSafeTokenGenerator(),
-            new SessionTokenStorage($requestStack),
-        );
-
-        $this->formFactory = Forms::createFormFactoryBuilder()
-            ->addExtension(new CsrfExtension($csrfTokenManager))
-            ->getFormFactory()
-        ;
-
-        // Create repositories
-        $configRepo = $this->createMock(ConfigurationRepository::class);
-        $configRepo->method('get')
-            ->willReturn(ConfigurationFactory::createContactFormConfig())
-        ;
-
-        $outputRepo = $this->createMock(OutputRepository::class);
-        $inputHandlerRepo = $this->createMock(InputHandlerRepository::class);
-        $redirectHandlerRepo = $this->createMock(RedirectHandlerRepository::class);
-        $builder = $this->createMock(Builder::class);
-        $liform = $this->createMock(Liform::class);
-        $errorNormalizer = $this->createMock(FormErrorNormalizer::class);
-
-        // Create form service
-        $this->formService = new FormService(
-            $configRepo,
-            $outputRepo,
-            $redirectHandlerRepo,
-            $inputHandlerRepo,
-            $builder,
-            $liform,
-            $errorNormalizer,
-            $this->createMock(FormTypeExtension::class),
-            $this->createMock(FormNameExtension::class),
-            $this->createMock(FormConstraintExtension::class),
-            $this->createMock(FormAttributeExtension::class),
-            $this->createMock(ChoiceTypeExtension::class),
-            $this->createMock(HiddenTypeExtension::class),
-            $this->createMock(FormDataExtension::class),
-            $requestStack,
-        );
-
+        $this->formService = $this->createRealFormService(ConfigurationFactory::createContactFormConfig());
         $this->translator = $this->createMock(TranslatorInterface::class);
-        // Create controller
+
+        $this->twig = $this->createMock(Environment::class);
+        $this->twig->method('render')->willReturn('<html><body>form</body></html>');
+
+        $container = $this->createMock(ContainerInterface::class);
+        $container->method('has')->willReturnCallback(static fn ($id) => $id === 'twig');
+        $container->method('get')->willReturnCallback(fn ($id) => $id === 'twig' ? $this->twig : null);
+
         $this->controller = new FormController();
+        $this->controller->setContainer($container);
     }
 
     /**
@@ -129,8 +70,8 @@ class FormSubmissionFlowTest extends TestCase
         $this->assertEquals('application/json', $response->headers->get('Content-Type'));
 
         $data = json_decode($response->getContent(), true);
-        $this->assertArrayHasKey('schema', $data);
-        $this->assertArrayHasKey('properties', $data['schema']);
+        $this->assertArrayHasKey('data', $data);
+        $this->assertArrayHasKey('properties', $data['data']);
     }
 
     /**
@@ -143,12 +84,13 @@ class FormSubmissionFlowTest extends TestCase
         $response = $this->controller->apiAction('contact', $this->formService, $request, $this->translator);
         $data = json_decode($response->getContent(), true);
 
-        $this->assertArrayHasKey('name', $data['schema']['properties']);
-        $this->assertArrayHasKey('email', $data['schema']['properties']);
-        $this->assertArrayHasKey('message', $data['schema']['properties']);
-        $this->assertArrayHasKey('required', $data['schema']);
-        $this->assertContains('name', $data['schema']['required']);
-        $this->assertContains('email', $data['schema']['required']);
+        $fieldNames = array_column($data['data']['properties'], 'name');
+        $this->assertContains('name', $fieldNames);
+        $this->assertContains('email', $fieldNames);
+        $this->assertContains('message', $fieldNames);
+        $this->assertArrayHasKey('required', $data['data']);
+        $this->assertContains('name', $data['data']['required']);
+        $this->assertContains('email', $data['data']['required']);
     }
 
     /**
@@ -169,7 +111,7 @@ class FormSubmissionFlowTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
 
         $data = json_decode($response->getContent(), true);
-        $this->assertTrue($data['success']);
+        $this->assertSame(MessageConstants::MESSAGE_TYPE_SUCCESS, $data['messages'][0]['type']);
     }
 
     /**
@@ -190,9 +132,9 @@ class FormSubmissionFlowTest extends TestCase
         $this->assertEquals(412, $response->getStatusCode());
 
         $data = json_decode($response->getContent(), true);
-        $this->assertFalse($data['success']);
-        $this->assertArrayHasKey('errors', $data);
-        $this->assertNotEmpty($data['errors']);
+        $this->assertArrayHasKey('messages', $data);
+        $this->assertNotEmpty($data['messages']);
+        $this->assertSame(MessageConstants::MESSAGE_TYPE_ERROR, $data['messages'][0]['type']);
     }
 
     /**
@@ -211,8 +153,8 @@ class FormSubmissionFlowTest extends TestCase
         $this->assertEquals(412, $response->getStatusCode());
 
         $data = json_decode($response->getContent(), true);
-        $this->assertFalse($data['success']);
-        $this->assertArrayHasKey('errors', $data);
+        $this->assertArrayHasKey('messages', $data);
+        $this->assertNotEmpty($data['messages']);
     }
 
     /**
@@ -220,38 +162,10 @@ class FormSubmissionFlowTest extends TestCase
      */
     public function testPostWithInvalidCsrfTokenReturnsError(): void
     {
-        // Create config with CSRF enabled
-        $configRepo = $this->createMock(ConfigurationRepository::class);
         $config = ConfigurationFactory::createContactFormConfig();
         $config['forms']['contact']['csrf'] = true;
-        $configRepo->method('get')->willReturn($config);
 
-        $outputRepo = $this->createMock(OutputRepository::class);
-        $inputHandlerRepo = $this->createMock(InputHandlerRepository::class);
-        $redirectHandlerRepo = $this->createMock(RedirectHandlerRepository::class);
-        $builder = $this->createMock(Builder::class);
-        $liform = $this->createMock(Liform::class);
-        $errorNormalizer = $this->createMock(FormErrorNormalizer::class);
-        $requestStack = $this->createMock(RequestStack::class);
-
-        $formService = new FormService(
-            $configRepo,
-            $outputRepo,
-            $redirectHandlerRepo,
-            $inputHandlerRepo,
-            $builder,
-            $liform,
-            $errorNormalizer,
-            $this->createMock(FormTypeExtension::class),
-            $this->createMock(FormNameExtension::class),
-            $this->createMock(FormConstraintExtension::class),
-            $this->createMock(FormAttributeExtension::class),
-            $this->createMock(ChoiceTypeExtension::class),
-            $this->createMock(HiddenTypeExtension::class),
-            $this->createMock(FormDataExtension::class),
-            $requestStack,
-        );
-
+        $formService = $this->createRealFormService($config);
         $translator = $this->createMock(TranslatorInterface::class);
         $controller = new FormController();
 
@@ -274,37 +188,13 @@ class FormSubmissionFlowTest extends TestCase
      */
     public function testSuccessResponseContainsRedirectUrl(): void
     {
-        $configRepo = $this->createMock(ConfigurationRepository::class);
         $config = ConfigurationFactory::createContactFormConfig();
-        $config['forms']['contact']['redirectUrl'] = '/thank-you';
-        $configRepo->method('get')->willReturn($config);
+        $config['forms']['contact']['redirect_handler'] = 'redirect_stub';
 
-        $outputRepo = $this->createMock(OutputRepository::class);
-        $inputHandlerRepo = $this->createMock(InputHandlerRepository::class);
         $redirectHandlerRepo = $this->createMock(RedirectHandlerRepository::class);
-        $builder = $this->createMock(Builder::class);
-        $liform = $this->createMock(Liform::class);
-        $errorNormalizer = $this->createMock(FormErrorNormalizer::class);
-        $requestStack = $this->createMock(RequestStack::class);
+        $redirectHandlerRepo->method('get')->willReturn(new RedirectHandlerStub());
 
-        $formService = new FormService(
-            $configRepo,
-            $outputRepo,
-            $redirectHandlerRepo,
-            $inputHandlerRepo,
-            $builder,
-            $liform,
-            $errorNormalizer,
-            $this->createMock(FormTypeExtension::class),
-            $this->createMock(FormNameExtension::class),
-            $this->createMock(FormConstraintExtension::class),
-            $this->createMock(FormAttributeExtension::class),
-            $this->createMock(ChoiceTypeExtension::class),
-            $this->createMock(HiddenTypeExtension::class),
-            $this->createMock(FormDataExtension::class),
-            $requestStack,
-        );
-
+        $formService = $this->createRealFormService($config, redirectHandlerRepository: $redirectHandlerRepo);
         $translator = $this->createMock(TranslatorInterface::class);
         $controller = new FormController();
 
@@ -321,8 +211,8 @@ class FormSubmissionFlowTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
 
         $data = json_decode($response->getContent(), true);
-        $this->assertArrayHasKey('redirect', $data);
-        $this->assertEquals('/thank-you', $data['redirect']);
+        $this->assertArrayHasKey('redirectUrl', $data);
+        $this->assertEquals('https://example.com/success', $data['redirectUrl']);
     }
 
     /**
@@ -333,6 +223,7 @@ class FormSubmissionFlowTest extends TestCase
         $request = Request::create('/form/html/contact', 'GET');
 
         $response = $this->controller->htmlAction('contact', $this->formService);
+        $response->prepare($request);
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatusCode());
@@ -347,6 +238,7 @@ class FormSubmissionFlowTest extends TestCase
         $request = Request::create('/form/ui/contact', 'GET');
 
         $response = $this->controller->uiAction('contact');
+        $response->prepare($request);
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertEquals(200, $response->getStatusCode());

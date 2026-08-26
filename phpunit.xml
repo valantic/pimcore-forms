@@ -15,13 +15,6 @@
         </testsuite>
     </testsuites>
 
-    <coverage includeUncoveredFiles="false">
-        <report>
-            <text outputFile="php://stdout"/>
-            <html outputDirectory="coverage/"/>
-            <cobertura outputFile="cobertura.xml"/>
-        </report>
-    </coverage>
     <logging>
         <junit outputFile="report.xml"/>
     </logging>

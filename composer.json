@@ -6,10 +6,22 @@
   "require": {
     "php": "^8.3",
     "ext-json": "*",
-    "limenius/liform": "^2.0",
-    "pimcore/pimcore": "^12.0",
+    "limenius/liform": "^2.1",
+    "pimcore/pimcore": "^12.3.10",
     "ramsey/uuid": "^4.9",
-    "symfony/form": "^7.3",
+    "symfony/config": "^7.4.2",
+    "symfony/contracts": "^3.6",
+    "symfony/dependency-injection": "^7.4.2",
+    "symfony/form": "^7.4.2",
+    "symfony/framework-bundle": "^7.4.2",
+    "symfony/http-foundation": "^7.4.2",
+    "symfony/http-kernel": "^7.4.2",
+    "symfony/options-resolver": "^7.4.2",
+    "symfony/routing": "^7.4.2",
+    "symfony/security-csrf": "^7.4.2",
+    "symfony/serializer": "^7.4.2",
+    "symfony/twig-bridge": "^7.4.2",
+    "symfony/validator": "^7.4.2",
     "voku/portable-ascii": "^2.0"
   },
   "require-dev": {
@@ -26,7 +38,6 @@
     "roave/security-advisories": "dev-latest",
     "symfony/browser-kit": "^7.4.17",
     "symfony/css-selector": "^7.4.17",
-    "symfony/dependency-injection": "^7.4.17",
     "symfony/phpunit-bridge":"^7.4.17",
     "symfony/test-pack": "^1.2",
     "valantic/php-cs-fixer-config": "^2.2.1"

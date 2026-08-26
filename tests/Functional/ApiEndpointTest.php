@@ -4,31 +4,17 @@ declare(strict_types=1);
 
 namespace Valantic\PimcoreFormsBundle\Tests\Functional;
 
-use Limenius\Liform\Liform;
 use PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Valantic\PimcoreFormsBundle\Constant\MessageConstants;
 use Valantic\PimcoreFormsBundle\Controller\FormController;
 use Valantic\PimcoreFormsBundle\Exception\InvalidFormConfigException;
-use Valantic\PimcoreFormsBundle\Form\Builder;
-use Valantic\PimcoreFormsBundle\Form\Extension\ChoiceTypeExtension;
-use Valantic\PimcoreFormsBundle\Form\Extension\FormAttributeExtension;
-use Valantic\PimcoreFormsBundle\Form\Extension\FormConstraintExtension;
-use Valantic\PimcoreFormsBundle\Form\Extension\FormDataExtension;
-use Valantic\PimcoreFormsBundle\Form\Extension\FormNameExtension;
-use Valantic\PimcoreFormsBundle\Form\Extension\FormTypeExtension;
-use Valantic\PimcoreFormsBundle\Form\Extension\HiddenTypeExtension;
-use Valantic\PimcoreFormsBundle\Form\FormErrorNormalizer;
-use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
-use Valantic\PimcoreFormsBundle\Repository\InputHandlerRepository;
-use Valantic\PimcoreFormsBundle\Repository\OutputRepository;
-use Valantic\PimcoreFormsBundle\Repository\RedirectHandlerRepository;
 use Valantic\PimcoreFormsBundle\Service\FormService;
 use Valantic\PimcoreFormsBundle\Tests\Support\Factories\ConfigurationFactory;
-use Valantic\PimcoreFormsBundle\Tests\Support\Traits\CreatesFormBuilders;
+use Valantic\PimcoreFormsBundle\Tests\Support\Traits\CreatesFormServices;
 
 /**
  * @covers \Valantic\PimcoreFormsBundle\Controller\FormController
@@ -37,7 +23,7 @@ use Valantic\PimcoreFormsBundle\Tests\Support\Traits\CreatesFormBuilders;
 #[AllowMockObjectsWithoutExpectations]
 class ApiEndpointTest extends TestCase
 {
-    use CreatesFormBuilders;
+    use CreatesFormServices;
 
     private FormController $controller;
     private FormService $formService;
@@ -47,37 +33,7 @@ class ApiEndpointTest extends TestCase
     {
         parent::setUp();
 
-        $configRepo = $this->createMock(ConfigurationRepository::class);
-        $configRepo->method('get')
-            ->willReturn(ConfigurationFactory::createContactFormConfig())
-        ;
-
-        $outputRepo = $this->createMock(OutputRepository::class);
-        $inputHandlerRepo = $this->createMock(InputHandlerRepository::class);
-        $redirectHandlerRepo = $this->createMock(RedirectHandlerRepository::class);
-        $builder = $this->createMock(Builder::class);
-        $liform = $this->createMock(Liform::class);
-        $errorNormalizer = $this->createMock(FormErrorNormalizer::class);
-        $requestStack = $this->createMock(RequestStack::class);
-
-        $this->formService = new FormService(
-            $configRepo,
-            $outputRepo,
-            $redirectHandlerRepo,
-            $inputHandlerRepo,
-            $builder,
-            $liform,
-            $errorNormalizer,
-            $this->createMock(FormTypeExtension::class),
-            $this->createMock(FormNameExtension::class),
-            $this->createMock(FormConstraintExtension::class),
-            $this->createMock(FormAttributeExtension::class),
-            $this->createMock(ChoiceTypeExtension::class),
-            $this->createMock(HiddenTypeExtension::class),
-            $this->createMock(FormDataExtension::class),
-            $requestStack,
-        );
-
+        $this->formService = $this->createRealFormService(ConfigurationFactory::createContactFormConfig());
         $this->translator = $this->createMock(TranslatorInterface::class);
         $this->controller = new FormController();
     }
@@ -100,37 +56,7 @@ class ApiEndpointTest extends TestCase
      */
     public function testApiEndpointReturns404ForNonExistentForm(): void
     {
-        $configRepo = $this->createMock(ConfigurationRepository::class);
-        $configRepo->method('get')
-            ->willReturn(ConfigurationFactory::createContactFormConfig())
-        ;
-
-        $outputRepo = $this->createMock(OutputRepository::class);
-        $inputHandlerRepo = $this->createMock(InputHandlerRepository::class);
-        $redirectHandlerRepo = $this->createMock(RedirectHandlerRepository::class);
-        $builder = $this->createMock(Builder::class);
-        $liform = $this->createMock(Liform::class);
-        $errorNormalizer = $this->createMock(FormErrorNormalizer::class);
-        $requestStack = $this->createMock(RequestStack::class);
-
-        $formService = new FormService(
-            $configRepo,
-            $outputRepo,
-            $redirectHandlerRepo,
-            $inputHandlerRepo,
-            $builder,
-            $liform,
-            $errorNormalizer,
-            $this->createMock(FormTypeExtension::class),
-            $this->createMock(FormNameExtension::class),
-            $this->createMock(FormConstraintExtension::class),
-            $this->createMock(FormAttributeExtension::class),
-            $this->createMock(ChoiceTypeExtension::class),
-            $this->createMock(HiddenTypeExtension::class),
-            $this->createMock(FormDataExtension::class),
-            $requestStack,
-        );
-
+        $formService = $this->createRealFormService(ConfigurationFactory::createContactFormConfig());
         $controller = new FormController();
 
         $request = Request::create('/form/api/nonexistent', 'GET');
@@ -154,18 +80,20 @@ class ApiEndpointTest extends TestCase
         $this->assertEquals(412, $response->getStatusCode());
 
         $data = json_decode($response->getContent(), true);
-        $this->assertFalse($data['success']);
+        $this->assertSame(MessageConstants::MESSAGE_TYPE_ERROR, $data['messages'][0]['type']);
     }
 
     /**
-     * Test API endpoint accepts form-urlencoded data.
+     * Test API endpoint accepts form-urlencoded data submitted as a native (nested) form POST.
      */
     public function testApiEndpointAcceptsFormUrlencodedData(): void
     {
         $request = Request::create('/form/api/contact', 'POST', [
-            'name' => 'John Doe',
-            'email' => 'john@example.com',
-            'message' => 'Test message',
+            'contact' => [
+                'name' => 'John Doe',
+                'email' => 'john@example.com',
+                'message' => 'Test message',
+            ],
         ], [], [], [
             'CONTENT_TYPE' => 'application/x-www-form-urlencoded',
         ]);
@@ -175,7 +103,7 @@ class ApiEndpointTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
 
         $data = json_decode($response->getContent(), true);
-        $this->assertTrue($data['success']);
+        $this->assertSame(MessageConstants::MESSAGE_TYPE_SUCCESS, $data['messages'][0]['type']);
     }
 
     /**
@@ -195,10 +123,10 @@ class ApiEndpointTest extends TestCase
         $this->assertEquals(412, $response->getStatusCode());
 
         $data = json_decode($response->getContent(), true);
-        $this->assertArrayHasKey('success', $data);
-        $this->assertFalse($data['success']);
-        $this->assertArrayHasKey('errors', $data);
-        $this->assertIsArray($data['errors']);
+        $this->assertArrayHasKey('messages', $data);
+        $this->assertIsArray($data['messages']);
+        $this->assertNotEmpty($data['messages']);
+        $this->assertSame(MessageConstants::MESSAGE_TYPE_ERROR, $data['messages'][0]['type']);
     }
 
     /**
@@ -236,9 +164,9 @@ class ApiEndpointTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
 
         $data = json_decode($response->getContent(), true);
-        $this->assertArrayHasKey('success', $data);
-        $this->assertTrue($data['success']);
-        $this->assertArrayNotHasKey('errors', $data);
+        $this->assertArrayHasKey('data', $data);
+        $this->assertArrayHasKey('messages', $data);
+        $this->assertSame(MessageConstants::MESSAGE_TYPE_SUCCESS, $data['messages'][0]['type']);
     }
 
     /**
