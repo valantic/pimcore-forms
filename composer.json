@@ -1,6 +1,6 @@
 {
   "name": "valantic/pimcore-forms",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "Forms for Pimcore",
   "type": "pimcore-bundle",
   "require": {
@@ -38,7 +38,7 @@
     "roave/security-advisories": "dev-latest",
     "symfony/browser-kit": "^7.4.17",
     "symfony/css-selector": "^7.4.17",
-    "symfony/phpunit-bridge":"^7.4.17",
+    "symfony/phpunit-bridge": "^7.4.17",
     "symfony/test-pack": "^1.2",
     "valantic/php-cs-fixer-config": "^2.2.1"
   },
