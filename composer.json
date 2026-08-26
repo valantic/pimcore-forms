@@ -4,27 +4,53 @@
   "description": "Forms for Pimcore",
   "type": "pimcore-bundle",
   "require": {
-    "php": "^8.1",
+    "php": "^8.3",
     "ext-json": "*",
-    "limenius/liform": "^0.19",
-    "pimcore/pimcore": "^11.0",
-    "ramsey/uuid": "^4.0",
-    "symfony/form": "^6.0",
-    "voku/portable-ascii": "^1.5 || ^2.0"
+    "limenius/liform": "^2.1",
+    "pimcore/pimcore": "^12.3",
+    "ramsey/uuid": "^4.9",
+    "symfony/config": "^7.4.2",
+    "symfony/contracts": "^3.6",
+    "symfony/dependency-injection": "^7.4.2",
+    "symfony/form": "^7.4.2",
+    "symfony/framework-bundle": "^7.4.2",
+    "symfony/http-foundation": "^7.4.2",
+    "symfony/http-kernel": "^7.4.2",
+    "symfony/options-resolver": "^7.4.2",
+    "symfony/routing": "^7.4.2",
+    "symfony/security-csrf": "^7.4.2",
+    "symfony/serializer": "^7.4.2",
+    "symfony/twig-bridge": "^7.4.2",
+    "symfony/validator": "^7.4.2",
+    "voku/portable-ascii": "^2.0"
   },
   "require-dev": {
-    "bamarni/composer-bin-plugin": "^1.8.2",
+    "doctrine/data-fixtures": "^1.8.2",
+    "fakerphp/faker": "^1.24.1",
+    "friendsofphp/php-cs-fixer": "^3.95.22",
+    "mockery/mockery": "^1.6.15",
     "phpstan/extension-installer": "^1.4.3",
-    "phpstan/phpstan": "^1.12.25",
-    "phpstan/phpstan-deprecation-rules": "^1.2.1",
-    "phpstan/phpstan-strict-rules": "^1.6.2",
-    "rector/rector": "^1.2.10",
+    "phpstan/phpstan": "^2.2.9",
+    "phpstan/phpstan-deprecation-rules": "^2.0.5",
+    "phpstan/phpstan-strict-rules": "^2.0.12",
+    "phpunit/phpunit": "^12.5.33",
+    "rector/rector": "^2.6.3",
     "roave/security-advisories": "dev-latest",
-    "symfony/dependency-injection": "^6.4.20"
+    "symfony/browser-kit": "^7.4.17",
+    "symfony/css-selector": "^7.4.17",
+    "symfony/phpunit-bridge":"^7.4.17",
+    "symfony/test-pack": "^1.2",
+    "valantic/php-cs-fixer-config": "^2.2.1"
   },
   "autoload": {
     "psr-4": {
       "Valantic\\PimcoreFormsBundle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Valantic\\PimcoreFormsBundle\\Tests\\": "tests/",
+      "App\\": "tests/Examples/"
     }
   },
   "extra": {
@@ -32,10 +58,6 @@
       "bundles": [
         "Valantic\\PimcoreFormsBundle\\ValanticPimcoreFormsBundle"
       ]
-    },
-    "bamarni-bin": {
-      "bin-links": false,
-      "forward-command": true
     }
   },
   "license": "MIT",
@@ -50,32 +72,36 @@
     }
   ],
   "scripts": {
-    "post-install-cmd": [
-      "@composer bin all install --ansi"
-    ],
     "post-update-cmd": [
-      "@composer bump -D",
-      "@composer bin all update --ansi",
-      "@composer bin all bump"
+      "@composer bump -D"
     ],
     "phpstan": [
-      "vendor/bin/phpstan analyse src --memory-limit=1G"
+      "vendor/bin/phpstan analyse --memory-limit=1G"
     ],
     "php-cs-fixer": [
-      "vendor-bin/phpcs/vendor/bin/php-cs-fixer fix --diff"
+      "./vendor/bin/php-cs-fixer fix --diff"
     ],
     "php-cs-fixer-check": [
-      "vendor-bin/phpcs/vendor/bin/php-cs-fixer fix --diff --dry-run"
+      "./vendor/bin/php-cs-fixer fix --diff --dry-run"
     ],
     "rector": [
-      "./vendor/bin/rector process src"
+      "./vendor/bin/rector process"
+    ],
+    "rector-check": [
+      "./vendor/bin/rector process --dry-run"
+    ],
+    "test": [
+      "vendor/bin/phpunit"
+    ],
+    "test-coverage": [
+      "vendor/bin/phpunit --coverage-html coverage/html --coverage-clover coverage/clover.xml"
     ]
   },
   "config": {
     "sort-packages": true,
     "allow-plugins": {
       "ocramius/package-versions": true,
-      "bamarni/composer-bin-plugin": true,
+      "php-http/discovery": true,
       "phpstan/extension-installer": true
     }
   }

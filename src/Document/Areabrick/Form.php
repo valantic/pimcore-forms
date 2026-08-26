@@ -14,35 +14,41 @@ use Valantic\PimcoreFormsBundle\Repository\ConfigurationRepository;
 class Form extends AbstractTemplateAreabrick implements EditableDialogBoxInterface
 {
     public function __construct(
-        protected readonly ConfigurationRepository $configurationRepository
+        protected readonly ConfigurationRepository $configurationRepository,
     ) {
     }
 
+    #[\Override]
     public function getTemplateLocation(): string
     {
         return static::TEMPLATE_LOCATION_BUNDLE;
     }
 
+    #[\Override]
     public function getTemplateSuffix(): string
     {
         return static::TEMPLATE_SUFFIX_TWIG;
     }
 
+    #[\Override]
     public function getHtmlTagOpen(Info $info): string
     {
         return '';
     }
 
+    #[\Override]
     public function getHtmlTagClose(Info $info): string
     {
         return '';
     }
 
+    #[\Override]
     public function getName(): string
     {
         return 'Form';
     }
 
+    #[\Override]
     public function getDescription(): string
     {
         return 'Choose a form provided by valantic/pimcore-forms';
@@ -69,8 +75,8 @@ class Form extends AbstractTemplateAreabrick implements EditableDialogBoxInterfa
                 'name' => 'form',
                 'config' => [
                     'store' => array_map(
-                        fn (string $name): array => [$name, $name],
-                        array_values($names)
+                        static fn (string $name): array => [$name, $name],
+                        array_values($names),
                     ),
                 ],
             ],

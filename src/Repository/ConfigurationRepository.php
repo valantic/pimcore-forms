@@ -8,10 +8,10 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class ConfigurationRepository
 {
-    final public const CONTAINER_TAG = 'valantic.pimcore_forms.config';
+    final public const string CONTAINER_TAG = 'valantic.pimcore_forms.config';
 
     public function __construct(
-        protected readonly ParameterBagInterface $parameterBag
+        protected readonly ParameterBagInterface $parameterBag,
     ) {
     }
 

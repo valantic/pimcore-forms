@@ -22,15 +22,15 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  */
 class ExtensionCompilerPass implements CompilerPassInterface
 {
-    final public const EXTENSION_TAG = 'liform.extension';
+    final public const string EXTENSION_TAG = 'liform.extension';
 
     public function process(ContainerBuilder $container): void
     {
-        if (!$container->hasDefinition('Limenius\Liform\Liform')) {
+        if (!$container->hasDefinition(\Limenius\Liform\Liform::class)) {
             return;
         }
 
-        $liform = $container->getDefinition('Limenius\Liform\Liform');
+        $liform = $container->getDefinition(\Limenius\Liform\Liform::class);
 
         foreach (array_keys($container->findTaggedServiceIds(self::EXTENSION_TAG)) as $id) {
             $extension = $container->getDefinition($id);

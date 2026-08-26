@@ -10,7 +10,6 @@ use Symfony\Component\Form\FormInterface;
 class FormAttributeExtension implements ExtensionInterface
 {
     /**
-     * @param FormInterface $form
      * @param array<mixed> $schema
      *
      * @return array<mixed>
@@ -22,13 +21,13 @@ class FormAttributeExtension implements ExtensionInterface
         }
 
         $camelCaseKeys = array_map(
-            fn (string $key): string => lcfirst(str_replace('-', '', ucwords($key, '-'))), // https://stackoverflow.com/a/2792045
-            array_keys($schema['attr'])
+            static fn (string $key): string => lcfirst(str_replace('-', '', ucwords($key, '-'))), // https://stackoverflow.com/a/2792045
+            array_keys($schema['attr']),
         );
 
         $schema['attr'] = array_combine(
             $camelCaseKeys,
-            array_values($schema['attr'])
+            array_values($schema['attr']),
         );
 
         return $schema;

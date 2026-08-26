@@ -9,3 +9,8 @@
 .php-cs-fixer.cache
 
 /composer.lock
+
+/.phpunit.cache
+/coverage
+cobertura.xml
+report.xml

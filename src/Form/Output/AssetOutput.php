@@ -83,7 +83,7 @@ class AssetOutput extends AbstractOutput
     {
         $base = sprintf('%s_%s', $this->form->getName(), date('Ymd-His'));
 
-        if ($this->config['createHashedFolder'] ?? true) {
+        if (($this->config['createHashedFolder'] ?? true) === true) {
             return $base . sprintf('_%s', Uuid::uuid4()->toString());
         }
 
@@ -93,7 +93,7 @@ class AssetOutput extends AbstractOutput
     protected function getFilename(UploadedFile $file): string
     {
         $fileName = ASCII::to_filename(
-            pathinfo($file->getClientOriginalName(), \PATHINFO_FILENAME) . '.' . $file->guessExtension()
+            pathinfo($file->getClientOriginalName(), \PATHINFO_FILENAME) . '.' . $file->guessExtension(),
         );
 
         return Asset\Service::getValidKey($fileName, 'asset');

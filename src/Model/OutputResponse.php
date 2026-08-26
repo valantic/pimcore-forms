@@ -46,15 +46,12 @@ class OutputResponse
         return $this;
     }
 
-    /**
-     * @return bool
-     */
     public function getOverallStatus(): bool
     {
         return array_reduce(
             $this->statuses,
-            fn ($previous, $current) => $previous && $current,
-            true
+            static fn ($previous, $current) => $previous && $current,
+            true,
         );
     }
 

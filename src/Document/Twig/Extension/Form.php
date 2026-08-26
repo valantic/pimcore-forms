@@ -12,10 +12,11 @@ use Valantic\PimcoreFormsBundle\Service\FormService;
 class Form extends AbstractExtension
 {
     public function __construct(
-        protected readonly FormService $formService
+        protected readonly FormService $formService,
     ) {
     }
 
+    #[\Override]
     public function getFunctions(): array
     {
         return [
@@ -24,7 +25,7 @@ class Form extends AbstractExtension
                 fn (string $name): FormView => $this->formService->buildForm($name)->createView(),
                 [
                     'is_safe' => ['html'],
-                ]
+                ],
             ),
             new TwigFunction(
                 'valantic_form_json',

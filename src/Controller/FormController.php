@@ -8,7 +8,7 @@ use Symfony\Bridge\Twig\Attribute\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Serializer\Exception\ExceptionInterface as SerializerException;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Valantic\PimcoreFormsBundle\Constant\MessageConstants;
@@ -30,7 +30,7 @@ class FormController extends AbstractController
     public function htmlAction(string $name, FormService $formService): Response
     {
         return $this->render('@ValanticPimcoreForms/html.html.twig', [
-            'form' => $formService->buildForm($name)->createView(),
+            'form' => $formService->buildForm($name),
         ]);
     }
 
@@ -45,7 +45,16 @@ class FormController extends AbstractController
 
         if (!$form->isSubmitted() && $request->getContentTypeFormat() === 'json') {
             $content = (string) $request->getContent();
-            $data = json_decode($content, true, flags: \JSON_THROW_ON_ERROR);
+
+            try {
+                $data = json_decode($content, true, flags: \JSON_THROW_ON_ERROR);
+            } catch (\JsonException) {
+                return new ApiResponse([], [
+                    (new Message())
+                        ->setType(MessageConstants::MESSAGE_TYPE_ERROR)
+                        ->setMessage($translator->trans('valantic.pimcoreForms.formSubmitError')),
+                ], Response::HTTP_PRECONDITION_FAILED);
+            }
 
             if (!empty($content) && !empty($data)) {
                 $form->submit($data);
@@ -111,8 +120,8 @@ class FormController extends AbstractController
     {
         return array_filter(
             $request->attributes->all(),
-            fn ($key): bool => is_string($key) && !str_starts_with($key, '_'),
-            \ARRAY_FILTER_USE_KEY
+            static fn ($key): bool => !str_starts_with((string) $key, '_'),
+            \ARRAY_FILTER_USE_KEY,
         );
     }
 }
