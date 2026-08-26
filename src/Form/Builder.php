@@ -136,9 +136,9 @@ class Builder
                 }
 
                 $options['choices'] = $choices->choices();
-                $options['choice_value'] = fn ($a) => $a;
-                $options['choice_label'] = fn ($choice, $key, $value) => $choices->choiceLabel($choice, $key, $value);
-                $options['choice_attr'] = fn ($choice, $key, $value) => $choices->choiceAttribute($choice, $key, $value);
+                $options['choice_value'] = static fn ($a) => $a;
+                $options['choice_label'] = static fn ($choice, $key, $value) => $choices->choiceLabel($choice, $key, $value);
+                $options['choice_attr'] = static fn ($choice, $key, $value) => $choices->choiceAttribute($choice, $key, $value);
             }
         }
 

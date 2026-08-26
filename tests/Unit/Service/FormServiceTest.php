@@ -204,7 +204,7 @@ class FormServiceTest extends TestCase
         $mockOutput = $this->createMock(OutputInterface::class);
         $mockOutput->expects($this->once())->method('initialize');
         $mockOutput->expects($this->once())->method('setOutputHandlers');
-        $mockOutput->method('handle')->willReturnCallback(fn (OutputResponse $response) => $response->addStatus(true));
+        $mockOutput->method('handle')->willReturnCallback(static fn (OutputResponse $response) => $response->addStatus(true));
 
         $this->outputRepository->method('get')->willReturn($mockOutput);
 
@@ -224,10 +224,10 @@ class FormServiceTest extends TestCase
         $form->method('getData')->willReturn(['message' => 'Test']);
 
         $successfulOutput = $this->createMock(OutputInterface::class);
-        $successfulOutput->method('handle')->willReturnCallback(fn (OutputResponse $response) => $response->addStatus(true));
+        $successfulOutput->method('handle')->willReturnCallback(static fn (OutputResponse $response) => $response->addStatus(true));
 
         $failedOutput = $this->createMock(OutputInterface::class);
-        $failedOutput->method('handle')->willReturnCallback(fn (OutputResponse $response) => $response->addStatus(false));
+        $failedOutput->method('handle')->willReturnCallback(static fn (OutputResponse $response) => $response->addStatus(false));
 
         $this->outputRepository->method('get')->willReturnOnConsecutiveCalls(
             $successfulOutput,

@@ -103,7 +103,7 @@ class FormBuildingIntegrationTest extends TestCase
         $this->translator
             ->expects($this->atLeastOnce())
             ->method('trans')
-            ->willReturnCallback(fn ($key) => "translated_{$key}")
+            ->willReturnCallback(static fn ($key) => "translated_{$key}")
         ;
 
         $mockBuilder = $this->createMock(FormBuilderInterface::class);
@@ -198,7 +198,7 @@ class FormBuildingIntegrationTest extends TestCase
         $this->formFactory
             ->expects($this->once())
             ->method('createNamedBuilder')
-            ->with('csrf_form', $this->anything(), null, $this->callback(fn ($options) => $options['csrf_protection'] === true))
+            ->with('csrf_form', $this->anything(), null, $this->callback(static fn ($options) => $options['csrf_protection'] === true))
             ->willReturn($mockBuilder)
         ;
 
@@ -222,7 +222,7 @@ class FormBuildingIntegrationTest extends TestCase
         $this->formFactory
             ->expects($this->once())
             ->method('createNamedBuilder')
-            ->with('no_csrf_form', $this->anything(), null, $this->callback(fn ($options) => $options['csrf_protection'] === false))
+            ->with('no_csrf_form', $this->anything(), null, $this->callback(static fn ($options) => $options['csrf_protection'] === false))
             ->willReturn($mockBuilder)
         ;
 

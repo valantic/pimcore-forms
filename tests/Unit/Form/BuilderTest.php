@@ -206,7 +206,7 @@ class BuilderTest extends TestCase
 
         $this->translator
             ->method('trans')
-            ->willReturnCallback(function ($key) {
+            ->willReturnCallback(static function ($key) {
                 return match ($key) {
                     'country.us' => 'United States',
                     'country.uk' => 'United Kingdom',
@@ -227,7 +227,7 @@ class BuilderTest extends TestCase
     {
         $mockProvider = $this->createMock(ChoicesInterface::class);
         $mockProvider->method('choices')->willReturn(['Option 1', 'Option 2']);
-        $mockProvider->method('choiceLabel')->willReturnCallback(fn ($choice) => $choice);
+        $mockProvider->method('choiceLabel')->willReturnCallback(static fn ($choice) => $choice);
         $mockProvider->method('choiceAttribute')->willReturn([]);
 
         $this->choicesRepository

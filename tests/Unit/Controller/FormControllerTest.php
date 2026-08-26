@@ -40,7 +40,7 @@ class FormControllerTest extends TestCase
         $this->twig = $this->createMock(Environment::class);
 
         // Setup container with Twig service
-        $this->container->method('has')->willReturnCallback(fn ($id) => $id === 'twig');
+        $this->container->method('has')->willReturnCallback(static fn ($id) => $id === 'twig');
         $this->container->method('get')->willReturnCallback(fn ($id) => $id === 'twig' ? $this->twig : null);
 
         $this->controller = new FormController();

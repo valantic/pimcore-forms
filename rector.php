@@ -13,5 +13,6 @@ return RectorConfig::configure()
         twig: true,
         doctrine: true,
         phpunit: true,
-        symfony: true
-    );
+        symfony: true,
+    )
+;

@@ -1,16 +1,19 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Casting to string something that''s already string\.$#'
-			identifier: cast.useless
-			count: 1
-			path: src/Controller/FormController.php
-
-		-
 			message: '#^Left side of \|\| is always false\.$#'
 			identifier: booleanOr.leftAlwaysFalse
 			count: 1
 			path: src/DependencyInjection/Configuration.php
+
+		-
+			message: '''
+				#^Call to deprecated method setWidth\(\) of class Pimcore\\Extension\\Document\\Areabrick\\EditableDialogBoxConfiguration\:
+				since 12\.3, will be removed in 2027\.1\. The option has no effect in the new Studio UI\.$#
+			'''
+			identifier: method.deprecated
+			count: 1
+			path: src/Document/Areabrick/Form.php
 
 		-
 			message: '#^Parameter \#1 \$callback of function array_map expects \(callable\(int\|string\)\: mixed\)\|null, Closure\(string\)\: array\{string, string\} given\.$#'
@@ -25,7 +28,7 @@ parameters:
 			path: src/Form/Builder.php
 
 		-
-			message: '#^Method Valantic\\PimcoreFormsBundle\\Form\\Builder\:\:getType\(\) should return class-string<Symfony\\Component\\Form\\FormTypeInterface> but returns string\.$#'
+			message: '#^Method Valantic\\PimcoreFormsBundle\\Form\\Builder\:\:getType\(\) should return class\-string\<Symfony\\Component\\Form\\FormTypeInterface\> but returns string\.$#'
 			identifier: return.type
 			count: 1
 			path: src/Form/Builder.php

@@ -64,7 +64,7 @@ class Configuration implements ConfigurationInterface
             ->defaultNull()
             ->info('Service to handle redirecting the form')
             ->validate()
-            ->ifTrue(function (?string $handler): bool {
+            ->ifTrue(static function (?string $handler): bool {
                 if ($handler === null) {
                     return false;
                 }
@@ -78,7 +78,7 @@ class Configuration implements ConfigurationInterface
             ->defaultNull()
             ->info('Service to handle inputs for the form')
             ->validate()
-            ->ifTrue(function (?string $handler): bool {
+            ->ifTrue(static function (?string $handler): bool {
                 if ($handler === null) {
                     return false;
                 }
@@ -114,7 +114,7 @@ class Configuration implements ConfigurationInterface
             ->cannotBeEmpty()
             ->info('The type of this FormType')
             ->validate()
-            ->ifTrue(fn (string $type): bool => !class_exists($type) && !class_exists(self::SYMFONY_FORMTYPES_NAMESPACE . $type))
+            ->ifTrue(static fn (string $type): bool => !class_exists($type) && !class_exists(self::SYMFONY_FORMTYPES_NAMESPACE . $type))
             ->thenInvalid('Invalid type class found. The type should either be a FQN or a subclass of ' . self::SYMFONY_FORMTYPES_NAMESPACE)
             ->end()
             ->example('TextType')
@@ -123,11 +123,11 @@ class Configuration implements ConfigurationInterface
             ->defaultValue([])
             ->info('Define the Symfony Constraints for this field')
             ->validate()
-            ->ifTrue(function (array $constraints): bool {
+            ->ifTrue(static function (array $constraints): bool {
                 $hasError = false;
 
                 foreach ($constraints as $constraint) {
-                    $classExists = fn (string $name): bool => class_exists($name) || class_exists(self::SYMFONY_CONSTRAINTS_NAMESPACE . $name);
+                    $classExists = static fn (string $name): bool => class_exists($name) || class_exists(self::SYMFONY_CONSTRAINTS_NAMESPACE . $name);
 
                     if (is_string($constraint)) {
                         $hasError = $hasError || !$classExists($constraint);
@@ -156,7 +156,7 @@ class Configuration implements ConfigurationInterface
             ->defaultValue(null)
             ->info('A class to provide the options for this FormType')
             ->validate()
-            ->ifTrue(fn (?string $name): bool => $name === null || !class_exists($name) || !in_array(ChoicesInterface::class, class_implements($name) ?: [], true))
+            ->ifTrue(static fn (?string $name): bool => $name === null || !class_exists($name) || !in_array(ChoicesInterface::class, class_implements($name) ?: [], true))
             ->thenInvalid('Provider class must exist and implement ' . ChoicesInterface::class)
             ->end()
             ->end()
@@ -184,7 +184,7 @@ class Configuration implements ConfigurationInterface
             ->end()
             ->end()
             ->validate()
-            ->ifTrue(function ($config): bool {
+            ->ifTrue(static function ($config): bool {
                 $hasError = false;
 
                 if ($config['type'] === 'http') {

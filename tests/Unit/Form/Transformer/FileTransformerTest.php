@@ -74,7 +74,7 @@ class FileTransformerTest extends TestCase
     {
         $this->translator
             ->method('trans')
-            ->willReturnCallback(fn ($key) => $key)
+            ->willReturnCallback(static fn ($key) => $key)
         ;
 
         $form = $this->formFactory

@@ -53,7 +53,7 @@ class StringTransformerTest extends TestCase
     {
         $this->translator
             ->method('trans')
-            ->willReturnCallback(fn ($key) => $key)
+            ->willReturnCallback(static fn ($key) => $key)
         ;
 
         $form = $this->formFactory
@@ -82,7 +82,7 @@ class StringTransformerTest extends TestCase
     {
         $this->translator
             ->method('trans')
-            ->willReturnCallback(fn ($key) => $key)
+            ->willReturnCallback(static fn ($key) => $key)
         ;
 
         $form = $this->formFactory

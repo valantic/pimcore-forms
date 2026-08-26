@@ -50,7 +50,7 @@ class OutputResponse
     {
         return array_reduce(
             $this->statuses,
-            fn ($previous, $current) => $previous && $current,
+            static fn ($previous, $current) => $previous && $current,
             true,
         );
     }
