@@ -2,6 +2,9 @@ name: PHP Checks
 
 on: [push, pull_request]
 
+env:
+  PHP_VERSION: "8.3"
+
 jobs:
   phpstan_pimcore10:
     name: phpstan (PHP ${{ matrix.php }} with Pimcore ${{ matrix.pimcore }} (${{ matrix.stability }}) on ${{ matrix.operating-system }})
@@ -54,7 +57,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.3
+          php-version: ${{ env.PHP_VERSION }}
           extensions: curl
           coverage: xdebug
 
@@ -63,6 +66,31 @@ jobs:
 
       - name: Ensure code style using php-cs-fixer
         run: composer run php-cs-fixer-check
+
+  rector:
+    name: rector
+    runs-on: ${{ matrix.operating-system }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        operating-system: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ env.PHP_VERSION }}
+          extensions: curl
+          coverage: xdebug
+
+      - name: Install composer dependencies
+        uses: ramsey/composer-install@v3
+
+      - name: Check for rector suggested refactorings
+        run: composer run rector-check
 
   phpunit:
     name: phpunit (PHP ${{ matrix.php }} with Pimcore ${{ matrix.pimcore }} (${{ matrix.stability }}) on ${{ matrix.operating-system }})

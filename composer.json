@@ -87,6 +87,9 @@
     "rector": [
       "./vendor/bin/rector process"
     ],
+    "rector-check": [
+      "./vendor/bin/rector process --dry-run"
+    ],
     "test": [
       "vendor/bin/phpunit"
     ],
