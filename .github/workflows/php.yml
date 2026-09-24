@@ -87,7 +87,7 @@ jobs:
           coverage: xdebug
 
       - name: Install composer dependencies
-        uses: ramsey/composer-install@v3
+        uses: ramsey/composer-install@v4
 
       - name: Check for rector suggested refactorings
         run: composer run rector-check
